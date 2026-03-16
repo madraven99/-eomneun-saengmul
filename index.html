@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f5ee;
+    --ink: #1a1a1a;
+    --muted: #666;
+    --border: #c8bfa0;
+    --accent: #5a4e3a;
+    --highlight: #e8dfc8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #2a2520;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 16px;
+  }
+
+  .cover {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.5), 6px 6px 0 rgba(0,0,0,0.15);
+    padding: 64px 64px 56px;
+    position: relative;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 12px; right: -12px; bottom: -12px;
+    background: #1a1510;
+    z-index: -1;
+  }
+
+  .cover-ornament {
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--border);
+    margin-bottom: 32px;
+  }
+
+  .cover-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .cover-subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 48px;
+    font-style: italic;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  .divider-ornament {
+    text-align: center;
+    color: var(--border);
+    font-size: 1.2rem;
+    margin: -12px 0 32px;
+  }
+
+  .intro {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: #3a3a3a;
+    text-align: justify;
+    margin-bottom: 48px;
+  }
+
+  .entries-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+
+  .entry-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+
+  .entry-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 20px;
+    background: #f0ead8;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.2s;
+  }
+
+  .entry-card:hover {
+    background: var(--highlight);
+  }
+
+  .entry-number {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--border);
+    min-width: 36px;
+  }
+
+  .entry-info {
+    flex: 1;
+  }
+
+  .entry-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .entry-sciname {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .entry-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .entry-arrow {
+    color: var(--border);
+    font-size: 1.2rem;
+  }
+
+  .cover-footer {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--border);
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="cover-ornament">✦ &nbsp; 생물 도감 &nbsp; ✦</div>
+  <div class="cover-title">가상 생물 도감</div>
+  <div class="cover-subtitle">Compendium of Imaginary Fauna</div>
+
+  <hr class="divider">
+  <div class="divider-ornament">❧</div>
+
+  <p class="intro">
+    본 도감은 실제 자연계에 존재하지 않거나, 존재 여부가 불분명한 생물들의 기록을 수집한 것이다. 수록된 각 항목은 역사적 목격 기록, 학술적 추정, 그리고 현장 조사를 바탕으로 서술되었으나 일부는 여전히 전설과 사실의 경계에 놓여 있다. 독자는 본 도감을 통해 알려진 세계의 바깥에 존재하는 생명의 다양성을 탐구할 수 있을 것이다.
+  </p>
+
+  <div class="entries-title">수록 생물 목록</div>
+
+  <div class="entry-list">
+    <a class="entry-card" href="cheonkwonsu.html">
+      <div class="entry-number">01</div>
+      <div class="entry-info">
+        <div class="entry-name">천권수 天權獸</div>
+        <div class="entry-sciname">Cer rir</div>
+        <div class="entry-desc">개과 최대종 · 희귀</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="gataegeori.html">
+      <div class="entry-number">02</div>
+      <div class="entry-info">
+        <div class="entry-name">가태거리 天山甲退</div>
+        <div class="entry-sciname">Ankylo Pholidota</div>
+        <div class="entry-desc">피갑목 최대종 · 초원 서식</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="badastar.html">
+      <div class="entry-number">03</div>
+      <div class="entry-info">
+        <div class="entry-name">바다별 海星</div>
+        <div class="entry-sciname">Lampy Amphibia</div>
+        <div class="entry-desc">발광 · 비행 가능</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="tarajaegingi.html">
+      <div class="entry-number">04</div>
+      <div class="entry-info">
+        <div class="entry-name">따라쟁이새 大鵯</div>
+        <div class="entry-sciname">Hypsipetes Magnusamaurotis</div>
+        <div class="entry-desc">고지능 조류 · 행동 모방</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="bbyewonseungi.html">
+      <div class="entry-number">05</div>
+      <div class="entry-info">
+        <div class="entry-name">뼈원숭이 變猴</div>
+        <div class="entry-sciname">Pan Tortuscaudapaniscus</div>
+        <div class="entry-desc">고적응성 · 다중 아종</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="munsandalamjwi.html">
+      <div class="entry-number">06</div>
+      <div class="entry-info">
+        <div class="entry-name">먼산다람쥐 擾栗鼠</div>
+        <div class="entry-sciname">Mons Mons Eutamias sibiricus</div>
+        <div class="entry-desc">다람쥐과 아종 · 경고색</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="gunraktoekki.html">
+      <div class="entry-number">07</div>
+      <div class="entry-info">
+        <div class="entry-name">군락토끼 衆卯</div>
+        <div class="entry-sciname">Oryctolagus Societas cuniculus</div>
+        <div class="entry-desc">고사회성 · 역할 분담</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="tandemsaurus.html">
+      <div class="entry-number">08</div>
+      <div class="entry-info">
+        <div class="entry-name">탄뎀사우루스 生活龍</div>
+        <div class="entry-sciname">Saltasaurus Tandem</div>
+        <div class="entry-desc">생존 용각류 · 멸종위기 위급</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="dongpungdaengi.html">
+      <div class="entry-number">09</div>
+      <div class="entry-info">
+        <div class="entry-name">동풍뎅이 銅龜子</div>
+        <div class="entry-sciname">Protaetia metallica Cuprum</div>
+        <div class="entry-desc">금풍뎅이과 · 구리빛 광택</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="deserttpine.html">
+      <div class="entry-number">10</div>
+      <div class="entry-info">
+        <div class="entry-name">사막소나무 仙人掌松</div>
+        <div class="entry-sciname">Pinus Cactaceae densiflora</div>
+        <div class="entry-desc">소나무과 · 수렴진화</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="pouchorangutan.html">
+      <div class="entry-number">11</div>
+      <div class="entry-info">
+        <div class="entry-name">주머니오랑우탄 囊猩</div>
+        <div class="entry-sciname">Pongo Marsupialia</div>
+        <div class="entry-desc">영장목 · 멸종위기 위급</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="entries-title">생태계 현상</div>
+
+  <div class="entry-list">
+    <a class="entry-card" href="companionherd.html">
+      <div class="entry-number">01</div>
+      <div class="entry-info">
+        <div class="entry-name">반려포유류 공동무리 공생현상</div>
+        <div class="entry-sciname">현상 · 형성 기제 미규명</div>
+        <div class="entry-desc">이종 공생 · 역할 분담</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+    <a class="entry-card" href="herbroot.html">
+      <div class="entry-number">02</div>
+      <div class="entry-info">
+        <div class="entry-name">초본류 동물 뿌리내림 현상</div>
+        <div class="entry-sciname">현상 · 진화적 뿌리내림</div>
+        <div class="entry-desc">동식물 공생 · 기제 미규명</div>
+      </div>
+      <div class="entry-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="cover-footer">본 도감의 모든 수록 생물은 창작된 가상의 존재입니다</div>
+</div>
+</body>
+</html>

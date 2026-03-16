@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>초본 동물 뿌리내림 현상 - 가상 생물 도감</title>
+<title>초본류 동물 뿌리내림 현상 - 가상 생물 도감</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -15,57 +15,18 @@
     --highlight: #dce8cc;
     --table-head: #c8dab0;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #101808;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: var(--ink);
-    min-height: 100vh;
-    padding: 30px 16px;
-  }
-
+  body { background: #101808; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
   .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
   .nav-bar a { color: #a8b890; text-decoration: none; }
   .nav-bar a:hover { text-decoration: underline; }
-
-  .page {
-    max-width: 860px;
-    margin: 0 auto;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1);
-    padding: 48px 56px;
-  }
-
-  .phenomenon-label {
-    display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 2px 10px;
-    margin-bottom: 12px;
-    opacity: 0.8;
-  }
-
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .phenomenon-label { display: inline-block; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; margin-bottom: 12px; opacity: 0.8; }
   .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
   .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
-
-  .infobox {
-    float: right; clear: right; margin: 0 0 24px 28px; width: 245px;
-    border: 1px solid var(--border); background: #eaf0de; font-size: 0.82rem;
-  }
-
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #eaf0de; font-size: 0.82rem; }
   .infobox-title { background: var(--accent); color: #f5f4ee; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
-
-  .infobox-img {
-    width: 100%; height: 175px;
-    background: linear-gradient(160deg, #0a1808 0%, #182810 50%, #101e08 100%);
-    display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border);
-  }
-
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #0a1808 0%, #182810 50%, #101e08 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
   .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
   .infobox table { width: 100%; border-collapse: collapse; }
   .infobox tr { border-bottom: 1px solid #b8cca0; }
@@ -73,171 +34,169 @@
   .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
   .infobox td:first-child { font-weight: 500; color: var(--accent); width: 80px; font-size: 0.78rem; }
   .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
-
   .toc { background: #eaf0de; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
   .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
   .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
   .toc a { color: var(--accent); text-decoration: none; }
   .toc a:hover { text-decoration: underline; }
-
   p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
   h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
   h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
-
   .clearfix::after { content: ''; display: table; clear: both; }
-
   .notice-box { background: #eaf0de; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a3010; }
   .notice-box strong { color: var(--accent); }
-
+  .host-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 16px 0 20px; }
+  .host-table th { background: var(--table-head); color: var(--accent); font-weight: 600; padding: 7px 12px; text-align: left; border: 1px solid var(--border); font-size: 0.8rem; }
+  .host-table td { padding: 7px 12px; border: 1px solid #c8d8b0; vertical-align: top; line-height: 1.6; }
+  .host-table tr:nth-child(even) td { background: #f0f5e8; }
   .stage-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 16px 0 20px; }
   .stage-table th { background: var(--table-head); color: var(--accent); font-weight: 600; padding: 7px 12px; text-align: left; border: 1px solid var(--border); font-size: 0.8rem; }
   .stage-table td { padding: 7px 12px; border: 1px solid #c8d8b0; vertical-align: top; line-height: 1.6; }
   .stage-table tr:nth-child(even) td { background: #f0f5e8; }
-
   .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
   .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
   .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
 </style>
 </head>
 <body>
-<div class="nav-bar">
-  <a href="index.html">← 도감 목록으로</a>
-</div>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
 
 <div class="page clearfix">
 
   <div class="infobox">
-    <div class="infobox-title">초본 동물 뿌리내림 현상</div>
+    <div class="infobox-title">초본류 동물 뿌리내림 현상</div>
     <div class="infobox-img">
       <svg width="200" height="170" viewBox="0 0 200 170" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.85">
-        <!-- 도롱뇽 형태 숙주 -->
-        <ellipse cx="100" cy="118" rx="55" ry="22" fill="#4a6838"/>
-        <ellipse cx="145" cy="112" rx="20" ry="16" fill="#4a6838"/>
-        <ellipse cx="158" cy="116" rx="10" ry="8" fill="#3a5828"/>
-        <circle cx="162" cy="113" r="2" fill="#0a1808"/>
-        <!-- 꼬리 -->
-        <path d="M46 118 Q26 110 20 100" stroke="#4a6838" stroke-width="9" fill="none" stroke-linecap="round"/>
-        <!-- 다리 4개 -->
-        <path d="M75 136 Q70 148 68 158" stroke="#3a5828" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M90 138 Q88 150 86 160" stroke="#3a5828" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M118 138 Q120 150 122 160" stroke="#3a5828" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M133 136 Q138 148 140 157" stroke="#3a5828" stroke-width="5" fill="none" stroke-linecap="round"/>
-
-        <!-- 식물 줄기 — 등 위에서 자람 -->
-        <path d="M88 97 Q85 78 82 60 Q80 45 83 32" stroke="#2a7018" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M100 96 Q100 74 98 54 Q96 38 100 22" stroke="#2a7018" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <path d="M114 97 Q116 76 118 56 Q120 40 116 26" stroke="#2a7018" stroke-width="2" fill="none" stroke-linecap="round"/>
-
-        <!-- 잎 -->
-        <ellipse cx="76" cy="50" rx="12" ry="5" fill="#3a8820" opacity="0.9" transform="rotate(-35,76,50)"/>
-        <ellipse cx="89" cy="38" rx="10" ry="4" fill="#4a9828" opacity="0.85" transform="rotate(-20,89,38)"/>
-        <ellipse cx="98" cy="30" rx="11" ry="5" fill="#3a8820" opacity="0.9" transform="rotate(5,98,30)"/>
-        <ellipse cx="107" cy="20" rx="10" ry="4" fill="#4a9828" opacity="0.85" transform="rotate(15,107,20)"/>
-        <ellipse cx="120" cy="38" rx="11" ry="5" fill="#3a8820" opacity="0.9" transform="rotate(30,120,38)"/>
-        <ellipse cx="114" cy="26" rx="9" ry="4" fill="#4a9828" opacity="0.85" transform="rotate(20,114,26)"/>
-        <ellipse cx="82" cy="42" rx="9" ry="4" fill="#3a8820" opacity="0.8" transform="rotate(-45,82,42)"/>
-        <ellipse cx="103" cy="44" rx="10" ry="4" fill="#4a9828" opacity="0.8" transform="rotate(-10,103,44)"/>
-
-        <!-- 뿌리 — 피부 아래로 파고드는 암시 -->
-        <path d="M88 100 Q86 104 84 108" stroke="#1a5010" stroke-width="1.2" fill="none" opacity="0.7" stroke-linecap="round"/>
-        <path d="M88 100 Q90 105 91 109" stroke="#1a5010" stroke-width="1" fill="none" opacity="0.6" stroke-linecap="round"/>
-        <path d="M100 99 Q98 104 97 109" stroke="#1a5010" stroke-width="1.2" fill="none" opacity="0.7" stroke-linecap="round"/>
-        <path d="M100 99 Q102 104 103 110" stroke="#1a5010" stroke-width="1" fill="none" opacity="0.6" stroke-linecap="round"/>
-        <path d="M114 100 Q112 105 111 110" stroke="#1a5010" stroke-width="1.2" fill="none" opacity="0.7" stroke-linecap="round"/>
-        <path d="M114 100 Q116 105 117 109" stroke="#1a5010" stroke-width="1" fill="none" opacity="0.6" stroke-linecap="round"/>
-
-        <!-- 혈관 공유 암시 — 줄기 안의 붉은 선 -->
-        <path d="M100 96 Q100 74 98 54" stroke="#c04030" stroke-width="0.7" fill="none" opacity="0.35" stroke-dasharray="3 4"/>
+        <ellipse cx="98" cy="125" rx="40" ry="22" fill="#3a6028"/>
+        <ellipse cx="135" cy="115" rx="22" ry="18" fill="#3a6028"/>
+        <ellipse cx="150" cy="118" rx="11" ry="9" fill="#2a5018"/>
+        <circle cx="155" cy="114" r="2.5" fill="#0a1808"/>
+        <circle cx="156" cy="113" r="1" fill="white" opacity="0.7"/>
+        <path d="M68 138 Q55 148 48 158 Q44 164 52 162 Q62 155 72 148" stroke="#2a5018" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M85 142 Q80 154 78 164 Q76 170 84 166 Q90 158 92 148" stroke="#2a5018" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M118 136 Q124 148 128 156" stroke="#2a5018" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M132 133 Q140 144 144 152" stroke="#2a5018" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="88" y1="104" x2="86" y2="92" stroke="#2a7018" stroke-width="2"/>
+        <line x1="100" y1="103" x2="100" y2="88" stroke="#2a7018" stroke-width="2.5"/>
+        <line x1="112" y1="104" x2="114" y2="91" stroke="#2a7018" stroke-width="2"/>
+        <ellipse cx="86" cy="88" rx="18" ry="8" fill="#3a9828" opacity="0.9" transform="rotate(-15,86,88)"/>
+        <ellipse cx="100" cy="84" rx="20" ry="9" fill="#4aaa30" opacity="0.9"/>
+        <ellipse cx="114" cy="88" rx="18" ry="8" fill="#3a9828" opacity="0.9" transform="rotate(15,114,88)"/>
+        <circle cx="100" cy="78" r="6" fill="#e8d0f0" opacity="0.9"/>
+        <ellipse cx="92" cy="82" rx="5" ry="3" fill="#d8b8e8" opacity="0.8" transform="rotate(-30,92,82)"/>
+        <ellipse cx="108" cy="82" rx="5" ry="3" fill="#d8b8e8" opacity="0.8" transform="rotate(30,108,82)"/>
+        <circle cx="100" cy="78" r="2.5" fill="#f0e050" opacity="0.9"/>
+        <path d="M88 106 Q86 110 84 115" stroke="#1a5010" stroke-width="1.2" fill="none" opacity="0.7" stroke-linecap="round"/>
+        <path d="M88 106 Q90 111 91 116" stroke="#1a5010" stroke-width="1" fill="none" opacity="0.6" stroke-linecap="round"/>
+        <path d="M100 105 Q99 110 98 116" stroke="#1a5010" stroke-width="1.2" fill="none" opacity="0.7" stroke-linecap="round"/>
+        <path d="M100 105 Q102 110 103 116" stroke="#1a5010" stroke-width="1" fill="none" opacity="0.6" stroke-linecap="round"/>
+        <path d="M112 106 Q110 111 109 116" stroke="#1a5010" stroke-width="1.2" fill="none" opacity="0.7" stroke-linecap="round"/>
+        <path d="M112 106 Q114 111 115 116" stroke="#1a5010" stroke-width="1" fill="none" opacity="0.6" stroke-linecap="round"/>
+        <path d="M100 103 Q100 94 100 88" stroke="#c04030" stroke-width="0.7" fill="none" opacity="0.3" stroke-dasharray="3 4"/>
       </svg>
     </div>
-    <div class="infobox-caption">도롱뇽 등에 뿌리를 내린 초본 — 줄기와 숙주 조직이 혈관을 공유한 상태</div>
+    <div class="infobox-caption">개구리 등에 뿌리를 내린 초본 — 짧은 줄기에서 넓은 잎과 꽃이 피어난 상태</div>
     <table>
       <tr class="section-header"><td colspan="2">현상 정보</td></tr>
       <tr><td>유형</td><td>동식물 간 공생 · 진화적 뿌리내림</td></tr>
       <tr><td>식물 분류</td><td>과 불문 초본류</td></tr>
-      <tr><td>숙주 범위</td><td>양서류, 파충류, 연체류</td></tr>
+      <tr><td>주 숙주</td><td>양서류, 파충류, 연체류</td></tr>
+      <tr><td>적합 숙주</td><td>소형</td></tr>
+      <tr class="section-header"><td colspan="2">생장 특성</td></tr>
+      <tr><td>줄기</td><td>원종보다 짧게 자람</td></tr>
+      <tr><td>잎</td><td>넓게 퍼짐</td></tr>
+      <tr><td>꽃</td><td>잎과 가깝게 1~4개</td></tr>
+      <tr><td>종료</td><td>번식 후 자연 탈락</td></tr>
       <tr class="section-header"><td colspan="2">단계별 특성</td></tr>
       <tr><td>초기(~6개월)</td><td>제거 용이</td></tr>
       <tr><td>장기(6개월~)</td><td>혈관 공유 · 동화</td></tr>
       <tr class="section-header"><td colspan="2">연구 현황</td></tr>
       <tr><td>공생 여부</td><td>상리공생 추정</td></tr>
-      <tr><td>기제</td><td>미규명</td></tr>
     </table>
   </div>
 
   <div class="phenomenon-label">생물 간 상호 현상</div>
-  <div class="article-title">초본 동물 뿌리내림 현상</div>
+  <div class="article-title">초본류 동물 뿌리내림 현상</div>
   <div class="article-subtitle">살아있는 동물 위에 뿌리를 내리는 초본류의 진화적 행동</div>
 
   <div class="toc">
     <div class="toc-title">목차</div>
     <ol>
       <li><a href="#overview">개요</a></li>
-      <li><a href="#hosts">숙주 범위</a></li>
+      <li><a href="#why">숙주 범위와 그 이유</a></li>
+      <li><a href="#size">숙주 크기</a></li>
+      <li><a href="#hosts">숙주별 반응</a></li>
       <li><a href="#stages">진행 단계</a></li>
-      <li><a href="#physiology">생리적 기제</a></li>
+      <li><a href="#form">생장 형태</a></li>
       <li><a href="#symbiosis">공생 관계</a></li>
-      <li><a href="#questions">미해결 문제</a></li>
+      <li><a href="#culture">사회적 반응</a></li>
       <li><a href="#current">현황</a></li>
     </ol>
   </div>
 
   <section id="overview">
-    <p><strong>초본 동물 뿌리내림 현상</strong>은 일부 초본류 식물이 흙이나 수중이 아닌 살아있는 동물의 몸 위에 뿌리를 내리고 자라는 현상이다. 특정 과에 국한되지 않고 다양한 초본류에서 관찰된다는 점에서, 개별 종의 특성이 아닌 여러 계통에서 독립적으로 나타나는 진화적 방향으로 해석된다. 광합성을 병행하면서도 숙주로부터 추가적인 에너지원을 흡수하기 위한 전략으로 추정되며, 기생보다는 공생에 가까운 관계를 형성하는 것으로 알려져 있다.</p>
+    <p><strong>초본류 동물 뿌리내림 현상</strong>은 일부 초본류 식물이 흙이나 수중이 아닌 살아있는 동물의 몸 위에 뿌리를 내리고 자라는 현상이다. 특정 과에 국한되지 않고 다양한 초본류에서 관찰된다는 점에서, 개별 종의 특성이 아닌 여러 계통에서 독립적으로 나타나는 진화적 방향으로 해석된다. 광합성을 병행하면서도 숙주로부터 추가적인 에너지원을 흡수하기 위한 전략으로 추정되며, 기생보다는 공생에 가까운 관계를 형성하는 것으로 알려져 있다.</p>
+  </section>
+
+  <section id="why">
+    <h2>숙주 범위와 그 이유</h2>
+    <p>현재까지 확인된 숙주는 양서류, 파충류, 연체류에 한정된다. 포유류나 조류에서는 이 현상이 보고된 바 없다. 그 이유는 체온과 피부 환경의 차이로 설명된다.</p>
+    <p>파충류와 양서류는 변온동물로 체온이 외부 환경과 크게 다르지 않으며, 피부의 재질이 흙이나 물과 유사한 조건을 지닌다. 이 환경이 초본류의 씨앗이 착지하고 뿌리를 내리기에 적합한 것으로 보인다. 반면 포유류나 조류는 항온동물로 체온이 높아, 씨앗이 착지하더라도 뿌리를 내리기 전에 열로 인해 고사하는 것으로 추정된다. 어류에 대한 사례는 아직 확인되지 않았다.</p>
+  </section>
+
+  <section id="size">
+    <h2>숙주 크기</h2>
+    <p>뿌리를 성공적으로 내리는 사례는 대부분 소형 동물에서 나타난다. 대형 동물의 경우 움직임이 거칠어 뿌리가 정착하기 어렵고, 설령 뿌리를 내리더라도 복부처럼 햇빛이 닿지 않는 부위에 착지한 경우 광합성이 불가능해 금방 고사한다. 등 쪽으로 씨앗이 이동해 재정착하는 것도 현실적으로 어렵다.</p>
+    <p>대형 동물에게 뿌리를 내리는 시도 자체는 발생하지만 생존율이 극히 낮다. 초본류가 소형 동물을 선별하는 것이 아니라, 소형 동물에 뿌리를 내린 개체들만 자연적으로 살아남은 결과로 해석된다.</p>
   </section>
 
   <section id="hosts">
-    <h2>숙주 범위</h2>
-    <p>현재까지 확인된 숙주는 양서류, 파충류, 연체류에 한정된다. 조류나 포유류에서는 이 현상이 보고된 바 없으며, 어류에 대한 사례도 아직 확인되지 않았다. 왜 이 계통에만 뿌리내림이 가능한지에 대한 명확한 설명은 아직 없다. 피부 구조나 체표 환경이 결정적인 요인일 것으로 추정되나 구체적인 기제는 연구 중이다.</p>
-    <p>숙주 동물의 크기나 종에 따른 선호는 아직 뚜렷하게 확인되지 않았다. 다만 장기간 움직임이 적고 습한 환경에 머무는 개체에서 더 안정적으로 진행되는 경향이 있다는 보고가 있다.</p>
+    <h2>숙주별 반응</h2>
+    <p>양서류와 파충류 모두 숙주 범위에 속하지만 종에 따라 반응이 크게 엇갈린다.</p>
+    <table class="host-table">
+      <tr><th>숙주</th><th>반응 및 특성</th></tr>
+      <tr><td><strong>개구리</strong></td><td>땅에 뿌리를 내리는 초본류가 가장 많이 정착하는 숙주다. 뿌리내림이 짝짓기에 큰 불편을 주지 않는 것으로 관찰된다.</td></tr>
+      <tr><td><strong>두꺼비</strong></td><td>일반 초본류는 대부분 시들지만 독초류는 오히려 잘 자란다. 독초가 뿌리를 내린 두꺼비는 천적 피해가 줄어드는 경향이 있어, 이 현상에서 공생 관계가 가장 명확하게 나타나는 사례로 꼽힌다.</td></tr>
+      <tr><td><strong>도마뱀 · 도롱뇽</strong></td><td>등에 식물이 자라도 크게 개의치 않는 경향이 있다. 도롱뇽의 경우 물에 뿌리를 내리는 초본류와의 궁합이 좋은 것으로 알려져 있다.</td></tr>
+      <tr><td><strong>거북</strong></td><td>등껍질에는 식물이 자랄 수 없다. 다른 부위에 뿌리를 내리는 경우 적극적으로 제거하려 한다.</td></tr>
+      <tr><td><strong>악어</strong></td><td>새끼 시절에는 정착 가능하나 성체의 피부는 뿌리가 뚫지 못하는 것으로 보인다.</td></tr>
+      <tr><td><strong>뱀 · 무족영원</strong></td><td>뿌리를 내리고 싹을 틔우더라도 기어다니는 이동 방식 때문에 식물이 지면에 쓸려 탈락한다.</td></tr>
+    </table>
   </section>
 
   <section id="stages">
     <h2>진행 단계</h2>
     <p>뿌리내림은 크게 두 단계로 구분된다.</p>
-
     <table class="stage-table">
-      <tr>
-        <th>단계</th>
-        <th>기간</th>
-        <th>특성</th>
-      </tr>
-      <tr>
-        <td><strong>초기 정착</strong></td>
-        <td>~6개월</td>
-        <td>뿌리가 체표에 얕게 자리를 잡은 상태. 외력으로 비교적 쉽게 제거할 수 있으며 숙주에 뚜렷한 영향이 없는 것으로 보인다.</td>
-      </tr>
-      <tr>
-        <td><strong>동화</strong></td>
-        <td>6개월 이상</td>
-        <td>뿌리가 숙주의 조직과 결합하고 혈관을 공유하는 상태. 제거가 불가능하지는 않으나 방법은 아직 밝혀지지 않았다. 외형적으로는 식물 부위가 동물의 몸에 속한 것처럼 보인다.</td>
-      </tr>
+      <tr><th>단계</th><th>기간</th><th>특성</th></tr>
+      <tr><td><strong>초기 정착</strong></td><td>~6개월</td><td>뿌리가 체표에 얕게 자리를 잡은 상태. 외력으로 비교적 쉽게 제거할 수 있으며 숙주에 뚜렷한 영향이 없는 것으로 보인다.</td></tr>
+      <tr><td><strong>동화</strong></td><td>6개월 이상</td><td>뿌리가 숙주의 조직과 결합하고 혈관을 공유하는 상태. 외형적으로는 식물 부위가 동물의 몸에 속한 것처럼 보이며 원래 한 생물처럼 느껴지기도 한다. 제거 방법은 아직 밝혀지지 않았다.</td></tr>
     </table>
-
-    <div class="notice-box"><strong>동화 단계의 특이성:</strong> 6개월 이상 경과한 개체에서는 식물의 줄기와 숙주의 혈관 사이에 물질 교환이 이루어지는 것으로 확인된다. 이 상태의 식물을 강제로 분리할 경우 숙주에 어떤 영향이 발생하는지는 현재까지 충분히 연구되지 않았다.</div>
+    <p>번식이 완료된 이후에는 뿌리를 내렸던 동물에게서 흔적도 남기지 않고 자연적으로 탈락하는 것으로 알려져 있다. 동면 기간 이후에는 이 현상이 거의 관찰되지 않는다는 점도 확인되었다.</p>
   </section>
 
-  <section id="physiology">
-    <h2>생리적 기제</h2>
-    <p>이 현상을 보이는 초본류는 광합성 능력을 유지하면서도 동물 숙주로부터 별도의 에너지원을 흡수하는 것으로 추정된다. 광합성만으로 충분하지 않은 환경에서 보완적 에너지 획득 경로를 개척한 결과라는 해석이 현재로서 가장 설득력 있게 받아들여진다.</p>
-    <p>뿌리가 어떤 방식으로 동물의 피부를 통과해 조직과 결합하는지, 혈관 공유가 어떤 메커니즘으로 이루어지는지는 아직 규명되지 않았다. 뿌리 끝에서 특수한 물질이 분비되어 숙주의 면역 반응을 억제하는 것이 아닌가 하는 가설이 제기되었으나 검증에는 이르지 못했다.</p>
+  <section id="form">
+    <h2>생장 형태</h2>
+    <p>뿌리를 내린 이후의 초본류는 원종의 생장 형태와 뚜렷이 다른 모습을 보인다. 줄기를 길게 뻗지 않고 아주 짧은 줄기에서 넓은 잎을 펼쳐 숙주의 등 피부를 넓게 덮는 형태로 자란다. 이 잎이 숙주의 체색과 어우러져 주변 환경과 유사한 의태 효과를 내기도 한다.</p>
+    <p>꽃 역시 줄기를 높이 올리지 않고 잎과 가깝게 핀다. 어떤 초본류든 이 현상에서는 연꽃처럼 잎과 꽃이 가깝게 붙어 피는 형태가 공통적으로 나타난다. 꽃은 보통 1개가 피며 많은 경우 3~4개까지 피기도 한다.</p>
   </section>
 
   <section id="symbiosis">
     <h2>공생 관계</h2>
-    <p>초기에는 기생 관계로 분류하는 시각이 지배적이었으나, 이후 관찰에서 숙주 동물에게 유의미한 피해가 나타나지 않는 경우가 더 많다는 점이 확인되었다. 일부 사례에서는 식물이 자리잡은 이후 숙주의 상처 회복이 빠르게 이루어졌다는 보고도 있어, 식물이 숙주에게 일정한 이점을 제공할 가능성이 논의되고 있다. 현재로서는 상리공생에 가까운 관계로 추정하는 견해가 우세하나 확정된 결론은 아니다.</p>
-    <p>숙주 동물이 이 식물을 제거하려는 행동을 보이는 경우도 있고, 별다른 반응 없이 지내는 경우도 관찰된다. 후자의 경우가 더 많다는 점에서 동물이 식물의 존재를 적극적으로 허용하는 쪽으로 반응하는 것이 아닌가 하는 추측도 있다.</p>
+    <p>초기에는 기생 관계로 분류하는 시각이 지배적이었으나, 이후 관찰에서 숙주 동물에게 실질적인 피해가 나타나지 않는 경우가 더 많다는 점이 확인되었다. 피부를 뚫는다는 사실이 외관상 흉측하게 느껴질 수 있으나, 뿌리가 잘 아물어 숙주 입장에서는 불편함이 크지 않은 것으로 연구 결과 밝혀졌다.</p>
+    <p>오히려 이점으로 작용하는 측면이 여럿 확인된다. 넓은 잎이 숙주의 몸을 가려 포식자에게 의태 효과를 주고, 두꺼비의 경우처럼 독초가 자라면 천적 접근 자체를 억제하기도 한다. 이 때문에 절지동물을 숙주로 삼는 동충하초보다는 소라게와 말미잘의 관계에 가깝다는 견해가 현재로서 가장 설득력 있게 받아들여진다.</p>
+    <div class="notice-box"><strong>동화 단계 이후:</strong> 6개월 이상 경과한 상태에서 혈관을 공유한 식물을 강제로 분리할 경우 숙주에 어떤 영향이 생기는지는 아직 충분히 연구되지 않았다. 번식 이후 자연 탈락하는 원리도 불분명하다.</div>
   </section>
 
-  <section id="questions">
-    <h2>미해결 문제</h2>
-    <p>이 현상을 둘러싼 근본적인 의문은 아직 답을 찾지 못한 상태다. 왜 초본류의 여러 과에서 동시다발적으로 같은 방향의 진화가 일어나고 있는지, 왜 숙주 범위가 양서류·파충류·연체류로 한정되는지가 대표적인 미해결 과제다.</p>
-    <p>동화 단계에서 혈관을 공유한 식물을 제거하는 방법도 아직 밝혀지지 않았다. 제거가 불가능한 것인지, 아니면 특수한 방법이 존재하는 것인지 자체도 확인되지 않은 상황이다. 이 상태의 숙주 동물이 노화나 사망 이후 어떻게 되는지에 대한 장기 추적 연구도 현재 진행 중이다.</p>
+  <section id="culture">
+    <h2>사회적 반응</h2>
+    <p>이 현상은 포켓몬스터 팬들 사이에서 특히 높은 관심을 받고 있다. 애완 개구리나 두꺼비를 키우는 일부 사육자들이 의도적으로 예쁜 꽃의 씨앗을 등에 묻혀 뿌리내림을 유도하는 시도를 하는데, 포켓몬 이상해씨를 구현하려는 목적인 경우가 많다.</p>
+    <p>동물 입장에서 고통스러운 행위는 아닌 것으로 알려져 있으나, 인위적으로 유도한다는 점에서 시각이 엇갈린다. 일부 펫샵에서는 이러한 형태의 개체를 의도적으로 판매하기도 한다. 동물 보호 단체에서도 이 문제를 논의 중이나 강경파와 온건파에 따라 태도가 다르며, 아직 명확한 합의에 이르지 못한 상태다.</p>
   </section>
 
   <section id="current">
     <h2>현황</h2>
-    <p>현재 다양한 지역에서 산발적으로 보고되고 있으며, 발견 빈도는 점차 증가하는 추세다. 특정 식물 종이나 특정 숙주에 집중되는 것이 아니라 분류군을 가리지 않고 나타난다는 점에서, 독립적인 수렴 진화가 동시에 여러 계통에서 일어나고 있는 것으로 추정된다. 이 현상이 특정 환경 조건의 변화와 연관이 있는지도 현재 조사 중이다.</p>
+    <p>현재 다양한 지역에서 산발적으로 보고되고 있으며 발견 빈도는 점차 증가하는 추세다. 특정 식물 종이나 특정 숙주에 집중되지 않고 분류군을 가리지 않고 나타난다는 점에서, 여러 계통에서 독립적으로 같은 방향의 진화가 동시에 일어나고 있는 것으로 추정된다. 왜 이러한 진화가 동시다발적으로 발생하는지에 대해서는 아직 설명이 없으며 연구가 진행 중이다.</p>
   </section>
 
   <div class="tag-list">
@@ -246,7 +205,6 @@
     <span class="tag">양서류</span>
     <span class="tag">파충류</span>
     <span class="tag">진화적 뿌리내림</span>
-    <span class="tag">기제 미규명</span>
   </div>
 
   <div class="article-footer">
