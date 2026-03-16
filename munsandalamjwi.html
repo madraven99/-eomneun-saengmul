@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>먼산다람쥐 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f2ec;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #b0a080;
+    --accent: #4a3a18;
+    --highlight: #e8dcc0;
+    --table-head: #d8cc9e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1e1a10; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c8bfa0; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 240px; border: 1px solid var(--border); background: #ede5cc; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f5f2ec; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 160px; background: linear-gradient(160deg, #2a2018 0%, #3a3020 50%, #504030 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #c8b880; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #ede5cc; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: #4a3a18; line-height: 1.9; }
+  .toc a { color: #4a3a18; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: #6a5820; color: #f5f2ec; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #f0e8d0; border-left: 3px solid #8a7030; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a2800; }
+  .notice-box strong { color: #5a3800; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">먼산다람쥐 擾栗鼠</div>
+    <div class="infobox-img">
+      <svg width="180" height="150" viewBox="0 0 180 150" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.8">
+        <ellipse cx="85" cy="100" rx="30" ry="18" fill="#1a1408"/>
+        <line x1="62" y1="90" x2="108" y2="90" stroke="#f0f0e0" stroke-width="2.5" opacity="0.9"/>
+        <line x1="60" y1="97" x2="110" y2="97" stroke="#f0f0e0" stroke-width="1.5" opacity="0.6"/>
+        <line x1="62" y1="104" x2="108" y2="104" stroke="#f0f0e0" stroke-width="2.5" opacity="0.9"/>
+        <ellipse cx="115" cy="85" rx="17" ry="14" fill="#1a1408"/>
+        <line x1="100" y1="79" x2="130" y2="79" stroke="#f0f0e0" stroke-width="1.5" opacity="0.8"/>
+        <circle cx="122" cy="82" r="3.5" fill="#0a0800"/>
+        <circle cx="123" cy="81" r="1.2" fill="white"/>
+        <ellipse cx="108" cy="73" rx="5" ry="7" fill="#1a1408"/>
+        <ellipse cx="119" cy="72" rx="5" ry="7" fill="#1a1408"/>
+        <ellipse cx="130" cy="87" rx="4" ry="3" fill="#2a2010"/>
+        <path d="M56 105 Q30 95 22 80 Q18 65 28 60 Q38 55 42 68 Q46 82 58 95" fill="#1a1408" stroke="#f0f0e0" stroke-width="1.5" opacity="0.7"/>
+        <line x1="72" y1="115" x2="68" y2="132" stroke="#1a1408" stroke-width="5" stroke-linecap="round"/>
+        <line x1="90" y1="117" x2="92" y2="134" stroke="#1a1408" stroke-width="5" stroke-linecap="round"/>
+        <line x1="108" y1="115" x2="112" y2="130" stroke="#1a1408" stroke-width="5" stroke-linecap="round"/>
+        <path d="M126 88 Q130 94 134 88" stroke="#f0e0c0" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">상위 포식자를 향해 소리를 지르는 특유의 행동</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>포유강</td></tr>
+      <tr><td>목</td><td>설치목</td></tr>
+      <tr><td>과</td><td>다람쥐과</td></tr>
+      <tr><td>아과</td><td>땅다람쥐아과</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Mons Mons Eutamias sibiricus</em></td></tr>
+      <tr><td>한자</td><td>擾栗鼠</td></tr>
+      <tr><td>크기</td><td>시베리아 다람쥐급</td></tr>
+      <tr><td>체색</td><td>흑백 줄무늬 (또렷)</td></tr>
+      <tr><td>평균 수명</td><td>16 ~ 18년</td></tr>
+      <tr><td>임신 기간</td><td>약 1달 ~ 1달 반</td></tr>
+      <tr><td>한배 새끼 수</td><td>5 ~ 8마리</td></tr>
+      <tr><td>번식 텀</td><td>약 2년</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">먼산다람쥐 <span class="status-badge">아종</span></div>
+  <div class="article-subtitle">擾栗鼠 · Mons Mons Eutamias sibiricus · "소란스러운 다람쥐"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#monstermt">괴물산에 대하여</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#sound">울음소리</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#history">역사적 기록</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>먼산다람쥐</strong>(擾栗鼠, <em>Mons Mons Eutamias sibiricus</em>)는 다람쥐과 땅다람쥐아과에 속하는 설치류로, 시베리아 다람쥐의 아종으로 분류된다. 상위 포식자만 존재하고 중간 포식자가 없던 특수한 산악 환경에 적응한 결과 포식자에 대한 경계심이 유전적으로 희박해졌으며, 대신 발달한 성대와 공격적인 기질을 갖게 된 것이 특징이다. 일반인들은 보통 다람쥐와 구분하지 않으나 생물학적으로 분리된 아종으로 공식 분류되었다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>명칭은 다소 복잡한 전달 과정을 거쳤다. 괴물산(Monster Mountain) 근처 현지인들이 이 다람쥐를 "몬스터 마운틴 칩멍크"라 불렀는데, 이것이 외부로 전해지는 과정에서 "몬스터" 부분이 뭉개진 발음으로 들려 고유명사로 오인되었다. 이후 필기 과정에서 마운틴은 "산", 칩멍크는 "다람쥐"로 번역되고 앞부분만 음차하여 "먼스산다람쥐"가 되었으며, 이후 'ㅅ' 발음이 탈락하여 현재의 <strong>먼산다람쥐</strong>로 정착되었다.</p>
+  </section>
+
+  <section id="monstermt">
+    <h2>괴물산에 대하여</h2>
+    <p>먼산다람쥐의 원래 서식지인 괴물산(Monster Mountain)은 실제 위치가 밝혀지지 않았다. 상위 포식자만 존재하고 중간 포식자가 없는 특수한 생태계를 가진 산으로 전해지며, 이러한 환경이 오히려 다람쥐에게 유리하게 작용했다는 것이 현재 가장 설득력 있는 해석이다.</p>
+    <p>한편 역수입 가설도 있다. 호랑이가 많이 서식하는 동아시아 산에서는 중간 포식자인 늑대나 삵의 개체수가 현저히 줄어드는 경향이 있어 다람쥐가 살기 좋은 환경이 만들어지는데, 이쪽 사람이 유럽이나 아메리카에서 그 이야기를 전하는 과정에서 과장·와전되어 괴물산 전설이 생겨났다는 주장이다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전체적인 체형과 크기는 시베리아 다람쥐와 유사하나, 체색이 더 검고 흰 줄무늬가 또렷하게 발달한 것이 특징이다. 이 흑백 대비 패턴은 얼룩말, 스컹크, 라텔, 호저 등 경고색을 지닌 동물들과 유사한 형태로, "건드리지 마라"는 신호로 해석된다. 의도적으로 진화시킨 것인지는 불분명하나 결과적으로 같은 패턴을 공유하게 되었다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>견과류와 나무열매를 주로 섭취하며, 기회가 되면 단백질도 섭취하는 잡식성이다. 성격이 거친 편으로, 상위 포식자가 보금자리를 위협하거나 건드릴 경우 작은 몸으로 상위 포식자에게 직접 달려들어 귀 근처에 매달린 채 울어대는 행동이 관찰된다. 이 행동에 자리를 피하는 상위 포식자도 있는 것으로 전해진다.</p>
+    <p>괴물산에서는 상위 포식자가 천적 역할을 하지 않았기 때문에 이들에 대한 경계심이 유전적으로 형성되지 않았다. 현재 다른 산에 분포하면서 삵이나 육식성 조류 같은 실질적 천적을 만나도 유사한 저항 행동을 보이는 것으로 확인된다.</p>
+  </section>
+
+  <section id="sound">
+    <h2>울음소리</h2>
+    <p>다른 설치류와 달리 성대가 발달해 있으며 울음소리가 매우 독특하다. 영어권에서는 <strong>"Mo-ah-ah!"</strong>로 표기하며, 한국어 화자들 사이에서는 "못산다!"라고 외치는 것처럼 들린다는 반응이 많다. 이름과 공교롭게 맞아떨어진다는 점에서 화제가 되었고, 관련 영상이 인터넷에 퍼지면서 다양한 몬데그린을 낳기도 했다. 이 울음소리가 어떻게 발현된 것인지는 현재까지 가장 미스테리한 부분으로 남아 있다.</p>
+    <div class="notice-box"><strong>명칭 관련 주의:</strong> 울음소리가 "못산다!"처럼 들린다는 이유로 이름이 울음소리에서 유래했다는 설이 퍼져 있으며, 이를 근거로 '몬산다람쥐'라 표기하는 경우도 있다. 이는 잘못된 정보이며 정식 명칭은 <strong>먼산다람쥐</strong>가 맞다.</div>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>임신 기간은 약 1달에서 1달 반이며 한 번에 5~8마리의 새끼를 낳는다. 번식 텀은 약 2년으로, 설치류치고 번식 주기가 긴 편이다.</p>
+  </section>
+
+  <section id="history">
+    <h2>역사적 기록</h2>
+    <p>오랫동안 일반 다람쥐와 구분되지 않았으며, 괴물산 근처 현지인들도 별도의 이름 없이 그냥 다람쥐로 불렀다. 생물학적 분류가 이루어진 것은 비교적 최근의 일이며, 울음소리 영상이 인터넷에 퍼지면서 대중적 인지도가 높아졌다. 이 시기에 이름 유래에 대한 잘못된 정보도 함께 확산되었다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>현재는 괴물산 이외의 다른 산에서도 나름대로 적응하여 분포하고 있다. 특유의 기질 덕분에 중간 포식자들에게도 소리를 지르며 저항하는 모습을 보이며, 실제로 이 때문에 일반 다람쥐보다 생존율이 높다는 관측이 있다. 개체수는 안정적인 것으로 평가된다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 280 175" style="max-width:280px;display:block;">
+      <line x1="20" y1="148" x2="260" y2="148" stroke="#c8bfa0" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.3"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.3" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 먼산다람쥐: 약 20cm -->
+      <ellipse cx="190" cy="136" rx="16" ry="9" fill="#3a2a1a" opacity="0.65"/>
+      <circle cx="202" cy="129" r="7" fill="#3a2a1a" opacity="0.65"/>
+      <!-- 흑백 줄무늬 암시 -->
+      <line x1="179" y1="132" x2="196" y2="130" stroke="#f0f0e0" stroke-width="1.5" opacity="0.4"/>
+      <line x1="180" y1="137" x2="197" y2="136" stroke="#f0f0e0" stroke-width="1.5" opacity="0.4"/>
+      <!-- 꼬리 -->
+      <path d="M174 136 Q164 124 168 115" stroke="#3a2a1a" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <!-- 크기 -->
+      <line x1="174" y1="127" x2="174" y2="148" stroke="#c8bfa0" stroke-width="0.5" stroke-dasharray="2 3"/>
+      <line x1="170" y1="127" x2="178" y2="127" stroke="#c8bfa0" stroke-width="0.8"/>
+      <text x="190" y="162" text-anchor="middle" font-size="9" fill="#5a4e3a" font-family="sans-serif">먼산다람쥐 약 20cm</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">다람쥐과</span>
+    <span class="tag">아종</span>
+    <span class="tag">고성대</span>
+    <span class="tag">경고색</span>
+    <span class="tag">괴물산</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 설치목 · 다람쥐과 · 땅다람쥐아과</span>
+    <span><em>Mons Mons Eutamias sibiricus</em></span>
+  </div>
+
+</div>
+</body>
+</html>

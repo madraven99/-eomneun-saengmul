@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주머니오랑우탄 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f1ea;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #b8a070;
+    --accent: #7a4010;
+    --highlight: #f0ddb0;
+    --table-head: #e8cc90;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1008;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 30px 16px;
+  }
+
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c8a870; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15);
+    padding: 48px 56px;
+  }
+
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+
+  .infobox {
+    float: right; clear: right; margin: 0 0 24px 28px; width: 245px;
+    border: 1px solid var(--border); background: #ede5cc; font-size: 0.82rem;
+  }
+
+  .infobox-title { background: var(--accent); color: #f5f1ea; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+
+  .infobox-img {
+    width: 100%; height: 175px;
+    background: linear-gradient(160deg, #2a1a08 0%, #3a2410 60%, #281808 100%);
+    display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border);
+  }
+
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #d4b880; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+
+  .toc { background: #ede5cc; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  .status-badge { display: inline-block; background: #8b1a1a; color: #f5f1ea; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+
+  .notice-box { background: #f5edcc; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a2008; }
+  .notice-box strong { color: var(--accent); }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">← 도감 목록으로</a>
+</div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">주머니오랑우탄 囊猩</div>
+    <div class="infobox-img">
+      <svg width="195" height="170" viewBox="0 0 195 170" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.8">
+        <!-- 몸통 -->
+        <ellipse cx="98" cy="105" rx="40" ry="38" fill="#8B4513"/>
+        <!-- 주머니 (배 아래쪽 불룩) -->
+        <ellipse cx="98" cy="130" rx="30" ry="20" fill="#7a3a0a"/>
+        <path d="M70 118 Q68 138 78 148 Q88 156 98 155 Q108 156 118 148 Q128 138 126 118" fill="#7a3a0a" opacity="0.7"/>
+        <!-- 주머니 입구 라인 암시 -->
+        <path d="M74 120 Q98 114 122 120" stroke="#5a2a05" stroke-width="1.2" fill="none" opacity="0.6"/>
+        <!-- 머리 -->
+        <ellipse cx="98" cy="65" rx="28" ry="26" fill="#8B4513"/>
+        <!-- 볼 양쪽 (수컷 플랜지 없음 — 암컷 기준) -->
+        <ellipse cx="72" cy="68" rx="10" ry="12" fill="#7a3a10" opacity="0.7"/>
+        <ellipse cx="124" cy="68" rx="10" ry="12" fill="#7a3a10" opacity="0.7"/>
+        <!-- 얼굴 -->
+        <ellipse cx="98" cy="70" rx="16" ry="15" fill="#5a2a08"/>
+        <!-- 눈 -->
+        <circle cx="91" cy="63" r="3" fill="#1a0a00"/>
+        <circle cx="105" cy="63" r="3" fill="#1a0a00"/>
+        <circle cx="92" cy="62" r="1" fill="white" opacity="0.6"/>
+        <circle cx="106" cy="62" r="1" fill="white" opacity="0.6"/>
+        <!-- 코 -->
+        <ellipse cx="98" cy="71" rx="5" ry="3.5" fill="#3a1a04"/>
+        <!-- 팔 왼쪽 (길게) -->
+        <path d="M60 88 Q38 110 28 138" stroke="#8B4513" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <ellipse cx="26" cy="143" rx="8" ry="6" fill="#7a3a10"/>
+        <!-- 팔 오른쪽 -->
+        <path d="M136 88 Q158 110 168 135" stroke="#8B4513" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <ellipse cx="170" cy="140" rx="8" ry="6" fill="#7a3a10"/>
+        <!-- 다리 -->
+        <path d="M80 138 Q75 152 72 165" stroke="#7a3a10" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path d="M116 138 Q121 152 124 165" stroke="#7a3a10" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <!-- 주머니 안 새끼 암시 (작은 얼굴) -->
+        <circle cx="98" cy="140" r="7" fill="#9a5020" opacity="0.6"/>
+        <circle cx="95" cy="138" r="1.5" fill="#1a0a00" opacity="0.5"/>
+        <circle cx="101" cy="138" r="1.5" fill="#1a0a00" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">암컷 성체 — 주머니 안에 새끼가 있는 상태</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>포유강</td></tr>
+      <tr><td>목</td><td>영장목</td></tr>
+      <tr><td>과</td><td>주머니오랑우탄과</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Pongo Marsupialia</em></td></tr>
+      <tr><td>한자</td><td>囊猩</td></tr>
+      <tr><td>수컷 체고</td><td>1.4m / 77kg</td></tr>
+      <tr><td>암컷 체고</td><td>1.2m / 42kg</td></tr>
+      <tr><td>서식지</td><td>이리안 자야 밀림</td></tr>
+      <tr><td>식성</td><td>잡식</td></tr>
+      <tr><td>수명</td><td>야생 30~35년</td></tr>
+      <tr><td>임신 기간</td><td>10개월</td></tr>
+      <tr><td>한배 새끼 수</td><td>1마리 (드물게 2마리)</td></tr>
+      <tr><td>번식 텀</td><td>8~9년</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>보호 상태</td><td>멸종위기 위급</td></tr>
+      <tr><td>서식 범위</td><td>이리안 자야 한정</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">주머니오랑우탄 <span class="status-badge">멸종위기 위급</span></div>
+  <div class="article-subtitle">囊猩 · Pongo Marsupialia · "주머니를 가진 오랑우탄"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#pouch">주머니</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#reproduction">번식 및 성장</a></li>
+      <li><a href="#intelligence">인지 능력</a></li>
+      <li><a href="#discovery">발견 경위</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>주머니오랑우탄</strong>(囊猩, <em>Pongo Marsupialia</em>)은 영장목 주머니오랑우탄과에 속하는 유인원으로, 인도네시아 이리안 자야 섬의 밀림 지역에만 서식한다. 오랑우탄과 유사한 체형을 지니나 암컷의 복부 하단에 주머니가 발달해 있다는 점에서 근연종들과 명확히 구별된다. 현재 알려진 오랑우탄 중 가장 적은 개체수를 보유하고 있으며 멸종위기 위급 등급으로 지정되어 있다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>이름은 유대류처럼 주머니가 존재하는 오랑우탄이라는 특성을 직접적으로 반영한다. 학명의 <em>Marsupialia</em>는 유대류의 학명에서 가져온 것으로, 분류적 관계가 아닌 형태적 유사성을 나타내기 위해 사용되었다.</p>
+  </section>
+
+  <section id="pouch">
+    <h2>주머니</h2>
+    <p>주머니는 암컷의 복부 하단에 위치하며, 피부가 점차 늘어져 형성된 구조로 추정된다. 유대류의 주머니와 외형적으로 유사하나 기원이 전혀 다르며, 생식기와는 무관한 독립된 구조다. 이 점에서 유대류의 육아낭과 동일한 기능을 수행하면서도 수렴진화의 사례로 단순히 분류하기 어렵다는 견해가 있다. 일각에서는 이것이 진정한 양육 전용 기관인지, 아니면 범용 주머니가 양육에 전용되는 것인지에 대한 논의도 이어지고 있다.</p>
+    <p>새끼가 독립한 이후에도 주머니는 유지되며, 이 시기부터 주머니의 용도가 다양해진다. 채집한 먹이를 담아두거나 직접 만든 나뭇가지 도구를 보관하는 데 사용하는 모습이 관찰되었다. 개체마다 주머니에 넣고 다니는 물건이 달랐으며, 각자의 필요에 따라 선택적으로 휴대하는 것으로 파악된다.</p>
+    <div class="notice-box"><strong>주머니 경계:</strong> 다른 개체가 주머니에 손을 넣으려 하면 동족 간에도 격렬하게 반응한다. 이 반응은 새끼가 없는 상태에서도 동일하게 나타나며, 양육 공간으로서의 주머니에 대한 본능적 경계로 해석된다. 연구 과정에서도 주머니에 대한 직접적인 접근은 관찰 자체가 어려운 수준이다.</div>
+    <p>수컷에게도 주머니의 흔적기관이 남아 있다. 기능을 상실한 채로 퇴화 중인지, 아직 진화가 진행 중인지는 현재까지 결론이 나지 않았다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전반적인 체형은 오랑우탄과 유사하다. 수컷의 체고는 약 1.4m에 몸무게 77kg, 암컷은 체고 약 1.2m에 몸무게 42kg으로 현생 오랑우탄과 비슷한 체급이다. 수컷에게는 오랑우탄 수컷 특유의 볼 양쪽 플랜지가 발달하는 경우와 그렇지 않은 경우가 함께 관찰된다. 암컷은 복부 하단의 주머니로 인해 외형이 다소 다르게 보이며, 이를 제외하면 근연종과 구별이 어렵다. 실제로 발견 초기에 다른 오랑우탄과 동일한 종으로 분류되었던 것도 이 때문이다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>이리안 자야 밀림의 수관층을 주요 생활 공간으로 삼으며, 과일·나뭇잎·곤충·새알 외에 소형 설치류, 소형 조류, 소형 영장류까지 사냥하는 잡식성을 보인다. 나뭇가지를 도구로 사용하는 행동이 관찰되었으며, 제작한 도구를 주머니에 넣어 이동 중에도 보관하는 모습이 확인되었다. 이 덕분에 같은 도구를 반복해서 사용하는 빈도가 다른 유인원에 비해 높다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식 및 성장</h2>
+    <p>임신 기간은 약 10개월이며 한 번에 한 마리의 새끼를 낳는 것이 일반적이나 쌍둥이 사례도 기록되어 있다. 번식 텀은 8~9년으로 현생 오랑우탄의 긴 번식 주기보다도 더 길며, 새끼는 6~9세까지 어미의 보살핌을 받는다. 독립 시기는 개체마다 차이가 있어 일부는 더 이른 시기에, 일부는 더 늦게 독립하는 것으로 관찰된다. 번식률이 매우 낮아 개체수 회복 속도가 극히 느리다.</p>
+  </section>
+
+  <section id="intelligence">
+    <h2>인지 능력</h2>
+    <p>미러 테스트를 통과한 것이 확인되어 자기 인식 능력이 있는 것으로 판단된다. 연구진이 제공한 다양한 물건 중 주머니에 담아 가지고 다니는 물건을 선택하는 실험에서, 거울·손전등·부젤라 등 시각과 청각을 직접 자극하는 물건을 우선적으로 선택하는 경향이 관찰되었다.</p>
+    <p>이러한 행동 범위의 확장으로 인해 초기에는 지능이 현생 오랑우탄보다 높을 것으로 추정되었다. 그러나 이후 연구에서 주머니라는 도구 보관 수단이 행동 반경 자체를 넓힌 결과이며 지능 자체는 현생 오랑우탄과 유의미한 차이가 없다는 결론이 도출되었다. 행동의 다양성이 지능의 산물이 아닌 신체 구조의 산물이었다는 점에서 흥미로운 연구 사례로 남아 있다.</p>
+  </section>
+
+  <section id="discovery">
+    <h2>발견 경위</h2>
+    <p>이리안 자야 밀림 탐사 과정에서 처음 목격되었을 당시, 일반 오랑우탄과 다른 점을 찾기 어려웠다. 복부 하단의 주머니가 다소 특이하다는 정도로만 기록되었으며, 별도의 분류군으로 인식되지 않았다. 이후 생물학 연구자들이 표본을 정밀 검토하는 과정에서 유대류가 아닌 유인원에게 양육 주머니에 해당하는 구조가 존재한다는 사실이 확인되어 학계의 주목을 받았다.</p>
+    <p>단, 이것이 유대류의 육아낭과 동일한 성격의 기관인지에 대해서는 현재도 의견이 나뉜다. 주머니의 구조적 기원이 생식기의 확장이 아닌 피부의 점진적 변형에 있다는 점, 새끼 독립 이후에도 범용으로 활용된다는 점에서 이를 단순히 양육낭으로 보기 어렵다는 견해가 있다. 한편으로는 양육 기능이 먼저이고 다른 용도는 이후에 파생된 것일 가능성도 배제되지 않는다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 300 185" style="max-width:300px;display:block;">
+      <line x1="20" y1="155" x2="280" y2="155" stroke="#b8a070" stroke-width="0.8"/>
+      <!-- 인간 (1m=55px) -->
+      <circle cx="55" cy="60" r="9.6" fill="var(--muted)" opacity="0.3"/>
+      <line x1="55" y1="70" x2="55" y2="108" stroke="var(--muted)" stroke-width="6.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="43" y1="76" x2="67" y2="76" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="108" x2="47" y2="155" stroke="var(--muted)" stroke-width="5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="108" x2="63" y2="155" stroke="var(--muted)" stroke-width="5" opacity="0.3" stroke-linecap="round"/>
+      <text x="55" y="170" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 주머니오랑우탄 암컷: 키 1.2m(66px) -->
+      <ellipse cx="185" cy="105" rx="26" ry="28" fill="#8B4513" opacity="0.65"/>
+      <!-- 주머니 불룩 -->
+      <ellipse cx="185" cy="126" rx="20" ry="15" fill="#7a3a0a" opacity="0.6"/>
+      <!-- 머리 -->
+      <ellipse cx="185" cy="74" rx="20" ry="19" fill="#8B4513" opacity="0.65"/>
+      <!-- 볼 -->
+      <ellipse cx="167" cy="77" rx="7" ry="8" fill="#7a3a10" opacity="0.5"/>
+      <ellipse cx="203" cy="77" rx="7" ry="8" fill="#7a3a10" opacity="0.5"/>
+      <!-- 팔 -->
+      <path d="M161 95 Q144 115 136 142" stroke="#8B4513" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.65"/>
+      <path d="M209 95 Q226 115 234 140" stroke="#8B4513" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.65"/>
+      <!-- 다리 -->
+      <path d="M174 130 Q169 143 167 155" stroke="#7a3a10" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M196 130 Q201 143 203 155" stroke="#7a3a10" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <!-- 키 점선 -->
+      <line x1="148" y1="56" x2="148" y2="155" stroke="#b8a070" stroke-width="0.5" stroke-dasharray="3 3"/>
+      <line x1="143" y1="56" x2="153" y2="56" stroke="#b8a070" stroke-width="0.8"/>
+      <text x="185" y="170" text-anchor="middle" font-size="9" fill="#7a4010" font-family="sans-serif">암컷 1.2m</text>
+    </svg>
+    </div>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>서식지가 이리안 자야 밀림으로 한정되어 있으며, 현존하는 오랑우탄 중 가장 적은 개체수를 보유한 것으로 파악된다. 번식 텀이 8~9년에 달하고 새끼 양육 기간도 길어 개체수 감소에 대한 회복이 매우 느리다. 현재 멸종위기 위급 등급으로 지정되어 있으며, 서식지 보전이 이 종의 존속에 결정적인 요인으로 꼽힌다.</p>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">영장목</span>
+    <span class="tag">주머니오랑우탄과</span>
+    <span class="tag">이리안 자야</span>
+    <span class="tag">멸종위기 위급</span>
+    <span class="tag">도구 사용</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 영장목 · 주머니오랑우탄과</span>
+    <span><em>Pongo Marsupialia</em></span>
+  </div>
+
+</div>
+</body>
+</html>

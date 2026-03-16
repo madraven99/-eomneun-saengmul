@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>따라쟁이새 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f6f0;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #c0b090;
+    --accent: #6a4e2a;
+    --highlight: #ede0c8;
+    --table-head: #e0d0b0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #2a2520;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 30px 16px;
+  }
+
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c8bfa0; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1);
+    padding: 48px 56px;
+  }
+
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+
+  .infobox {
+    float: right; clear: right; margin: 0 0 24px 28px; width: 240px;
+    border: 1px solid var(--border); background: #f0e8d8; font-size: 0.82rem;
+  }
+
+  .infobox-title { background: var(--accent); color: #f8f5ee; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+
+  .infobox-img {
+    width: 100%; height: 160px;
+    background: linear-gradient(160deg, #d0e0c0 0%, #b0c8a0 40%, #e8dfc0 100%);
+    display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border);
+  }
+
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #d4c4a0; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+
+  .toc { background: #f0e8d8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: #6a4e2a; line-height: 1.9; }
+  .toc a { color: #6a4e2a; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  .status-badge { display: inline-block; background: #6a4e2a; color: #f8f5ee; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+
+  .notice-box { background: #f5edd8; border-left: 3px solid #8b6e3a; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #4a3010; }
+  .notice-box strong { color: #6a3a10; }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">← 도감 목록으로</a>
+</div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">따라쟁이새 大鵯</div>
+    <div class="infobox-img">
+      <svg width="170" height="140" viewBox="0 0 170 140" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.6">
+        <!-- Body -->
+        <ellipse cx="85" cy="90" rx="28" ry="18" fill="#5a6040"/>
+        <!-- Head -->
+        <circle cx="118" cy="75" r="16" fill="#5a6040"/>
+        <!-- Beak -->
+        <polygon points="132,72 145,75 132,78" fill="#8a7040"/>
+        <!-- Eye -->
+        <circle cx="124" cy="72" r="3" fill="#1a1a1a"/>
+        <circle cx="125" cy="71" r="1" fill="white"/>
+        <!-- Wing -->
+        <ellipse cx="78" cy="85" rx="22" ry="10" fill="#4a5030" transform="rotate(-10 78 85)"/>
+        <!-- Tail feathers (spread like peacock slightly) -->
+        <path d="M58 92 Q45 80 40 65 Q38 55 45 58 Q48 70 60 80" fill="#4a5030" opacity="0.8"/>
+        <path d="M58 95 Q42 88 35 75 Q30 65 38 65 Q42 78 55 88" fill="#5a6040" opacity="0.7"/>
+        <path d="M60 98 Q45 98 38 90 Q32 80 40 78 Q45 90 58 95" fill="#4a5030" opacity="0.6"/>
+        <!-- Legs -->
+        <line x1="82" y1="106" x2="78" y2="125" stroke="#8a7040" stroke-width="2"/>
+        <line x1="90" y1="107" x2="92" y2="126" stroke="#8a7040" stroke-width="2"/>
+        <!-- Feet -->
+        <line x1="78" y1="125" x2="70" y2="130" stroke="#8a7040" stroke-width="1.5"/>
+        <line x1="78" y1="125" x2="80" y2="132" stroke="#8a7040" stroke-width="1.5"/>
+        <line x1="92" y1="126" x2="86" y2="132" stroke="#8a7040" stroke-width="1.5"/>
+        <line x1="92" y1="126" x2="98" y2="131" stroke="#8a7040" stroke-width="1.5"/>
+        <!-- Crest -->
+        <path d="M112 62 Q114 50 118 45 Q120 55 118 62" fill="#4a5030"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">꽁지깃을 펼쳐 몸을 커보이게 하는 위협 행동 — 공작에게서 학습한 것으로 추정</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>조강</td></tr>
+      <tr><td>목</td><td>참새목</td></tr>
+      <tr><td>과</td><td>직박구리과</td></tr>
+      <tr><td>속</td><td>딱새속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Hypsipetes Magnusamaurotis</em></td></tr>
+      <tr><td>한자</td><td>大鵯</td></tr>
+      <tr><td>크기</td><td>중형 조류</td></tr>
+      <tr><td>산란 수</td><td>3 ~ 6개</td></tr>
+      <tr><td>서식지</td><td>온난 지역 전역</td></tr>
+      <tr><td>식성</td><td>잡식</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>개체수 불명확</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">따라쟁이새 <span class="status-badge">텃새</span></div>
+  <div class="article-subtitle">大鵯 · Hypsipetes Magnusamaurotis · "행동을 따라하는 큰 직박구리"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#behavior">행동 및 학습</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#hypothesis">따라하는 이유 — 두 가지 가설</a></li>
+      <li><a href="#current">현황 및 연구</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>따라쟁이새</strong>(大鵯, <em>Hypsipetes Magnusamaurotis</em>)는 참새목 직박구리과에 속하는 중형 조류로, 극도로 발달한 학습 능력과 행동 모방 능력을 지닌 것이 특징이다. 너무 덥거나 춥지 않은 환경이라면 어디든 서식하는 광역 텃새로, 다른 조류의 행동은 물론 생활 방식까지 그대로 따라하는 독특한 습성 때문에 이 이름을 얻었다. 생김새는 직박구리와 거의 구별이 되지 않아 정확한 개체수 파악이 어려운 종이기도 하다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>관찰자들이 다른 새들의 행동을 그대로 따라하는 모습을 보고 '따라쟁이새'라는 이름을 붙였다. 과거에는 큰직박구리로 불렸으나 행동 양식에서 뚜렷한 차이가 확인되어 개명되었다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>생김새는 직박구리와 큰 차이가 없으며 덩치만 살짝 큰 수준이다. 얼핏 보면 직박구리로 오인하기 쉬우며, 가까이서 관찰해야만 구별이 가능하다. 새끼 시절에는 딱새 새끼와 닮아 있다. 생김새 자체를 따라하는 능력은 없는 것으로 확인되었으며, 이 점이 연구자들에게 흥미로운 의문점 중 하나로 남아 있다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 학습</h2>
+    <p>따라쟁이새의 행동 모방 범위는 단순한 동작을 넘어 생활 양식 전반에 걸친다. 독수리처럼 활공하고, 딱따구리처럼 나무를 쪼고, 부엉이처럼 고개를 돌리는 등 운동 행동의 모방은 기본이다. 공작이나 극락조처럼 꽁지깃을 펼쳐 몸을 크게 보이게 하고, 앵무새처럼 소리를 따라하기도 한다.</p>
+    <p>생활 방식의 모방도 관찰된다. 까마귀나 까치처럼 무리를 지어 다른 새를 괴롭히거나, 펠리컨처럼 아무것이나 입에 넣어보려는 행동도 포착되었다. 스윈호오목눈이를 관찰한 개체는 가짜 입구가 있는 복잡한 둥지를 짓고, 무덤새를 관찰한 개체는 모래무덤 형태의 둥지를 만들기도 한다.</p>
+    <div class="notice-box"><strong>주목할 점:</strong> 모든 모방 행동은 반드시 직접 목격한 이후에만 나타난다. 보지 못한 새의 행동은 전혀 따라하지 못한다. 그러나 한 번 학습한 행동은 해당 새가 눈앞에 없어도 간헐적으로 재현하는 모습이 관찰된다.</div>
+    <p>같은 석형류인 파충류의 행동도 따라하는지 실험이 진행 중이나 결과는 아직 발표되지 않았다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>한 번에 3~6개의 알을 낳으며 부모 모두 새끼를 정성껏 돌본다. 부성애와 모성애가 뛰어난 조류로 알려져 있다. 관찰한 새에 따라 둥지의 형태가 달라지는 것이 특징으로, 같은 종임에도 개체마다 전혀 다른 구조의 둥지를 짓는 경우가 있다.</p>
+    <p>뻐꾸기를 관찰한 개체가 탁란 행동을 보이는 사례가 기록되어 있으나, 이는 따라쟁이새 고유의 번식 방식이 아닌 학습된 행동으로 분류된다.</p>
+  </section>
+
+  <section id="hypothesis">
+    <h2>따라하는 이유 — 두 가지 가설</h2>
+    <h3>적응 가설</h3>
+    <p>어떤 환경에서든 빠르게 적응하기 위해 해당 서식지의 조류 행동을 관찰하고 생활 기술을 습득한다는 가설이다. 스스로 조류임을 인식할 정도의 지능을 갖췄으며, 주변 새들의 행동 양식을 파악해 생존에 유리한 기술을 선택적으로 학습한다는 설명이다.</p>
+    <h3>재미 가설</h3>
+    <p>단순히 재미있기 때문에 따라한다는 가설로, 최근 점점 지지를 얻고 있다. 펭귄이나 타조를 관찰한 이후 날 수 있음에도 불구하고 의도적으로 뒤뚱뒤뚱 걷는 모습이 포착된 것이 주요 근거다. 생존에 전혀 도움이 되지 않는 비효율적인 행동까지 따라한다는 점에서, 순수한 흥미에서 비롯된 행동일 가능성이 제기된다. 학습된 행동을 해당 새가 없어도 반복한다는 점도 이 가설에 힘을 싣는다.</p>
+    <p>따라쟁이새 고유의 행동이 무엇인지는 아직까지 밝혀지지 않았다. 먹이를 구해 새끼를 먹이고 키운다는 기본적인 행동 외에 이 종만의 특유한 행동 양식은 현재까지 확인되지 않는다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황 및 연구</h2>
+    <p>직박구리와 외형이 거의 동일하기 때문에 정확한 개체수 파악이 어렵다. 자주 볼 수 있는 새는 아니지만, 가까이 접근해 관찰하기 전까지는 직박구리로 오인되는 경우가 많아 실제 분포는 기록보다 넓을 가능성이 있다. 지능과 학습 능력에 비해 지나치게 평범한 외형을 가졌다는 점, 그리고 고유 행동이 없다는 점이 연구자들 사이에서 지속적인 관심을 받는 종이다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 300 175" style="max-width:300px;display:block;">
+      <line x1="20" y1="148" x2="280" y2="148" stroke="#c8bfa0" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.3"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.3" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 따라쟁이새: 약 60cm(30px) 앉은 자세 -->
+      <ellipse cx="190" cy="124" rx="18" ry="12" fill="#5a4e3a" opacity="0.55"/>
+      <ellipse cx="204" cy="113" rx="11" ry="10" fill="#5a4e3a" opacity="0.55"/>
+      <ellipse cx="213" cy="108" rx="6" ry="5" fill="#4a3e2a" opacity="0.55"/>
+      <line x1="208" y1="136" x2="204" y2="148" stroke="#5a4e3a" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+      <line x1="194" y1="136" x2="190" y2="148" stroke="#5a4e3a" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+      <line x1="204" y1="148" x2="216" y2="148" stroke="#5a4e3a" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      <line x1="190" y1="148" x2="180" y2="148" stroke="#5a4e3a" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      <path d="M171 115 Q164 103 168 95" stroke="#5a4e3a" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.45"/>
+      <path d="M207 115 Q218 102 228 98" stroke="#5a4e3a" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.45"/>
+      <!-- 크기 표시 -->
+      <line x1="158" y1="96" x2="158" y2="148" stroke="#c8bfa0" stroke-width="0.5" stroke-dasharray="3 3"/>
+      <line x1="154" y1="96" x2="162" y2="96" stroke="#c8bfa0" stroke-width="0.8"/>
+      <text x="190" y="162" text-anchor="middle" font-size="9" fill="#5a4e3a" font-family="sans-serif">따라쟁이새 약 60cm</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">직박구리과</span>
+    <span class="tag">고지능</span>
+    <span class="tag">행동 모방</span>
+    <span class="tag">텃새</span>
+    <span class="tag">광역 서식</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 참새목 · 직박구리과 · 고지능 조류</span>
+    <span><em>Hypsipetes Magnusamaurotis</em></span>
+  </div>
+
+</div>
+</body>
+</html>

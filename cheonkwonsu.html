@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>천권수 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f5ee;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #c8bfa0;
+    --accent: #5a4e3a;
+    --highlight: #e8dfc8;
+    --table-head: #e0d5be;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #2a2520;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 30px 16px;
+  }
+
+  .nav-bar {
+    max-width: 860px;
+    margin: 0 auto 12px;
+    font-size: 0.8rem;
+  }
+
+  .nav-bar a {
+    color: #c8bfa0;
+    text-decoration: none;
+  }
+
+  .nav-bar a:hover { text-decoration: underline; }
+  .nav-bar span { color: #888; margin: 0 6px; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1);
+    padding: 48px 56px;
+  }
+
+  .article-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+  }
+
+  .article-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 24px;
+    letter-spacing: 0.03em;
+  }
+
+  .infobox {
+    float: right;
+    clear: right;
+    margin: 0 0 24px 28px;
+    width: 240px;
+    border: 1px solid var(--border);
+    background: #f0ead8;
+    font-size: 0.82rem;
+  }
+
+  .infobox-title {
+    background: var(--accent);
+    color: #f8f5ee;
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+
+  .infobox-img {
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(160deg, #c8d8e8 0%, #a0b8d0 40%, #e8e0d0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .infobox-caption {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--muted);
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    font-style: italic;
+  }
+
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #ddd4be; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+
+  .toc {
+    background: #f0ead8;
+    border: 1px solid var(--border);
+    display: inline-block;
+    padding: 14px 20px;
+    margin: 0 0 28px 0;
+    min-width: 200px;
+  }
+
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: #4a6080; line-height: 1.9; }
+  .toc a { color: #4a6080; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  .status-badge { display: inline-block; background: #8b4040; color: #f8f5ee; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+
+  .notice-box { background: #f5ede0; border-left: 3px solid #8b5e3c; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #4a3020; }
+  .notice-box strong { color: #6a2a10; }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">← 도감 목록으로</a>
+</div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">천권수 天權獸</div>
+    <div class="infobox-img">
+      <svg width="160" height="130" viewBox="0 0 160 130" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.5">
+        <ellipse cx="75" cy="85" rx="45" ry="28" fill="#4a5568"/>
+        <ellipse cx="112" cy="68" rx="20" ry="17" fill="#4a5568"/>
+        <ellipse cx="128" cy="74" rx="10" ry="8" fill="#4a5568" opacity="0.9"/>
+        <polygon points="100,52 106,36 115,52" fill="#4a5568"/>
+        <polygon points="114,50 119,36 126,50" fill="#4a5568"/>
+        <path d="M30 80 Q10 60 18 42 Q22 34 28 38 Q20 55 36 72" fill="#4a5568" opacity="0.9"/>
+        <rect x="55" y="108" width="10" height="18" rx="4" fill="#4a5568"/>
+        <rect x="72" y="110" width="10" height="16" rx="4" fill="#4a5568"/>
+        <rect x="90" y="110" width="10" height="16" rx="4" fill="#4a5568"/>
+        <rect x="106" y="106" width="10" height="18" rx="4" fill="#4a5568"/>
+        <ellipse cx="122" cy="64" rx="7" ry="5" fill="#4a5568" opacity="0.8" transform="rotate(-30 122 64)"/>
+        <ellipse cx="130" cy="60" rx="7" ry="5" fill="#4a5568" opacity="0.8" transform="rotate(20 130 60)"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">식전 기도 자세 — 앞발로 주둥이를 가다듬는 특유의 행동</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>강</td><td>포유강</td></tr>
+      <tr><td>목</td><td>식육목</td></tr>
+      <tr><td>과</td><td>개과</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Cer rir</em></td></tr>
+      <tr><td>한자</td><td>天權獸</td></tr>
+      <tr><td>평균 수명</td><td>약 40년</td></tr>
+      <tr><td>임신 기간</td><td>약 1년</td></tr>
+      <tr><td>한배 새끼 수</td><td>10 ~ 20마리</td></tr>
+      <tr><td>성체 도달</td><td>약 2년</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>극소수 생존 추정</td></tr>
+      <tr><td>추정 서식지</td><td>시베리아 일대</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">천권수 <span class="status-badge">희귀</span></div>
+  <div class="article-subtitle">天權獸 · Cer rir · "하늘이 돌봐주는 짐승"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형 및 크기</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#reproduction">번식 및 성장</a></li>
+      <li><a href="#relation">다른 동물과의 관계</a></li>
+      <li><a href="#history">역사적 기록</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>천권수</strong>(天權獸, <em>Cer rir</em>)는 개과에 속하는 대형 육식 포유류로, 현존하는 개과 동물 중 가장 큰 종으로 알려져 있다. 개과의 공통 조상인 헤스페로키온(Hesperocyon)에서 회색늑대, 다이어울프, 여우 등과는 독립적인 계통으로 진화한 것으로 추정되며, 확실한 근연종은 없으나 여우보다는 다이어울프·회색늑대와 가까운 것으로 분석된다. 북방 한랭지를 주요 서식지로 삼으며, 조선 시대부터 북부 지방에서 간헐적으로 목격되어 전설에 가까운 동물로 전해져 왔다. 극도의 독립적 생활 방식과 광활한 서식 영역, 낮은 번식률로 인해 개체수가 매우 적으며, 현재는 시베리아 일대에 극소수가 생존해 있는 것으로 추정된다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>'천권수'라는 이름은 두 가지 측면에서 유래한다. 첫째는 거대한 체구에도 불구하고 좀처럼 목격되지 않는 신비로운 존재감으로, 옛사람들이 하늘의 보호를 받는 동물이라 여긴 데 있다. 둘째는 먹이를 포식하기 전에 반드시 앞발로 주둥이를 가다듬는 독특한 행동에서 비롯하는데, 이 모습이 마치 식전 기도를 올리는 것처럼 보여 신성한 이미지를 더하였다.</p>
+    <p>학명 <em>Cer rir</em>는 공식적으로 기재되어 있으나 표본이 극히 희소하여 분류학적 연구가 제한적이다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형 및 크기</h2>
+    <p>천권수와 시베리아호랑이를 나란히 세우면 대형견과 고양이를 세운 것처럼 보일 정도의 현격한 크기 차이를 보인다. 전신은 두꺼운 흰색 털로 덮여 있어 설원 환경에 완벽하게 적응되어 있으며, 이 흰털은 매복 사냥에도 결정적인 역할을 한다. 체형은 전형적인 개과의 구조를 따르나 골격과 근육량이 비교할 수 없을 만큼 발달해 있으며, 턱의 교합력이 매우 강하여 포식 후 뼈까지 완전히 분쇄·섭취하는 것으로 확인된다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <h3>사냥 방식</h3>
+    <p>천권수는 흰털을 이용한 설원 매복 사냥을 주된 전략으로 삼는다. 눈밭에서 움직임을 최소화한 채 장시간 대기하다가 우제목 동물이 가까이 접근하면 순간적으로 덮쳐 제압한다. 포식 후에는 뼈까지 남김없이 씹어 먹기 때문에 포식 현장에 흔적이 거의 남지 않는다. 이로 인해 천권수의 습격은 역사 기록에서 단순 실종으로 처리되었을 가능성이 높다.</p>
+    <h3>서식 및 영역</h3>
+    <p>한 개체가 매우 넓은 영역을 단독으로 차지한다. 거주 근거지는 깊은 산속에 직접 굴을 파서 마련하며, 한번 정해진 동굴 서식지는 좀처럼 바꾸지 않는다. 동굴 밖에서 목격되는 천권수는 대부분 굶주린 상태이므로, 야외에서 마주친 천권수는 극도로 위험한 상태로 간주해야 한다.</p>
+    <div class="notice-box"><strong>⚠ 주의:</strong> 야외에서 천권수와 조우할 경우 배고픈 성체일 가능성이 높아 극히 위험하다. 추정 서식 구역에는 출입 경고 표지판이 설치되어 있으며, 일반인의 접근이 권고되지 않는다.</div>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식 및 성장</h2>
+    <p>천권수는 극도로 독립적인 생활 방식으로 인해 이성 개체와의 조우가 매우 드물다. 평균 수명 40년 중 다른 개체를 목격하는 빈도는 약 10년에 한 번 수준으로 추산된다. 교배 후 임신 기간은 약 1년이며, 한 번에 10~20마리의 새끼를 출산한다.</p>
+    <p>새끼는 약 2개월간 어미의 젖을 먹으며 아성체 단계에 도달한다. 이후 약 6개월까지는 형제 개체들끼리 무리를 이루며 생활하다가 점차 독립하여 각자의 영역을 확보해 나간다. 형제 사이에서도 영역 중첩을 기피하는 성향이 강하다. 완전한 성체로 성장하기까지는 약 2년이 소요된다.</p>
+  </section>
+
+  <section id="relation">
+    <h2>다른 동물과의 관계</h2>
+    <p>천권수의 서식 일대에서 시베리아호랑이는 단독 생활 대신 무리 사냥 방식으로 행동하는 것이 관찰된다. 이는 천권수로 인한 피해를 분산시키기 위한 적응으로 해석되며, 성체 천권수에 대해 호랑이 무리도 적극적 대응보다 회피를 우선하는 것으로 보인다. 천권수는 같은 서식지 내 대형 포식자의 행동 양식에까지 영향을 미치는 최상위 포식자로 기능한다.</p>
+  </section>
+
+  <section id="history">
+    <h2>역사적 기록</h2>
+    <p>조선 시대 북부 지방에서 극히 드물게 목격 사례가 기록되어 있으나, 대부분 단편적인 증언 형태로 남아 있다. 흰 눈밭에 은신하기 쉬운 특성과 광활한 서식 영역으로 인해 당대에도 실체 확인이 어려웠으며, 시간이 지나면서 전설적 동물로 인식되었다. 조우한 사람이 생환하는 경우가 드물었기 때문에 구체적인 기록이 남지 않은 경우가 많다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>한반도 북부에서의 서식은 사실상 확인되지 않으며, 생존 개체들은 북방으로 이동하여 시베리아 일대에 극소수가 남아 있는 것으로 추정된다. 현재까지의 존재 증거는 발자국과 시체에 국한되며, 뼈까지 섭취하는 포식 특성상 사냥 흔적은 거의 남지 않는다. 공식 보호종으로 지정되지는 않았으나, 추정 서식 구역에는 경고 표지판이 설치되어 민간인 접근을 제한하고 있다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 620 240" style="max-width:620px;display:block;">
+      <!-- ground -->
+      <line x1="20" y1="200" x2="600" y2="200" stroke="#c8bfa0" stroke-width="0.8"/>
+
+      <!-- 인간 (1m=60px) -->
+      <circle cx="55" cy="95" r="10.5" fill="var(--muted)" opacity="0.3"/>
+      <line x1="55" y1="106" x2="55" y2="148" stroke="var(--muted)" stroke-width="7" opacity="0.3" stroke-linecap="round"/>
+      <line x1="42" y1="112" x2="68" y2="112" stroke="var(--muted)" stroke-width="5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="148" x2="46" y2="200" stroke="var(--muted)" stroke-width="5.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="148" x2="64" y2="200" stroke="var(--muted)" stroke-width="5.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="55" y="217" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+
+      <!-- 시베리아호랑이: 어깨높이 1m(60px), 몸길이 약 2.8m(168px) -->
+      <ellipse cx="195" cy="158" rx="72" ry="30" fill="#8a7040" opacity="0.5"/>
+      <ellipse cx="253" cy="148" rx="22" ry="19" fill="#8a7040" opacity="0.5"/>
+      <ellipse cx="268" cy="155" rx="12" ry="10" fill="#7a6030" opacity="0.5"/>
+      <!-- 호랑이 귀 -->
+      <polygon points="246,131 251,118 258,131" fill="#7a6030" opacity="0.5"/>
+      <polygon points="256,130 260,118 267,130" fill="#7a6030" opacity="0.5"/>
+      <!-- 호랑이 꼬리 -->
+      <path d="M123 162 Q108 148 112 132" stroke="#8a7040" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <!-- 호랑이 다리 -->
+      <rect x="146" y="182" width="10" height="18" rx="4" fill="#7a6030" opacity="0.5"/>
+      <rect x="163" y="184" width="10" height="16" rx="4" fill="#7a6030" opacity="0.5"/>
+      <rect x="218" y="184" width="10" height="16" rx="4" fill="#7a6030" opacity="0.5"/>
+      <rect x="235" y="182" width="10" height="18" rx="4" fill="#7a6030" opacity="0.5"/>
+      <!-- 호랑이 줄무늬 암시 -->
+      <line x1="163" y1="140" x2="170" y2="156" stroke="#6a5020" stroke-width="1.5" opacity="0.3"/>
+      <line x1="178" y1="136" x2="183" y2="154" stroke="#6a5020" stroke-width="1.5" opacity="0.3"/>
+      <line x1="195" y1="133" x2="198" y2="152" stroke="#6a5020" stroke-width="1.5" opacity="0.3"/>
+      <text x="192" y="217" text-anchor="middle" font-size="9" fill="#8a7040" opacity="0.7" font-family="sans-serif">시베리아호랑이</text>
+
+      <!-- 천권수: 어깨높이 1.6m(96px), 몸길이 약 3.5m(210px) -->
+      <ellipse cx="440" cy="120" rx="115" ry="56" fill="#5a4e3a" opacity="0.65"/>
+      <!-- 목+머리 -->
+      <ellipse cx="528" cy="92" rx="32" ry="28" fill="#5a4e3a" opacity="0.65"/>
+      <ellipse cx="550" cy="104" rx="17" ry="14" fill="#4a3e2a" opacity="0.65"/>
+      <!-- 귀 -->
+      <polygon points="521,67 528,45 538,67" fill="#4a3e2a" opacity="0.65"/>
+      <polygon points="536,65 542,46 551,65" fill="#4a3e2a" opacity="0.65"/>
+      <!-- 꼬리 -->
+      <path d="M323 128 Q296 98 302 66" stroke="#5a4e3a" stroke-width="13" fill="none" stroke-linecap="round" opacity="0.65"/>
+      <!-- 다리 -->
+      <rect x="362" y="170" width="17" height="30" rx="6" fill="#4a3e2a" opacity="0.65"/>
+      <rect x="390" y="172" width="17" height="28" rx="6" fill="#4a3e2a" opacity="0.65"/>
+      <rect x="478" y="172" width="17" height="28" rx="6" fill="#4a3e2a" opacity="0.65"/>
+      <rect x="506" y="170" width="17" height="30" rx="6" fill="#4a3e2a" opacity="0.65"/>
+      <!-- 천권수 어깨높이 점선 -->
+      <line x1="308" y1="104" x2="308" y2="200" stroke="#c8bfa0" stroke-width="0.5" stroke-dasharray="3 4"/>
+      <line x1="303" y1="104" x2="313" y2="104" stroke="#c8bfa0" stroke-width="0.8"/>
+      <line x1="303" y1="200" x2="313" y2="200" stroke="#c8bfa0" stroke-width="0.8"/>
+      <text x="296" y="155" text-anchor="middle" font-size="8" fill="var(--muted)" opacity="0.55" font-family="sans-serif" transform="rotate(-90,296,155)">~1.6m</text>
+      <!-- 호랑이 어깨높이 점선 -->
+      <line x1="110" y1="140" x2="110" y2="200" stroke="#c8bfa0" stroke-width="0.5" stroke-dasharray="2 4"/>
+      <line x1="106" y1="140" x2="114" y2="140" stroke="#c8bfa0" stroke-width="0.8"/>
+      <text x="99" y="174" text-anchor="middle" font-size="8" fill="var(--muted)" opacity="0.45" font-family="sans-serif" transform="rotate(-90,99,174)">~1m</text>
+
+      <text x="440" y="217" text-anchor="middle" font-size="9" fill="#5a4e3a" font-family="sans-serif">천권수</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">개과</span>
+    <span class="tag">최상위 포식자</span>
+    <span class="tag">북방 서식</span>
+    <span class="tag">희귀종</span>
+    <span class="tag">설원 적응</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 개과 · 북방 동물 · 희귀 동물</span>
+    <span><em>Cer rir</em></span>
+  </div>
+
+</div>
+</body>
+</html>

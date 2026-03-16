@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탄뎀사우루스 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4f2ee;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #9aaa80;
+    --accent: #2d4a1a;
+    --highlight: #d8e8c0;
+    --table-head: #c4d8a0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #101a08; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 900px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #a0c878; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 900px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 250px; border: 1px solid var(--border); background: #e8f0d8; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f4f2ee; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 180px; background: linear-gradient(160deg, #1a2810 0%, #2a4018 50%, #3a5820 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #a8c880; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #e8f0d8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: #8b1a1a; color: #f4f2ee; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #f0f5e8; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a3010; }
+  .notice-box strong { color: #2d4a1a; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">탄뎀사우루스 生活龍</div>
+    <div class="infobox-img">
+      <svg width="220" height="170" viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.75">
+        <!-- Body - large sauropod shape -->
+        <ellipse cx="100" cy="110" rx="55" ry="28" fill="#2a4a18"/>
+        <!-- Neck -->
+        <path d="M140 95 Q160 70 165 45 Q167 35 162 30" stroke="#2a4a18" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <!-- Head - small -->
+        <ellipse cx="158" cy="26" rx="13" ry="9" fill="#2a4a18"/>
+        <circle cx="163" cy="23" r="2.5" fill="#0a1a08"/>
+        <circle cx="164" cy="22.5" r="1" fill="white"/>
+        <!-- Mouth line -->
+        <line x1="150" y1="28" x2="170" y2="28" stroke="#1a3010" stroke-width="1.5"/>
+        <!-- Tail -->
+        <path d="M48 108 Q25 110 15 105 Q8 100 12 95" stroke="#2a4a18" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <!-- Legs -->
+        <rect x="68" y="132" width="12" height="28" rx="5" fill="#1a3810"/>
+        <rect x="88" y="134" width="12" height="26" rx="5" fill="#1a3810"/>
+        <rect x="112" y="134" width="12" height="26" rx="5" fill="#1a3810"/>
+        <rect x="130" y="132" width="12" height="28" rx="5" fill="#1a3810"/>
+        <!-- Osteoderms on back -->
+        <ellipse cx="80" cy="84" rx="6" ry="4" fill="#3a6028" opacity="0.7"/>
+        <ellipse cx="98" cy="82" rx="6" ry="4" fill="#3a6028" opacity="0.7"/>
+        <ellipse cx="116" cy="83" rx="6" ry="4" fill="#3a6028" opacity="0.7"/>
+        <ellipse cx="132" cy="86" rx="5" ry="3" fill="#3a6028" opacity="0.7"/>
+        <!-- Brown patches for camouflage -->
+        <ellipse cx="75" cy="112" rx="12" ry="8" fill="#4a3820" opacity="0.4"/>
+        <ellipse cx="115" cy="108" rx="10" ry="7" fill="#4a3820" opacity="0.35"/>
+        <ellipse cx="95" cy="118" rx="8" ry="5" fill="#4a3820" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">케이프 멜빌 열대우림 내부에서 촬영된 성체 개체</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>석형류</td></tr>
+      <tr><td>목</td><td>용반목</td></tr>
+      <tr><td>과</td><td>살타사우루스과</td></tr>
+      <tr><td>속</td><td>탄뎀사우루스속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Saltasaurus Tandem</em></td></tr>
+      <tr><td>별칭</td><td>마침내사우루스</td></tr>
+      <tr><td>몸 길이</td><td>약 14m</td></tr>
+      <tr><td>몸무게</td><td>약 11t</td></tr>
+      <tr><td>체색</td><td>짙은 초록·갈색 혼합</td></tr>
+      <tr><td>서식지</td><td>케이프 멜빌 열대우림</td></tr>
+      <tr><td>식성</td><td>초식 (일 240kg 추정)</td></tr>
+      <tr><td>최대 수명</td><td>80년 이상 추정</td></tr>
+      <tr><td>성체 도달</td><td>극소수만 도달</td></tr>
+      <tr><td>번식 텀</td><td>약 3달</td></tr>
+      <tr><td>한배 알 수</td><td>10 ~ 20개</td></tr>
+      <tr><td>알 크기</td><td>지름 약 13cm</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>추정 개체수</td><td>700 ~ 800마리</td></tr>
+      <tr><td>보호 상태</td><td>멸종위기 위급</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">탄뎀사우루스 <span class="status-badge">멸종위기 위급</span></div>
+  <div class="article-subtitle">生活龍 · Saltasaurus Tandem · "마침내사우루스"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#habitat">서식지</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#behavior">생활 방식</a></li>
+      <li><a href="#diet">식성</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#discovery">발견 경위</a></li>
+      <li><a href="#public">사회적 반응</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>탄뎀사우루스</strong>(生活龍, <em>Saltasaurus Tandem</em>)는 용반목 살타사우루스과에 속하는 용각류 공룡으로, 현재까지 발견된 유일한 생존 비조류 공룡이다. 호주 퀸즐랜드 주 케이프 멜빌의 외부와 단절된 열대우림 내부에서 발견되었으며, 몸 길이 약 14m, 몸무게 약 11t에 달하는 대형 초식동물이다. 현재 추정 개체수는 700~800마리로 멸종위기 위급 등급으로 지정되어 있다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>학명 <em>Saltasaurus Tandem</em>은 살타사우루스과에 속한다는 분류적 위치와, 라틴어로 "마침내", "드디어"를 뜻하는 <em>tandem</em>을 조합한 것이다. 조류가 아닌 파충류형 공룡이 실제로 살아있는 상태로 발견되었다는 사실에서 비롯된 이름으로, 한국어로는 <strong>마침내사우루스</strong>라고도 불린다. 발견자가 자신의 이름을 붙이는 관례를 따르지 않고 이 이름을 선택한 것은, 살아있는 공룡 앞에서 느낀 경이로움이 그 어떤 개인적 명예보다 컸기 때문이라고 전해진다.</p>
+  </section>
+
+  <section id="habitat">
+    <h2>서식지</h2>
+    <p>서식지는 호주 퀸즐랜드 주 북부에 위치한 케이프 멜빌(Cape Melville) 열대우림이다. 이 지역은 거대한 화강암 바위들이 내부를 완전히 둘러싸 자연 성벽을 형성하고 있어, 현대 헬기와 드론 기술이 등장하기 전까지 사실상 외부와 단절된 상태였다. 이 지질학적 고립이 탄뎀사우루스가 외부 환경 변화와 인간의 영향을 받지 않고 생존할 수 있었던 결정적 조건으로 분석된다.</p>
+    <p>현재까지 케이프 멜빌 열대우림 외의 지역에서는 발견되지 않았다. 인근 열대우림으로 이동했을 가능성도 제기되나, 그랬다면 이미 발견되었을 것이라는 반론이 지배적이다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전형적인 용각류의 체형을 가지고 있다. 긴 목과 긴 꼬리, 작은 머리, 굵고 기둥 같은 네 다리가 특징이다. 살타사우루스과의 특성상 등 표면에 골편(骨片)이 분포해 일부 단단한 구조를 이루고 있다.</p>
+    <p>체색은 짙은 초록색과 갈색이 불규칙하게 혼합된 패턴으로, 열대우림의 짙은 그늘 속에서 위장 효과가 뛰어난 것으로 분석된다. 이 크기의 동물이 수십 년간 발견되지 않을 수 있었던 이유 중 하나로 꼽힌다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>생활 방식</h2>
+    <p>5~8마리 단위의 무리를 이루어 생활하며, 단독으로 이동하는 개체도 자주 관찰된다. 천적이 나타나면 새끼를 무리 안쪽으로 밀어 넣고 성체들이 덩치로 외부를 막는 방어 행동이 확인되었다.</p>
+    <p>탄뎀사우루스의 가장 두드러진 생태적 특성은 극단적으로 낮은 활동량이다. 하루의 대부분을 같은 자리에 서서 잎을 뜯거나 아예 움직이지 않은 채로 보내며, 이동 자체가 매우 드문 것으로 관찰된다. 이 저활동성이 거대한 체구에도 불구하고 수십 년간 외부에 발견되지 않을 수 있었던 주요 원인 중 하나로 분석된다. 항공 탐사 중 처음 포착된 것도 이동 중인 개체가 아니라 수풀 사이에 장시간 정지해 있던 개체였다.</p>
+  </section>
+
+  <section id="diet">
+    <h2>식성</h2>
+    <p>완전한 초식성이다. 긴 목을 활용해 높은 나무의 잎과 열매를 뜯어 먹으며, 하루 섭취량은 약 240kg으로 추정된다. 케이프 멜빌 열대우림의 풍부한 식생이 이 정도 규모의 무리가 유지될 수 있는 조건을 제공하는 것으로 분석된다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>집단으로 모여 공동 둥지를 형성하고 산란한다. 알의 지름은 약 13cm의 구형이며, 한 번에 10~20개를 낳는다. 번식 텀은 약 3달로 추정된다. 공동 둥지는 위치를 파악하는 것이 어렵지 않았으나, 무리 전체가 둥지를 에워싸고 있어 접근 조사 자체가 매우 위험했다고 연구진은 전했다.</p>
+  </section>
+
+  <section id="discovery">
+    <h2>발견 경위</h2>
+    <p>케이프 멜빌의 화강암 바위 성벽 내부는 오랫동안 탐사가 불가능했다. 헬기와 드론을 활용한 항공 조사 중 내부 열대우림에서 이례적인 대형 생물 흔적이 포착되었고, 이후 소규모 탐사팀이 진입에 성공하면서 탄뎀사우루스의 존재가 처음 확인되었다. 처음 발견 당시 탐사팀 대원들은 경이로움과 공포를 동시에 느꼈다고 기록했다. 살아있는 공룡을 실제로 목격했다는 사실 자체와, 이처럼 압도적인 크기의 육상 생물을 예고 없이 마주했다는 충격이 복합적으로 작용했다는 것이다.</p>
+  </section>
+
+  <section id="public">
+    <h2>사회적 반응</h2>
+    <p>발견 소식은 속보로 전 세계에 전파되었다. 초기에는 AI 생성 이미지나 조작 영상이 아니냐는 의혹이 제기되었으나, 복수의 고생물학자와 생물학자들이 공동으로 실제 생존 용각류임을 공식 발표하면서 사실로 받아들여졌다. 발표 직후 호주행 항공편이 단기간 매진되는 현상이 발생했으나, 케이프 멜빌이 일반인이 접근할 수 없는 지역인 데다 관광지 개발 계획도 현재로선 없어 실제 방문은 불가능한 상태다.</p>
+    <div class="notice-box"><strong>개발 및 보호:</strong> 일부 관광 개발 논의가 있었으나, 서식지가 한 번 교란될 경우 탄뎀사우루스가 이전 공룡들처럼 다시 멸종할 가능성이 충분하다는 점에서 현재는 최소한의 연구 접근만 허용하는 방향으로 가닥이 잡혀 있다.</div>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>현재 추정 개체수는 700~800마리이며, 실제로는 더 적을 수도 있다. 이 중 도감에 기록된 14m급 완전 성체에 해당하는 개체는 극소수로, 대부분은 성체에 도달하기 전에 폐사하는 것으로 추정된다. 최대 수명은 80년 이상으로 추정되나 그에 근접한 개체를 확인하는 것은 현재까지 불가능했다. 케이프 멜빌의 고립된 환경 덕분에 지금까지 생존해 온 것으로 보이며, 서식지 보존이 이 종의 존속에 절대적으로 중요하다. 현재 멸종위기 위급 등급으로 지정되어 있으며, 연구 목적 이외의 접근은 엄격히 제한된다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 480 220" style="max-width:480px;display:block;">
+      <line x1="20" y1="190" x2="460" y2="190" stroke="#9aaa80" stroke-width="0.8"/>
+      <!-- 인간 (1m=22px) -->
+      <circle cx="40" cy="153" r="3.85" fill="var(--muted)" opacity="0.3"/>
+      <line x1="40" y1="157" x2="40" y2="171" stroke="var(--muted)" stroke-width="2.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="35" y1="159" x2="45" y2="159" stroke="var(--muted)" stroke-width="1.8" opacity="0.3" stroke-linecap="round"/>
+      <line x1="40" y1="171" x2="36" y2="190" stroke="var(--muted)" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+      <line x1="40" y1="171" x2="44" y2="190" stroke="var(--muted)" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+      <text x="40" y="202" text-anchor="middle" font-size="8" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 탄뎀사우루스: 길이 14m(308px), 높이(목포함) 약 8m(176px) -->
+      <ellipse cx="270" cy="151" rx="110" ry="34" fill="#2a4a18" opacity="0.6"/>
+      <!-- 목 -->
+      <path d="M358 128 Q378 88 382 42 Q383 30 378 24" stroke="#2a4a18" stroke-width="20" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <!-- 머리 -->
+      <ellipse cx="374" cy="20" rx="14" ry="10" fill="#2a4a18" opacity="0.6"/>
+      <!-- 꼬리 -->
+      <path d="M160 155 Q130 152 110 148 Q98 144 100 136" stroke="#2a4a18" stroke-width="16" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <!-- 다리 -->
+      <rect x="195" y="182" width="14" height="18" rx="5" fill="#1a3810" opacity="0.6"/>
+      <rect x="224" y="183" width="14" height="17" rx="5" fill="#1a3810" opacity="0.6"/>
+      <rect x="308" y="183" width="14" height="17" rx="5" fill="#1a3810" opacity="0.6"/>
+      <rect x="336" y="182" width="14" height="18" rx="5" fill="#1a3810" opacity="0.6"/>
+      <!-- 등 골편 -->
+      <ellipse cx="230" cy="120" rx="8" ry="5" fill="#3a6028" opacity="0.5"/>
+      <ellipse cx="260" cy="117" rx="8" ry="5" fill="#3a6028" opacity="0.5"/>
+      <ellipse cx="290" cy="118" rx="8" ry="5" fill="#3a6028" opacity="0.5"/>
+      <!-- 높이 표시 -->
+      <line x1="95" y1="20" x2="95" y2="190" stroke="#9aaa80" stroke-width="0.5" stroke-dasharray="3 4"/>
+      <line x1="91" y1="20" x2="99" y2="20" stroke="#9aaa80" stroke-width="0.8"/>
+      <text x="83" y="110" font-size="8" fill="var(--muted)" opacity="0.6" font-family="sans-serif" transform="rotate(-90,83,110)">높이 ~8m</text>
+      <!-- 몸길이 표시 -->
+      <line x1="100" y1="205" x2="408" y2="205" stroke="#9aaa80" stroke-width="0.5"/>
+      <line x1="100" y1="202" x2="100" y2="208" stroke="#9aaa80" stroke-width="0.8"/>
+      <line x1="408" y1="202" x2="408" y2="208" stroke="#9aaa80" stroke-width="0.8"/>
+      <text x="254" y="216" text-anchor="middle" font-size="8" fill="var(--muted)" opacity="0.6" font-family="sans-serif">약 14m</text>
+      <text x="270" y="140" text-anchor="middle" font-size="9" fill="#2d4a1a" font-family="sans-serif">탄뎀사우루스</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">용각류</span>
+    <span class="tag">살타사우루스과</span>
+    <span class="tag">생존 공룡</span>
+    <span class="tag">케이프 멜빌</span>
+    <span class="tag">멸종위기 위급</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 용반목 · 살타사우루스과 · 탄뎀사우루스속</span>
+    <span><em>Saltasaurus Tandem</em></span>
+  </div>
+
+</div>
+</body>
+</html>

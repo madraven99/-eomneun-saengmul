@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>군락토끼 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f5f0;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #b8c8a0;
+    --accent: #3a5828;
+    --highlight: #dcecc8;
+    --table-head: #cce0b0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #182010; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 900px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #b0c890; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 900px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 240px; border: 1px solid var(--border); background: #eaf2dc; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f7f5f0; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 160px; background: linear-gradient(160deg, #c8d8a0 0%, #a0b878 40%, #d8e8b8 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #b8d098; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #eaf2dc; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: #3a5828; line-height: 1.9; }
+  .toc a { color: #3a5828; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 8px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: #3a5828; color: #f7f5f0; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #eaf5e0; border-left: 3px solid #5a8040; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a3010; }
+  .notice-box strong { color: #2a5010; }
+
+  /* Role table */
+  .role-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.84rem; }
+  .role-table th { background: var(--table-head); padding: 8px 12px; text-align: left; font-weight: 600; color: var(--accent); border: 1px solid var(--border); }
+  .role-table td { padding: 8px 12px; border: 1px solid #c8dca8; vertical-align: top; line-height: 1.6; }
+  .role-table tr:nth-child(even) td { background: #f0f8e8; }
+  .role-table .pct { font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">군락토끼 衆卯</div>
+    <div class="infobox-img">
+      <svg width="180" height="150" viewBox="0 0 180 150" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.7">
+        <!-- Multiple rabbits in a group -->
+        <!-- Rabbit 1 (center, leader) -->
+        <ellipse cx="90" cy="105" rx="18" ry="13" fill="#8a7860"/>
+        <ellipse cx="104" cy="92" rx="12" ry="10" fill="#8a7860"/>
+        <ellipse cx="101" cy="80" rx="4" ry="9" fill="#8a7860"/>
+        <ellipse cx="109" cy="80" rx="4" ry="9" fill="#8a7860"/>
+        <circle cx="108" cy="90" r="2" fill="#1a1a1a"/>
+        <!-- Rabbit 2 (left) -->
+        <ellipse cx="52" cy="108" rx="14" ry="10" fill="#6a8860"/>
+        <ellipse cx="63" cy="97" rx="10" ry="8" fill="#6a8860"/>
+        <ellipse cx="61" cy="87" rx="3" ry="7" fill="#6a8860"/>
+        <ellipse cx="67" cy="87" rx="3" ry="7" fill="#6a8860"/>
+        <circle cx="66" cy="95" r="1.5" fill="#1a1a1a"/>
+        <!-- Rabbit 3 (right) -->
+        <ellipse cx="130" cy="108" rx="14" ry="10" fill="#a09070"/>
+        <ellipse cx="119" cy="97" rx="10" ry="8" fill="#a09070"/>
+        <ellipse cx="117" cy="87" rx="3" ry="7" fill="#a09070"/>
+        <ellipse cx="123" cy="87" rx="3" ry="7" fill="#a09070"/>
+        <circle cx="118" cy="95" r="1.5" fill="#1a1a1a"/>
+        <!-- Rabbit 4 (back small) -->
+        <ellipse cx="90" cy="90" rx="10" ry="7" fill="#c0b090" opacity="0.6"/>
+        <ellipse cx="98" cy="82" rx="7" ry="6" fill="#c0b090" opacity="0.6"/>
+        <ellipse cx="96" cy="75" rx="2.5" ry="5" fill="#c0b090" opacity="0.6"/>
+        <ellipse cx="101" cy="75" rx="2.5" ry="5" fill="#c0b090" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">다양한 체색의 개체들이 역할에 따라 군락을 이루는 모습</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>포유강</td></tr>
+      <tr><td>목</td><td>토끼목</td></tr>
+      <tr><td>과</td><td>토끼과</td></tr>
+      <tr><td>속</td><td>굴토끼속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Oryctolagus Societas cuniculus</em></td></tr>
+      <tr><td>한자</td><td>衆卯</td></tr>
+      <tr><td>크기</td><td>타 토끼와 유사</td></tr>
+      <tr><td>체색</td><td>흑·갈·회·백 등 다양</td></tr>
+      <tr><td>서식지</td><td>아프리카 평야</td></tr>
+      <tr><td>평균 수명</td><td>9년</td></tr>
+      <tr><td>임신 기간</td><td>약 1달 반</td></tr>
+      <tr><td>한배 새끼 수</td><td>2 ~ 3마리</td></tr>
+      <tr><td>번식 텀</td><td>약 4달</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정 (연구 진행 중)</td></tr>
+      <tr><td>입양 가능</td><td>불가 (현재 없음)</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">군락토끼 <span class="status-badge">사회성</span></div>
+  <div class="article-subtitle">衆卯 · Oryctolagus Societas cuniculus · "무리를 이루는 토끼"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#roles">역할 체계</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#predator">천적 대응</a></li>
+      <li><a href="#history">역사적 기록</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>군락토끼</strong>(衆卯, <em>Oryctolagus Societas cuniculus</em>)는 굴토끼에서 진화한 것으로 추정되는 토끼과 동물로, 아프리카 평야에 서식한다. 개체별로 역할이 분담되어 있으며 높은 수준의 사회성을 보이는 것이 가장 두드러진 특징이다. 벌이나 개미처럼 특정 개체만 번식을 전담하는 구조는 아니며, 역할은 고정적이지 않고 월·연 단위로 바뀌는 경우도 있다. 현재까지 11가지 역할이 확인되었으며 추가 역할에 대한 연구가 진행 중이다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>여러 토끼가 군락을 이루며 생활한다는 점에서 직관적으로 지어진 이름이다. 이 종이 보여주는 복잡한 행동 양식에 비하면 꽤 단순한 이름이라는 평가도 있다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>타 토끼와 덩치 차이가 크게 없다. 체색은 검은색, 갈색, 회색, 흰색 등 굉장히 다양하며, 같은 군락 내에서도 여러 색의 개체가 공존한다. 외형만으로는 다른 토끼와 구별하기 어렵다.</p>
+  </section>
+
+  <section id="roles">
+    <h2>역할 체계</h2>
+    <p>현재까지 확인된 역할은 총 11가지이며, 연구자들은 추가 역할 발견을 목표로 지속적으로 관찰 중이다. 역할은 완전히 고정적이지 않으며 시기에 따라 바뀌는 경우도 있다. 역할 명칭은 발견한 연구자가 부여하는 것이 관례이며, 이미 명명된 역할이라도 새로운 생태적 특성이 발견되면 명칭을 변경할 권한이 생기기 때문에 연구자들 사이에서 가장 치열한 경쟁 중 하나로 꼽힌다.</p>
+
+    <table class="role-table">
+      <tr>
+        <th>역할</th>
+        <th>비율</th>
+        <th>설명</th>
+      </tr>
+      <tr>
+        <td><strong>농부</strong></td>
+        <td class="pct">10~15%</td>
+        <td>굴 밖에서 동족이 먹을 풀을 채집해온다. 일부 개체는 잎꾼개미처럼 먹을 수 있는 버섯을 직접 키우는 사례도 확인되어 역할명이 확정되었다.</td>
+      </tr>
+      <tr>
+        <td><strong>병사</strong></td>
+        <td class="pct">3%</td>
+        <td>다른 군락과의 충돌 및 천적 출현 시 직접 대응하는 역할. 가장 빨리 교체되며 노령 개체가 많이 담당한다.</td>
+      </tr>
+      <tr>
+        <td><strong>건축가</strong></td>
+        <td class="pct">10~13%</td>
+        <td>굴을 지속적으로 확장하며 방과 통로의 구조적 안전성을 관리한다.</td>
+      </tr>
+      <tr>
+        <td><strong>청소부</strong></td>
+        <td class="pct">7~11%</td>
+        <td>굴 내부의 쓰레기, 배설물, 시체를 외부로 처리한다. 초기에는 건축가와 같은 역할로 오인되었으나 별개의 역할로 밝혀졌다.</td>
+      </tr>
+      <tr>
+        <td><strong>문지기</strong></td>
+        <td class="pct">5~8%</td>
+        <td>식량 보관 구역과 굴 입구 및 통로 곳곳을 지키며 한쪽을 막고 있다. 전투 시에는 빠진다.</td>
+      </tr>
+      <tr>
+        <td><strong>유모</strong></td>
+        <td class="pct">10~16%</td>
+        <td>전부 암컷이며, 자신이 낳지 않은 새끼에게도 젖을 먹이고 보살핀다.</td>
+      </tr>
+      <tr>
+        <td><strong>선생</strong></td>
+        <td class="pct">9~12%</td>
+        <td>다른 개체들보다 높은 지능을 보이며 어린 개체들에게 각 역할 수행 방법을 가르치는 것으로 관찰된다. 다른 역할과 겹치는 경우도 있어 역할 정의에 대한 논쟁이 있으나, 복수 역할을 수행하는 개체가 명확히 존재해 역할로 유지되고 있다.</td>
+      </tr>
+      <tr>
+        <td><strong>치과의사</strong></td>
+        <td class="pct">4~6%</td>
+        <td>단단한 나무를 외부에서 채집해 굴 안으로 가져온다. 발견 초기에는 풀 대신 나무를 가져온다는 점에서 농부의 변형으로 분류되었으나, 먹이가 아닌 이빨 마모용으로만 쓰인다는 사실이 확인되면서 별도 역할로 분리되었다. 목수 역할과의 혼동도 있었으나 가져오는 나무의 재질과 용도가 다른 개체들의 이빨 관리에 집중되어 있다는 점에서 구별된다. 역할명은 이 관찰을 처음 기록한 연구자가 붙였다.</td>
+      </tr>
+      <tr>
+        <td><strong>외교관</strong></td>
+        <td class="pct">2~4%</td>
+        <td>본인의 군락이 있음에도 다른 군락을 오가며 번식하거나 군락 합병을 이끄는 역할. 모든 군락에 존재하지는 않는다.</td>
+      </tr>
+      <tr>
+        <td><strong>안마사</strong></td>
+        <td class="pct">5%</td>
+        <td>다른 토끼를 털과 혀로 부드럽게 쓰다듬는다. 대상 토끼는 눈을 감고 가만히 있는다. 번식 행위와 무관한 것으로 판명되었다.</td>
+      </tr>
+      <tr>
+        <td><strong>대장</strong></td>
+        <td class="pct">1마리</td>
+        <td>군락당 1마리만 존재한다. 외형적으로 구별되지 않으며, 굴 안에서 가장 아늑한 위치를 차지한다. 다른 역할 담당 개체들과 소통하며 지시를 내리는 것으로 보인다. 세습은 이루어지지 않는 것으로 추정되나 선발 기준은 미확인이다.</td>
+      </tr>
+    </table>
+
+    <p>위 역할에 포함되지 않는 개체는 대부분 역할이 아직 정해지지 않은 새끼 토끼들이다.</p>
+    <div class="notice-box"><strong>연구자 주:</strong> 군락토끼를 연구하는 과학자들은 새 역할을 발견하고 명칭을 붙이는 것을 학문적 명예로 여긴다. 이미 명명된 역할이라도 새로운 생태적 특성이 발견되면 명칭 변경 권한이 생기기 때문에 이 분야는 학계에서 가장 치열한 논쟁이 벌어지는 곳 중 하나다.</div>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>임신 기간은 약 1달 반이며 한 번에 2~3마리의 새끼를 낳는다. 번식 텀은 약 4달로, 일반 토끼과에 비해 번식력이 낮은 편이다. 여왕 역할을 담당하는 개체는 없으며 번식은 군락 내 여러 개체가 수행한다.</p>
+  </section>
+
+  <section id="predator">
+    <h2>천적 대응</h2>
+    <p>다른 토끼들과 마찬가지로 천적이 많지만, 역할 분담 체계 덕분에 다른 개체군에 비해 피해가 적다. 병사 역할 개체의 직접 대응, 문지기의 굴 입구 차단, 슈가글라이더 역할에 해당하는 정찰 기능 등이 유기적으로 작동한다. 그에 따른 결과인지 번식력은 일반 토끼보다 낮아진 것으로 보인다.</p>
+  </section>
+
+  <section id="history">
+    <h2>역사적 기록</h2>
+    <p>비교적 최근에 발견된 종으로, 현재 생물학계에서 가장 활발히 연구되는 동물 중 하나다. 역할이 분담된 행동이 본능적으로 이루어지는 것인지, 아니면 학습과 뇌의 진화에 의한 것인지가 핵심 연구 과제로 남아 있다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>번식력이 뛰어나지 않아 토끼과 특유의 생태계 교란 위험성은 낮다는 평가를 받고 있다. 생태계의 골칫거리로 꼽히는 토끼과에서 이례적으로 균형 잡힌 종이 등장했다는 점에서 긍정적으로 평가되나, 방심은 금물이라는 의견도 있다. 현재 개인이 입양할 수 있는 경로는 없으며, 이 종을 키운다고 주장하는 경우 불법으로 취득한 개체일 가능성이 높으므로 관계 기관에 신고하는 것이 권고된다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 280 175" style="max-width:280px;display:block;">
+      <line x1="20" y1="148" x2="260" y2="148" stroke="#c8bfa0" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.3"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.3" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 군락토끼: 약 40cm -->
+      <ellipse cx="190" cy="131" rx="20" ry="13" fill="#8a7860" opacity="0.6"/>
+      <ellipse cx="206" cy="120" rx="12" ry="11" fill="#8a7860" opacity="0.6"/>
+      <!-- 귀 -->
+      <ellipse cx="201" cy="104" rx="3.5" ry="9" fill="#8a7860" opacity="0.55"/>
+      <ellipse cx="210" cy="103" rx="3.5" ry="9" fill="#8a7860" opacity="0.55"/>
+      <!-- 크기 -->
+      <line x1="167" y1="118" x2="167" y2="148" stroke="#c8bfa0" stroke-width="0.5" stroke-dasharray="2 3"/>
+      <line x1="163" y1="118" x2="171" y2="118" stroke="#c8bfa0" stroke-width="0.8"/>
+      <text x="190" y="162" text-anchor="middle" font-size="9" fill="#4a5e3a" font-family="sans-serif">군락토끼 약 40cm</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">토끼과</span>
+    <span class="tag">고사회성</span>
+    <span class="tag">역할 분담</span>
+    <span class="tag">아프리카 평야</span>
+    <span class="tag">연구 진행 중</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 토끼목 · 토끼과 · 굴토끼속</span>
+    <span><em>Oryctolagus Societas cuniculus</em></span>
+  </div>
+
+</div>
+</body>
+</html>

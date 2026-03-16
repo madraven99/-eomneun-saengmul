@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사막소나무 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f4ec;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #c8ae80;
+    --accent: #7a5a1a;
+    --highlight: #f0e4c0;
+    --table-head: #e8d4a0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #201808;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 30px 16px;
+  }
+
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c8ae80; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15);
+    padding: 48px 56px;
+  }
+
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+
+  .infobox {
+    float: right; clear: right; margin: 0 0 24px 28px; width: 240px;
+    border: 1px solid var(--border); background: #f0e8d0; font-size: 0.82rem;
+  }
+
+  .infobox-title { background: var(--accent); color: #f8f4ec; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+
+  .infobox-img {
+    width: 100%; height: 180px;
+    background: linear-gradient(180deg, #c8a850 0%, #e0c070 40%, #d4a840 100%);
+    display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border);
+  }
+
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #d8c090; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+
+  .toc { background: #f0e8d0; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  .status-badge { display: inline-block; background: #7a5a1a; color: #f8f4ec; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+
+  .notice-box { background: #f5eccc; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a2a0a; }
+  .notice-box strong { color: var(--accent); }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">← 도감 목록으로</a>
+</div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">사막소나무 仙人掌松</div>
+    <div class="infobox-img">
+      <svg width="180" height="175" viewBox="0 0 180 175" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.85">
+        <!-- 모래 배경 암시 -->
+        <ellipse cx="90" cy="168" rx="60" ry="6" fill="#c8a030" opacity="0.3"/>
+
+        <!-- 줄기 (선인장형 기둥, 소나무 수피색) -->
+        <rect x="76" y="60" width="28" height="105" rx="10" fill="#8B5E2A"/>
+        <!-- 수피 질감 — 세로 균열 -->
+        <line x1="82" y1="62" x2="80" y2="163" stroke="#6a3e10" stroke-width="1.5" opacity="0.5"/>
+        <line x1="90" y1="61" x2="90" y2="164" stroke="#6a3e10" stroke-width="1.5" opacity="0.4"/>
+        <line x1="98" y1="62" x2="100" y2="163" stroke="#6a3e10" stroke-width="1.5" opacity="0.5"/>
+        <!-- 수피 가로 균열 -->
+        <path d="M77 85 Q82 83 90 85 Q98 87 103 85" stroke="#6a3e10" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M77 110 Q84 108 90 110 Q96 112 103 110" stroke="#6a3e10" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M77 135 Q83 133 90 135 Q97 137 103 135" stroke="#6a3e10" stroke-width="1" fill="none" opacity="0.4"/>
+
+        <!-- 팔 왼쪽 (소나무 수피) -->
+        <rect x="42" y="90" width="38" height="18" rx="9" fill="#8B5E2A"/>
+        <rect x="38" y="68" width="18" height="45" rx="9" fill="#8B5E2A"/>
+        <line x1="43" y1="70" x2="42" y2="111" stroke="#6a3e10" stroke-width="1.2" opacity="0.45"/>
+        <line x1="48" y1="69" x2="47" y2="112" stroke="#6a3e10" stroke-width="1.2" opacity="0.4"/>
+        <path d="M39 85 Q44 83 50 85 Q54 87 55 85" stroke="#6a3e10" stroke-width="1" fill="none" opacity="0.35"/>
+
+        <!-- 팔 오른쪽 (소나무 수피) -->
+        <rect x="100" y="105" width="38" height="18" rx="9" fill="#8B5E2A"/>
+        <rect x="124" y="85" width="18" height="45" rx="9" fill="#8B5E2A"/>
+        <line x1="129" y1="87" x2="128" y2="128" stroke="#6a3e10" stroke-width="1.2" opacity="0.45"/>
+        <line x1="134" y1="86" x2="135" y2="129" stroke="#6a3e10" stroke-width="1.2" opacity="0.4"/>
+        <path d="M125 100 Q130 98 136 100 Q140 102 141 100" stroke="#6a3e10" stroke-width="1" fill="none" opacity="0.35"/>
+
+        <!-- 솔잎 묶음 — 메인 줄기 -->
+        <g opacity="0.9">
+          <line x1="90" y1="93" x2="81" y2="80" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="90" y1="93" x2="90" y2="79" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="90" y1="93" x2="99" y2="80" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="84" y1="107" x2="75" y2="95" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="84" y1="107" x2="79" y2="94" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="96" y1="119" x2="105" y2="107" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="96" y1="119" x2="101" y2="106" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="82" y1="133" x2="73" y2="122" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="82" y1="133" x2="77" y2="120" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="98" y1="147" x2="107" y2="136" stroke="#2a5010" stroke-width="1.3"/>
+        </g>
+        <!-- 솔잎 — 왼쪽 팔 -->
+        <g opacity="0.85">
+          <line x1="47" y1="78" x2="38" y2="67" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="47" y1="78" x2="44" y2="65" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="47" y1="78" x2="53" y2="66" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="44" y1="93" x2="35" y2="83" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="44" y1="93" x2="39" y2="81" stroke="#2a5010" stroke-width="1.3"/>
+        </g>
+        <!-- 솔잎 — 오른쪽 팔 -->
+        <g opacity="0.85">
+          <line x1="133" y1="94" x2="124" y2="83" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="133" y1="94" x2="133" y2="81" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="133" y1="94" x2="142" y2="83" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="136" y1="110" x2="145" y2="99" stroke="#2a5010" stroke-width="1.3"/>
+          <line x1="136" y1="110" x2="141" y2="98" stroke="#2a5010" stroke-width="1.3"/>
+        </g>
+
+        <!-- 솔방울 — 꼭대기 -->
+        <ellipse cx="90" cy="52" rx="14" ry="18" fill="#7a3a10"/>
+        <ellipse cx="90" cy="50" rx="11" ry="14" fill="#9a4e20"/>
+        <ellipse cx="85" cy="43" rx="5" ry="3" fill="#6a2a08" opacity="0.7" transform="rotate(-15 85 43)"/>
+        <ellipse cx="95" cy="43" rx="5" ry="3" fill="#6a2a08" opacity="0.7" transform="rotate(15 95 43)"/>
+        <ellipse cx="83" cy="52" rx="5" ry="3" fill="#6a2a08" opacity="0.7" transform="rotate(-10 83 52)"/>
+        <ellipse cx="97" cy="52" rx="5" ry="3" fill="#6a2a08" opacity="0.7" transform="rotate(10 97 52)"/>
+        <ellipse cx="90" cy="60" rx="5" ry="3" fill="#6a2a08" opacity="0.7"/>
+        <ellipse cx="90" cy="36" rx="4" ry="3" fill="#5a1a06"/>
+
+        <!-- 솔방울 — 왼쪽 팔 꼭대기 -->
+        <ellipse cx="47" cy="61" rx="8" ry="11" fill="#7a3a10" opacity="0.9"/>
+        <ellipse cx="47" cy="59" rx="6" ry="8" fill="#9a4e20" opacity="0.9"/>
+        <ellipse cx="47" cy="52" rx="3" ry="2" fill="#5a1a06"/>
+
+        <!-- 솔방울 — 오른쪽 팔 꼭대기 -->
+        <ellipse cx="133" cy="77" rx="8" ry="11" fill="#7a3a10" opacity="0.9"/>
+        <ellipse cx="133" cy="75" rx="6" ry="8" fill="#9a4e20" opacity="0.9"/>
+        <ellipse cx="133" cy="68" rx="3" ry="2" fill="#5a1a06"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">사막 지대에 서식하는 성체 — 꼭대기에 솔방울이 맺혀 있다</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>식물계</td></tr>
+      <tr><td>문</td><td>구과식물문</td></tr>
+      <tr><td>강</td><td>구과강</td></tr>
+      <tr><td>목</td><td>구과목</td></tr>
+      <tr><td>과</td><td>소나무과</td></tr>
+      <tr><td>속</td><td>사막소나무속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Pinus Cactaceae densiflora</em></td></tr>
+      <tr><td>한자</td><td>仙人掌松</td></tr>
+      <tr><td>수형</td><td>선인장형 기둥·분지</td></tr>
+      <tr><td>수고</td><td>0.5 ~ 15m</td></tr>
+      <tr><td>잎</td><td>솔잎 (침엽)</td></tr>
+      <tr><td>열매</td><td>솔방울 (줄기 꼭대기)</td></tr>
+      <tr><td>저수</td><td>뿌리 저장</td></tr>
+      <tr class="section-header"><td colspan="2">서식</td></tr>
+      <tr><td>주 서식지</td><td>사막 및 건조지대</td></tr>
+      <tr><td>분포</td><td>선인장 자생지 전반</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">사막소나무 <span class="status-badge">식물</span></div>
+  <div class="article-subtitle">仙人掌松 · Pinus Cactaceae densiflora</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#physiology">생리적 적응</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#distribution">분포</a></li>
+      <li><a href="#history">발견 경위</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>사막소나무</strong>(仙人掌松, <em>Pinus Cactaceae densiflora</em>)는 소나무과에 속하는 침엽수로, 건조한 사막 환경에 적응하는 과정에서 선인장과 유사한 수형을 갖추게 된 식물이다. 외형은 선인장의 것을 거의 그대로 닮았으나 내부 구조와 잎, 열매는 소나무의 특성을 그대로 유지하고 있다. 가시 대신 솔잎이 돋아 있으며, 솔방울이 줄기의 꼭대기에서 맺히는 독특한 결실 형태를 보인다. 수렴진화의 사례로 자주 거론된다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>이름은 소나무가 사막 환경에 적응해 현재의 형태에 이르렀다는 추정에서 비롯되었다. 한자명 仙人掌松은 선인장을 뜻하는 仙人掌과 소나무를 뜻하는 松을 합친 것으로, 두 식물의 특성이 한 종에 공존한다는 사실을 직관적으로 표현한다. 학명의 <em>Cactaceae</em>는 선인장과의 학명을 그대로 가져온 것으로, 분류가 아닌 외형적 유사성을 명시하기 위해 사용되었다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>수형은 선인장의 기둥형·분지형 구조를 그대로 따른다. 굵고 수직으로 솟은 주줄기에서 팔처럼 가지가 뻗어 오르는 형태다. 그러나 줄기의 표면은 선인장의 녹색 매끄러운 육질과 달리 소나무 특유의 거칠고 갈라진 갈색 수피로 덮여 있어, 가까이에서 보면 선인장의 형태를 한 소나무임이 분명하게 드러난다. 수피의 균열 패턴과 색감은 일반 소나무와 사실상 동일하다. 줄기 전면과 가지에는 가시 대신 솔잎이 빽빽하게 돋아 있으며, 멀리서 보면 솔잎으로 덮인 선인장처럼 보인다.</p>
+    <p>수고는 환경에 따라 0.5m의 소형에서 15m를 넘는 대형까지 폭이 넓다. 수분이 비교적 풍부한 사막 가장자리에서는 더 크게 자라는 경향이 있다.</p>
+  </section>
+
+  <section id="physiology">
+    <h2>생리적 적응</h2>
+    <p>선인장이 줄기에 수분을 저장하는 것과 달리, 사막소나무는 뿌리에 수분을 저장하는 방식을 택했다. 뿌리가 넓고 얕게 퍼져 있어 희박한 강수가 있을 때 신속하게 흡수하며, 저장된 수분을 장기간에 걸쳐 소비한다. 줄기의 구조는 소나무의 목질부를 그대로 유지하고 있어 선인장처럼 수분 저장 기능을 줄기가 담당하지는 않는다.</p>
+    <p>솔잎은 일반 소나무의 것과 형태적으로 동일하나 표면의 큐티클층이 두꺼워 건조한 환경에서의 수분 손실을 억제한다. 이 구조가 가시와 유사한 외형을 강화하는 결과로 이어진 것으로 추정된다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>솔방울이 줄기의 꼭대기에 맺히는 것이 이 종의 가장 독특한 결실 형태다. 선인장류에서 열매가 꼭대기에 달리는 방식과 형태적으로 유사하며, 용과나 선인장 열매처럼 줄기 끝에서 직접 솟아오르는 것처럼 보인다. 솔방울 자체의 구조는 일반 소나무의 것과 동일하며, 비늘 사이에서 날개 달린 씨앗이 바람에 실려 퍼진다. 번식 방식은 소나무과의 일반적인 방식을 따른다.</p>
+  </section>
+
+  <section id="distribution">
+    <h2>분포</h2>
+    <p>선인장이 자생하는 건조지대라면 대체로 서식이 가능한 것으로 알려져 있다. 사막 중에서도 수분 공급이 상대적으로 나은 지역을 선호하는 경향이 있으며, 완전히 수분이 없는 극단적 건조 지대에서는 발견되지 않는다. 사막 외에도 건조한 온대 지역에서 자라는 사례가 확인되었다. 다만 침엽수로서 일정 수준 이하의 저온 환경에는 적응하지 못해 기온이 매우 낮은 지역에서는 서식하지 않는다.</p>
+  </section>
+
+  <section id="history">
+    <h2>발견 경위</h2>
+    <p>이 종이 처음 기록된 경위에는 두 계통의 혼선이 있었다. 사막 지역 원주민들에게 사막소나무는 특별히 이상한 식물이 아니었다. 선인장을 배경으로 자란 환경에서 그것과 흡사한 수형의 식물이 하나 더 있다는 것은 별다른 주목을 받지 못했다. 침엽수를 본 적 없는 이들에게 솔잎은 그저 뾰족한 것으로 보였을 뿐이다.</p>
+    <p>혼선이 생긴 것은 침엽수에 익숙한 외부 탐사자들이 이 식물을 접하면서부터였다. 선인장 모양의 줄기에 솔잎이 달려있고 꼭대기에 솔방울이 맺혀 있는 광경을 마주한 이들은 처음에 이것이 인위적으로 만들어진 것이라고 판단했다. 일부는 사막 지역 주민들에게 이 조형물을 누가 만들었는지 물었다는 기록이 남아 있으며, 현지인들이 어리둥절해했다는 일화도 함께 전해진다. 이후 표본 조사를 통해 정상적인 살아있는 식물임이 확인되었고, 소나무과 식물로 분류되었다.</p>
+    <div class="notice-box"><strong>분류 논쟁:</strong> 기재 당시 선인장과로 분류해야 한다는 주장이 제기되었으나, 내부 목질 구조, 잎의 형태, 솔방울의 구조 등 모든 내부 특성이 소나무과와 일치함이 확인되어 현재의 분류로 확정되었다. 수형의 유사성은 수렴진화의 결과로 해석된다.</div>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>개체수는 안정적인 것으로 파악되며, 선인장이 분포하는 건조 지대 전반에 걸쳐 서식이 확인된다. 별도의 보호 지정은 없다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <p>개체에 따라 0.5m 소형에서 15m 대형까지 폭이 크다.</p>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 380 220" style="max-width:380px;display:block;">
+      <line x1="20" y1="190" x2="360" y2="190" stroke="#c8ae80" stroke-width="0.8"/>
+      <!-- 인간 (1m=22px) -->
+      <circle cx="45" cy="154" r="3.85" fill="var(--muted)" opacity="0.3"/>
+      <line x1="45" y1="158" x2="45" y2="172" stroke="var(--muted)" stroke-width="2.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="40" y1="160" x2="50" y2="160" stroke="var(--muted)" stroke-width="1.8" opacity="0.3" stroke-linecap="round"/>
+      <line x1="45" y1="172" x2="41" y2="190" stroke="var(--muted)" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+      <line x1="45" y1="172" x2="49" y2="190" stroke="var(--muted)" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+      <text x="45" y="202" text-anchor="middle" font-size="8" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 소형 사막소나무 약 1m -->
+      <rect x="118" y="168" width="10" height="22" rx="4" fill="#8B5E2A" opacity="0.65"/>
+      <rect x="109" y="175" width="10" height="7" rx="3" fill="#8B5E2A" opacity="0.55"/>
+      <rect x="119" y="172" width="9" height="7" rx="3" fill="#8B5E2A" opacity="0.55"/>
+      <ellipse cx="123" cy="161" rx="6" ry="8" fill="#7a3a10" opacity="0.6"/>
+      <!-- 솔잎 소형 -->
+      <line x1="119" y1="173" x2="114" y2="167" stroke="#2a5010" stroke-width="1" opacity="0.7"/>
+      <line x1="123" y1="170" x2="123" y2="163" stroke="#2a5010" stroke-width="1" opacity="0.7"/>
+      <line x1="127" y1="173" x2="132" y2="167" stroke="#2a5010" stroke-width="1" opacity="0.7"/>
+      <text x="123" y="206" text-anchor="middle" font-size="8" fill="#7a5a1a" opacity="0.7" font-family="sans-serif">소형 ~1m</text>
+      <!-- 대형 사막소나무 15m(330px → 축소하여 130px 표시) -->
+      <rect x="215" y="57" width="22" height="133" rx="9" fill="#8B5E2A" opacity="0.65"/>
+      <!-- 수피 균열 -->
+      <line x1="220" y1="60" x2="219" y2="188" stroke="#6a3e10" stroke-width="1" opacity="0.35"/>
+      <line x1="226" y1="59" x2="226" y2="189" stroke="#6a3e10" stroke-width="1" opacity="0.3"/>
+      <line x1="232" y1="60" x2="233" y2="188" stroke="#6a3e10" stroke-width="1" opacity="0.35"/>
+      <!-- 팔 왼쪽 -->
+      <rect x="188" y="108" width="30" height="14" rx="6" fill="#8B5E2A" opacity="0.6"/>
+      <rect x="184" y="86" width="14" height="36" rx="6" fill="#8B5E2A" opacity="0.6"/>
+      <!-- 팔 오른쪽 -->
+      <rect x="234" y="122" width="30" height="14" rx="6" fill="#8B5E2A" opacity="0.6"/>
+      <rect x="254" y="100" width="14" height="36" rx="6" fill="#8B5E2A" opacity="0.6"/>
+      <!-- 솔잎 -->
+      <line x1="226" y1="95" x2="218" y2="84" stroke="#2a5010" stroke-width="1.2" opacity="0.7"/>
+      <line x1="226" y1="95" x2="226" y2="82" stroke="#2a5010" stroke-width="1.2" opacity="0.7"/>
+      <line x1="226" y1="95" x2="234" y2="84" stroke="#2a5010" stroke-width="1.2" opacity="0.7"/>
+      <line x1="222" y1="115" x2="213" y2="104" stroke="#2a5010" stroke-width="1.2" opacity="0.7"/>
+      <line x1="230" y1="130" x2="239" y2="119" stroke="#2a5010" stroke-width="1.2" opacity="0.7"/>
+      <line x1="191" y1="96" x2="183" y2="87" stroke="#2a5010" stroke-width="1" opacity="0.65"/>
+      <line x1="191" y1="103" x2="181" y2="102" stroke="#2a5010" stroke-width="1" opacity="0.65"/>
+      <line x1="261" y1="108" x2="270" y2="99" stroke="#2a5010" stroke-width="1" opacity="0.65"/>
+      <line x1="261" y1="115" x2="271" y2="114" stroke="#2a5010" stroke-width="1" opacity="0.65"/>
+      <!-- 솔방울 꼭대기 -->
+      <ellipse cx="226" cy="49" rx="10" ry="13" fill="#7a3a10" opacity="0.8"/>
+      <ellipse cx="226" cy="47" rx="8" ry="10" fill="#9a4e20" opacity="0.8"/>
+      <ellipse cx="226" cy="38" rx="3" ry="2" fill="#5a1a06"/>
+      <!-- 작은 솔방울 -->
+      <ellipse cx="191" cy="78" rx="6" ry="8" fill="#7a3a10" opacity="0.75"/>
+      <ellipse cx="261" cy="92" rx="6" ry="8" fill="#7a3a10" opacity="0.75"/>
+      <!-- 높이 표시 -->
+      <line x1="288" y1="38" x2="288" y2="190" stroke="#c8ae80" stroke-width="0.5" stroke-dasharray="3 4"/>
+      <line x1="284" y1="38" x2="292" y2="38" stroke="#c8ae80" stroke-width="0.8"/>
+      <text x="276" y="118" font-size="8" fill="var(--muted)" opacity="0.6" font-family="sans-serif" transform="rotate(-90,276,118)">대형 ~15m</text>
+      <text x="226" y="206" text-anchor="middle" font-size="9" fill="#7a5a1a" font-family="sans-serif">사막소나무</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">식물계</span>
+    <span class="tag">소나무과</span>
+    <span class="tag">수렴진화</span>
+    <span class="tag">사막 적응</span>
+    <span class="tag">침엽수</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 구과목 · 소나무과 · 사막소나무속</span>
+    <span><em>Pinus Cactaceae densiflora</em></span>
+  </div>
+
+</div>
+</body>
+</html>

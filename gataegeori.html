@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가태거리 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f5ee;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #c8bfa0;
+    --accent: #4a5e3a;
+    --highlight: #e0e8d0;
+    --table-head: #d4dfc4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #2a2520;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 30px 16px;
+  }
+
+  .nav-bar {
+    max-width: 860px;
+    margin: 0 auto 12px;
+    font-size: 0.8rem;
+  }
+
+  .nav-bar a { color: #c8bfa0; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1);
+    padding: 48px 56px;
+  }
+
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+
+  .infobox {
+    float: right; clear: right; margin: 0 0 24px 28px; width: 240px;
+    border: 1px solid var(--border); background: #edf0e8; font-size: 0.82rem;
+  }
+
+  .infobox-title { background: var(--accent); color: #f8f5ee; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+
+  .infobox-img {
+    width: 100%; height: 160px;
+    background: linear-gradient(160deg, #c8d8b0 0%, #a8c090 40%, #e0d8b0 100%);
+    display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border);
+  }
+
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #ccd8bc; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+
+  .toc { background: #edf0e8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: #4a6040; line-height: 1.9; }
+  .toc a { color: #4a6040; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  .status-badge { display: inline-block; background: #6b5e30; color: #f8f5ee; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+
+  .notice-box { background: #f0f5e8; border-left: 3px solid #6a7e4a; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a4a20; }
+  .notice-box strong { color: #4a6010; }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">← 도감 목록으로</a>
+</div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">가태거리 天山甲退</div>
+    <div class="infobox-img">
+      <svg width="170" height="140" viewBox="0 0 170 140" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.55">
+        <!-- Body -->
+        <ellipse cx="80" cy="85" rx="55" ry="32" fill="#5a6040"/>
+        <!-- Head -->
+        <ellipse cx="128" cy="75" rx="22" ry="18" fill="#5a6040"/>
+        <!-- Armored plates on back -->
+        <ellipse cx="60" cy="65" rx="18" ry="10" fill="#4a5030" transform="rotate(-10 60 65)"/>
+        <ellipse cx="82" cy="60" rx="18" ry="10" fill="#4a5030" transform="rotate(-5 82 60)"/>
+        <ellipse cx="104" cy="62" rx="16" ry="10" fill="#4a5030" transform="rotate(5 104 62)"/>
+        <!-- Tail with club -->
+        <path d="M28 88 Q8 80 5 68 Q4 58 12 58" stroke="#5a6040" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="55" r="12" fill="#4a5030"/>
+        <!-- Legs -->
+        <rect x="58" y="112" width="12" height="18" rx="5" fill="#5a6040"/>
+        <rect x="76" y="114" width="12" height="16" rx="5" fill="#5a6040"/>
+        <rect x="95" y="114" width="12" height="16" rx="5" fill="#5a6040"/>
+        <rect x="112" y="110" width="12" height="20" rx="5" fill="#5a6040"/>
+        <!-- Horn/snout detail -->
+        <ellipse cx="148" cy="78" rx="8" ry="6" fill="#4a5030"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">꼬리 곤봉을 위협적으로 회전시키는 방어 행동</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>포유강</td></tr>
+      <tr><td>목</td><td>인갑목</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Ankylo Pholidota</em></td></tr>
+      <tr><td>한자</td><td>天山甲退</td></tr>
+      <tr><td>임신 기간</td><td>10 ~ 11개월</td></tr>
+      <tr><td>한배 새끼 수</td><td>1마리</td></tr>
+      <tr><td>서식지</td><td>초원</td></tr>
+      <tr><td>식성</td><td>잡식 (초식 위주)</td></tr>
+      <tr class="section-header"><td colspan="2">외형</td></tr>
+      <tr><td>몸길이</td><td>3.5 ~ 4m</td></tr>
+      <tr><td>몸무게</td><td>1.5 ~ 2.5t</td></tr>
+      <tr><td>체색</td><td>짙은 갈색·회색·녹색</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>초원 서식 확인</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">가태거리 <span class="status-badge">준위험</span></div>
+  <div class="article-subtitle">天山甲退 · Ankylo Pholidota · "갑옷 꼬리를 가진 짐승"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형 및 크기</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#diet">먹이</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#relation">다른 동물과의 관계</a></li>
+      <li><a href="#history">역사적 기록</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>가태거리</strong>(天山甲退, <em>Ankylo Pholidota</em>)는 인갑목에 속하는 대형 초식성 포유류로, 인갑목 중 현존하는 가장 큰 종이다. 유전적으로는 아르마딜로와 가까우나 외형은 천산갑과 유사한 갑판 구조를 지녀 흥미로운 수렴 진화 사례로 꼽힌다. 초원 지대에 서식하며 코뿔소, 하마와 유사한 생태적 위치를 차지한다. 전신을 덮은 두꺼운 갑판과 안킬로사우루스를 연상케 하는 꼬리 곤봉이 특징이며, 직접적인 공격성은 낮으나 위협을 느낄 경우 꼬리 곤봉을 회전시켜 강력하게 반격한다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>이름의 원형은 <strong>'갑퇴꼬리'</strong>로, 갑옷을 의미하는 '갑(甲)'과 망치를 의미하는 '퇴(退)'에 꼬리를 합친 명칭이다. 갑판으로 이루어진 몸과 망치 형태의 꼬리를 직관적으로 표현한 이름으로, 세월이 흐르면서 음운 변화를 거쳐 현재의 '가태거리'가 되었다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형 및 크기</h2>
+    <p>몸길이 3.5~4m, 몸무게 1.5~2.5t로 코뿔소 및 하마와 유사한 체급이다. 전신은 두꺼운 갑판으로 덮여 있으며, 체색은 개체에 따라 짙은 갈색, 회색, 녹색이 혼합되어 나타나거나 그 중 하나가 두드러지게 나타나기도 한다. 가장 두드러진 신체적 특징은 긴 꼬리 끝에 달린 골질의 곤봉으로, 안킬로사우루스의 꼬리 곤봉과 형태적으로 유사하다. 이 곤봉은 위협 시 빠르게 회전시킬 수 있으며, 충격력이 매우 강한 것으로 알려져 있다.</p>
+    <div class="notice-box"><strong>⚠ 주의:</strong> 가태거리는 먼저 공격하는 경우가 드물지만, 위협을 느끼면 꼬리 곤봉을 사용한 반격을 가한다. 초원에서 가태거리를 발견했을 경우 자극하지 않도록 주의해야 한다.</div>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>종에 따라 무리생활을 하는 개체군과 단독 생활을 하는 개체군이 존재한다. 무리생활을 하는 경우 종종 코뿔소 무리와 혼합 대형을 이루는 독특한 양상이 관찰된다. 이 대형에서 코뿔소는 전방에, 가태거리는 후방에 위치하는 경향이 있다. 초기에는 두 종 간의 서열 관계를 두고 논쟁이 있었으나, 이후 연구를 통해 코뿔소는 머리 쪽에, 가태거리는 꼬리 쪽에 주요 방어 수단이 집중되어 있어 각자 방어에 유리한 방향을 자연스럽게 선택한 결과임이 밝혀졌다. 서열이 아닌 상호 보완적 포지셔닝으로 해석된다.</p>
+  </section>
+
+  <section id="diet">
+    <h2>먹이</h2>
+    <p>풀, 나뭇잎, 열매, 소형 곤충을 섭취하는 잡식성 동물이나 전반적으로 초식에 가까운 식성을 지닌다. 단단한 나무 자체는 섭취하지 않는다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>임신 기간은 10~11개월이며, 한 번에 한 마리의 새끼를 출산하는 것이 일반적이다. 낮은 번식률로 인해 개체수 회복 속도가 느리며, 역사적으로 남획이 이루어졌던 시기의 영향이 현재까지 이어지고 있다.</p>
+  </section>
+
+  <section id="relation">
+    <h2>다른 동물과의 관계</h2>
+    <p>코뿔소, 하마와 유사한 생태적 위치를 차지하며 이들과 영역을 두고 신경전을 벌이는 경우가 있다. 그러나 무리생활을 하는 경우 코뿔소와 혼합 집단을 이루기도 하여 단순한 경쟁 관계로만 규정하기 어렵다. 대형 육식동물에 대해서는 꼬리 곤봉 위협 행동으로 대응하며, 성체의 경우 대부분의 포식자가 쉽게 접근하지 못한다.</p>
+    <p>코끼리 무리와 단독으로 마주쳤을 때는 코뿔소와 마찬가지로 대체로 피하는 편이다. 그러나 코뿔소 무리와 혼합 집단을 이루고 있는 상태에서 코끼리 무리와 맞닥뜨리면 양상이 달라진다. 이 경우 가태거리는 코끼리를 피하지 않으며, 코뿔소 역시 평소와 달리 코끼리 앞에서 물러서지 않는다. 서로의 존재가 배경이 되어 양쪽 모두 평소보다 강경하게 기싸움을 벌이는 것으로 관찰된다. 이 현상은 군집 심리와 세력 과시의 복합 작용으로 해석되며, 실제 물리적 충돌로 이어지는 경우는 드물다.</p>
+  </section>
+
+  <section id="history">
+    <h2>역사적 기록</h2>
+    <p>단단한 외피 때문에 사냥이 쉽지 않았으나, 일단 포획에 성공하면 그 갑판이 갑옷 제작에 매우 적합한 소재로 활용되었다. 꼬리 곤봉 또한 약재 및 밀수품으로 높은 가치를 지녀 상당한 거래가 이루어졌다. 가축으로 들이려는 시도가 여러 차례 있었으나 모두 실패로 돌아갔다. 현재는 가태거리의 신체 부위 거래가 법으로 금지되어 있다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 420 180" style="max-width:420px;display:block;">
+      <line x1="20" y1="150" x2="400" y2="150" stroke="#c8bfa0" stroke-width="0.8"/>
+      <!-- 인간 (1m=46px) -->
+      <circle cx="45" cy="70" r="8" fill="var(--muted)" opacity="0.3"/>
+      <line x1="45" y1="78" x2="45" y2="110" stroke="var(--muted)" stroke-width="5.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="35" y1="83" x2="55" y2="83" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="45" y1="110" x2="38" y2="150" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="45" y1="110" x2="52" y2="150" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <text x="45" y="164" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 가태거리: 몸길이 4m(184px), 어깨높이 약 1m(46px), 낮고 평평 -->
+      <ellipse cx="245" cy="103" rx="90" ry="36" fill="#5a6040" opacity="0.55"/>
+      <ellipse cx="320" cy="95" rx="28" ry="22" fill="#5a6040" opacity="0.55"/>
+      <ellipse cx="340" cy="100" rx="12" ry="9" fill="#4a5030" opacity="0.55"/>
+      <!-- 등 갑판 -->
+      <ellipse cx="200" cy="74" rx="22" ry="12" fill="#4a5030" opacity="0.5" transform="rotate(-8,200,74)"/>
+      <ellipse cx="235" cy="70" rx="22" ry="12" fill="#4a5030" opacity="0.5" transform="rotate(-3,235,70)"/>
+      <ellipse cx="270" cy="72" rx="20" ry="12" fill="#4a5030" opacity="0.5" transform="rotate(3,270,72)"/>
+      <!-- 꼬리 곤봉 -->
+      <path d="M155 110 Q132 100 126 90" stroke="#5a6040" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.55"/>
+      <circle cx="120" cy="86" r="13" fill="#4a5030" opacity="0.55"/>
+      <!-- 다리 -->
+      <rect x="182" y="134" width="13" height="16" rx="4" fill="#4a5030" opacity="0.55"/>
+      <rect x="203" y="136" width="13" height="14" rx="4" fill="#4a5030" opacity="0.55"/>
+      <rect x="278" y="136" width="13" height="14" rx="4" fill="#4a5030" opacity="0.55"/>
+      <rect x="300" y="134" width="13" height="16" rx="4" fill="#4a5030" opacity="0.55"/>
+      <!-- 몸길이 표시 -->
+      <line x1="120" y1="158" x2="348" y2="158" stroke="#c8bfa0" stroke-width="0.5"/>
+      <line x1="120" y1="154" x2="120" y2="162" stroke="#c8bfa0" stroke-width="0.8"/>
+      <line x1="348" y1="154" x2="348" y2="162" stroke="#c8bfa0" stroke-width="0.8"/>
+      <text x="234" y="172" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.6" font-family="sans-serif">약 4m</text>
+      <text x="245" y="84" text-anchor="middle" font-size="9" fill="#4a5e3a" font-family="sans-serif">가태거리</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">인갑목</span>
+    <span class="tag">최대종</span>
+    <span class="tag">초원 서식</span>
+    <span class="tag">방어형</span>
+    <span class="tag">잡식성</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 인갑목 · 초원 동물 · 대형 초식동물</span>
+    <span><em>Ankylo Pholidota</em></span>
+  </div>
+
+</div>
+</body>
+</html>

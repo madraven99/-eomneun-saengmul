@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>바다별 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f0f4f8;
+    --ink: #1a1a2a;
+    --muted: #4a5568;
+    --border: #a0b8d0;
+    --accent: #2a4a7a;
+    --highlight: #d0e0f0;
+    --table-head: #c0d4e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a1020;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 30px 16px;
+  }
+
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #a0b8d0; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 30px rgba(0,60,120,0.3), 4px 4px 0 rgba(0,0,0,0.15);
+    padding: 48px 56px;
+  }
+
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+
+  .infobox {
+    float: right; clear: right; margin: 0 0 24px 28px; width: 240px;
+    border: 1px solid var(--border); background: #e0ecf8; font-size: 0.82rem;
+  }
+
+  .infobox-title { background: var(--accent); color: #f0f4f8; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+
+  .infobox-img {
+    width: 100%; height: 160px;
+    background: linear-gradient(180deg, #0a1830 0%, #102848 50%, #0a2040 100%);
+    display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #b0cce0; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+
+  .toc { background: #e0ecf8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: #2a4a7a; line-height: 1.9; }
+  .toc a { color: #2a4a7a; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  p { font-size: 0.9rem; line-height: 1.85; color: #1a2a3a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  .status-badge { display: inline-block; background: #2a4a7a; color: #f0f4f8; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+
+  .notice-box { background: #e8f0f8; border-left: 3px solid #4a7aaa; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a3050; }
+  .notice-box strong { color: #1a3a6a; }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+
+  @keyframes glow { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+  .glow-anim { animation: glow 3s ease-in-out infinite; }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">← 도감 목록으로</a>
+</div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">바다별 海星</div>
+    <div class="infobox-img">
+      <svg width="200" height="160" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="30" r="1" fill="#4080c0" opacity="0.4"/>
+        <circle cx="170" cy="50" r="1" fill="#4080c0" opacity="0.3"/>
+        <circle cx="60" cy="140" r="1" fill="#4080c0" opacity="0.3"/>
+        <circle cx="150" cy="130" r="1" fill="#6090d0" opacity="0.4"/>
+        <g class="glow-anim">
+          <ellipse cx="100" cy="85" rx="30" ry="14" fill="#40a0ff" opacity="0.15"/>
+          <ellipse cx="100" cy="85" rx="22" ry="10" fill="#2060a0"/>
+          <ellipse cx="122" cy="82" rx="13" ry="10" fill="#2060a0"/>
+          <ellipse cx="133" cy="83" rx="6" ry="5" fill="#1a5090"/>
+          <circle cx="128" cy="78" r="3" fill="#80d0ff" opacity="0.9"/>
+          <circle cx="128" cy="78" r="1.5" fill="white"/>
+          <ellipse cx="79" cy="86" rx="9" ry="6" fill="#1a5090"/>
+          <ellipse cx="108" cy="74" rx="14" ry="5" fill="#1a5090" opacity="0.9" transform="rotate(-20 108 74)"/>
+          <ellipse cx="108" cy="96" rx="14" ry="5" fill="#1a5090" opacity="0.9" transform="rotate(20 108 96)"/>
+          <ellipse cx="82" cy="76" rx="10" ry="4" fill="#1a5090" opacity="0.8" transform="rotate(-30 82 76)"/>
+          <ellipse cx="82" cy="96" rx="10" ry="4" fill="#1a5090" opacity="0.8" transform="rotate(30 82 96)"/>
+          <circle cx="95" cy="83" r="2.5" fill="#60d0ff" opacity="0.9"/>
+          <circle cx="103" cy="80" r="2" fill="#80e0ff" opacity="0.8"/>
+          <circle cx="88" cy="87" r="2" fill="#60d0ff" opacity="0.7"/>
+          <circle cx="111" cy="86" r="1.5" fill="#a0f0ff" opacity="0.9"/>
+          <circle cx="95" cy="83" r="5" fill="#60d0ff" opacity="0.2"/>
+          <circle cx="103" cy="80" r="4" fill="#80e0ff" opacity="0.15"/>
+        </g>
+        <path d="M0 20 Q25 14 50 20 Q75 26 100 20 Q125 14 150 20 Q175 26 200 20" stroke="#3070b0" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M0 28 Q25 22 50 28 Q75 34 100 28 Q125 22 150 28 Q175 34 200 28" stroke="#3070b0" stroke-width="0.5" fill="none" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">심해 수면 근처에서 발광하는 바다별 — 멀리서 보면 바다 위의 별처럼 보인다</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>육기어강</td></tr>
+      <tr><td>목</td><td>바다별목</td></tr>
+      <tr><td>과</td><td>바다별과</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Lampy Amphibia</em></td></tr>
+      <tr><td>한자</td><td>海星</td></tr>
+      <tr><td>별칭</td><td>바다미리내, 해성</td></tr>
+      <tr><td>크기</td><td>7 ~ 9 cm</td></tr>
+      <tr><td>서식지</td><td>깊은 바다 수면 근처</td></tr>
+      <tr><td>먹이</td><td>해양 소형 무척추동물</td></tr>
+      <tr><td>비행 지속</td><td>약 30분</td></tr>
+      <tr class="section-header"><td colspan="2">특징</td></tr>
+      <tr><td>발광</td><td>자체 발광 가능</td></tr>
+      <tr><td>서식</td><td>염수 선호, 민물 가능</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정 (관측 어려움)</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">바다별 <span class="status-badge">해양</span></div>
+  <div class="article-subtitle">海星 · Lampy Amphibia · "바다의 별"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형 및 신체 구조</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#bioluminescence">발광</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#freshwater">민물 출현 사례</a></li>
+      <li><a href="#history">역사적 기록</a></li>
+      <li><a href="#perception">사회적 인식</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>바다별</strong>(海星, <em>Lampy Amphibia</em>)은 깊은 바다의 수면 근처에 서식하는 육기어강 동물이다. 어류에서 양서류로의 진화 중간 단계에 해당하는 위치에 있으나, 양서류 쪽으로 더 진화하지 않고 그 사이에서 독자적으로 적응한 종이다. 몸길이 7~9cm로 두꺼비보다 약간 작고 일반적인 개구리나 도롱뇽보다는 크다. 자체 발광 능력을 지니며, 야간 해상에서 무리를 이룬 개체들의 빛이 먼 바다에서 별처럼 보인다 하여 '바다별'이라는 이름으로 불려왔다. 양서류에 가장 가까운 육기어이면서도 날개에 가까운 지느러미를 발달시키는 방향으로 진화한 점이 이채롭다.</p>
+    <p>생김새가 개구리나 도롱뇽과 닮아 있어 일반인들은 물론 초기 연구자들도 양서류로 오인하는 경우가 많았다. 그러나 실제로는 육기어강에 속하며 양서류와는 분류학적으로 명확히 구분된다. 외형의 유사성은 비슷한 환경에 적응하는 과정에서 생겨난 수렴 진화의 결과로 해석된다.</p>
+    <p>학계 일각에서는 바다별의 독자적 특성을 근거로 육기어강에서 분리된 <strong>바다별강</strong>을 별도로 신설해야 한다는 주장이 제기되고 있다. 발광 능력과 지느러미의 비행 기능 사이의 상관관계에 대해서도 연구가 진행 중이나 아직 규명되지 않았다. 빛은 나되 날지 못하는 개체, 날 수는 있되 빛을 내지 못하는 개체의 존재가 유추되고 있으나 두 능력의 연관성은 여전히 미지수다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>옛 항해사들과 어부들이 먼 바다에서 수면 근처를 떠다니며 빛나는 무리를 목격하고 '바다에서만 보이는 별'이라 부른 데서 유래한다. 초기에는 <strong>'바다미리내'</strong>라고도 불렸으며, 이것이 점차 줄어 '바다별'로 정착되어 현재의 공식 명칭이 되었다. 학명 <em>Lampy Amphibia</em>의 Lampy는 발광을 의미하는 어근에서 비롯된다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형 및 신체 구조</h2>
+    <p>머리와 앞부분은 도롱뇽과 유사한 형태를 띠며, 꼬리와 뒷부분은 개구리의 형태에 가깝다. 비행 시 긴 꼬리는 공기 저항을 높여 불리하게 작용하기 때문에 꼬리 부분이 짧게 발달한 것으로 추정된다.</p>
+    <p>앞다리는 날개와 지느러미의 기능을 동시에 수행하도록 고도로 발달해 있으며, 뒷다리는 수중에서 뒷지느러미 역할을 하면서 비행 시 방향 전환과 활공을 보조한다. 올챙이 시절에는 지느러미가 작아 물고기와 흡사한 외형을 보이며, 성체가 될수록 지느러미가 점차 커져 수영과 비행 모두에서 높은 기동성을 갖추게 된다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>섬도 없는 넓은 바다 한가운데 수면 근처에서만 생활하며, 해변 방향으로는 절대 접근하지 않는다. 이는 단순한 습성이 아닌 신체적 한계에서 비롯된 것으로, 육지 환경에 대한 내성이 거의 없는 것으로 보인다. 염수를 주 서식 환경으로 삼지만 민물에서도 생존이 가능하다는 사실이 확인되었다. 다만 민물 환경에 처하더라도 육지와 최대한 거리를 두려는 행동을 보이며, 기회가 생기면 즉시 바다로 복귀하려 한다.</p>
+    <p>포식자가 접근할 경우 수면 위로 도약하여 비행으로 이탈하는 방식을 취하며, 약 30분간 지속적으로 날 수 있다. 날치와 유사한 비행 방식이나 지속 시간이 훨씬 길다.</p>
+  </section>
+
+  <section id="bioluminescence">
+    <h2>발광</h2>
+    <p>바다별의 가장 두드러진 특징 중 하나는 스스로 몸을 빛낼 수 있는 생물 발광 능력이다. 야간에 무리를 이룬 개체들의 빛은 먼 바다에서 수면 위에 떠 있는 별처럼 보인다. 발광의 정확한 생물학적 기능은 완전히 규명되지 않았으나, 개체 간 신호 교환이나 짝짓기와 연관이 있을 것으로 추정된다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>산란은 산호초 사이에서 이루어지며, 다른 양서류와 유사하게 대량의 알을 낳는 방식으로 번식한다. 올챙이 시절은 주로 물속에서 생활하며 물고기와 흡사한 외형을 보인다. 알은 포식자에 의해 일부가 소실되지만 대량 산란으로 인해 종 유지에는 큰 지장이 없다.</p>
+  </section>
+
+  <section id="freshwater">
+    <h2>민물 출현 사례</h2>
+    <p>폭풍이나 해류 이변으로 인해 간혹 민물 지역에 떠밀려오는 개체가 발견된다. 이러한 사례는 매우 드물며, 민물에 올라온 개체는 육지와 최대한 거리를 두면서 생존을 이어간다. 민물 환경에서도 단기 생존이 가능하나 장기 적응은 어렵고, 보호 시도에도 불구하고 유지가 쉽지 않은 것으로 알려져 있다.</p>
+    <div class="notice-box"><strong>문화적 기록:</strong> 민물에 떠밀려온 바다별을 목격한 원주민들은 이를 하늘의 별이 바다에 떨어진 것으로 여겨 하나의 징조로 해석하였다. 지역의 분위기와 문화에 따라 길조로 받아들이기도 하고, 흉조로 해석하기도 하였다.</div>
+  </section>
+
+  <section id="history">
+    <h2>역사적 기록</h2>
+    <p>항해 중인 선원들에 의해 먼 바다에서 그 존재가 목격되어 왔으며, 폭풍 이후 민물 지역에 출현한 사례를 통해 정체가 밝혀지기도 하였다. '바다미리내', '바다별' 등 다양한 이름으로 불리다가 현재의 명칭으로 정착되었으며, 동양권에서는 해성(海星)이라는 한자명으로 기록되었다. 육지에서 관찰하기 극히 어려운 서식 특성으로 인해 오랫동안 전설적 존재로 취급되었으며, 학술적 연구는 주로 해상 관측 또는 드물게 올라온 개체 분석을 통해 이루어져 왔다.</p>
+  </section>
+
+  <section id="perception">
+    <h2>사회적 인식</h2>
+    <p>바다별은 척추동물 중 자체 발광과 비행이 동시에 가능한 극히 드문 사례이며, 어류에서 양서류로의 진화 중간 단계에 해당하는 육기어강의 현생 종이라는 점에서 학계에서의 위치는 매우 특이하다. 이러한 특성이 한 종에 집중되어 있다는 점에서 연구자들 사이에서는 오리너구리에 비견하는 견해도 드물지 않다.</p>
+    <p>그러나 일반 대중의 인식은 이와 다소 거리가 있다. 설문 조사에서 "가장 신기한 동물"을 묻는 항목에 바다별이 자주 포함되기는 하지만, 깊은 인상을 남기기보다는 막연히 "그런 동물도 있지" 하는 수준에서 언급되는 경향이 강하다. 해안가 주민들 사이에서는 특히 이 무덤덤함이 두드러진다. 어릴 때부터 야간 수평선 위에 떠 있는 빛 무리를 흔히 보아온 탓에, 발광하는 물고기 비슷한 것이 날아다닌다는 사실 자체가 별다른 감흥을 주지 않는 것이다. 어부들이 그물에 바다별이 딸려 올라와도 특별한 반응 없이 도로 던져버리는 경우가 대부분이며, 일부는 그 자리에서 치워버리는 것을 귀찮아할 정도다.</p>
+    <p>연구자들 사이에서는 이 반응 자체가 흥미로운 현상으로 거론된다. 객관적으로 보면 상당히 예외적인 생물이 이토록 낮은 사회적 관심을 받는 이유가 무엇인지에 대해 몇 가지 해석이 있다. 바다별이 인간의 생활권과 물리적으로 멀리 떨어져 있는 데다 크기가 작고, 먼 바다에서 빛이 나는 것이 위협적이거나 유용하게 느껴지지 않아 주의가 분산되지 않는다는 점이 주로 꼽힌다. 결국 아무리 이례적인 특성을 지닌 생물도 일상적인 배경으로 자리잡으면 낯섦을 잃는다는 사실의 사례로 인용되기도 한다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>육지에서는 확인이 어렵지만, 충분히 깊은 외해로 나가면 무리를 이룬 개체들을 간혹 관찰할 수 있다. 개체수는 매우 많지도 적지도 않은 안정적인 수준으로 추정되며, 서식지가 인간 활동 반경과 크게 겹치지 않아 직접적인 위협은 적은 편이다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 320 175" style="max-width:320px;display:block;">
+      <line x1="20" y1="148" x2="300" y2="148" stroke="#a0b8d0" stroke-width="0.8"/>
+      <!-- 인간 전신 (1m=50px) -->
+      <circle cx="60" cy="62" r="8.75" fill="var(--muted)" opacity="0.3"/>
+      <line x1="60" y1="71" x2="60" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.3" stroke-linecap="round"/>
+      <line x1="49" y1="76" x2="71" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="60" y1="105" x2="53" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="60" y1="105" x2="67" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="60" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 손 위의 바다별 -->
+      <ellipse cx="200" cy="120" rx="30" ry="8" fill="var(--muted)" opacity="0.2"/>
+      <!-- 바다별 (8cm = 4px at 1m=50px scale → 확대 표시, 실제 약 20px) -->
+      <ellipse cx="200" cy="104" rx="12" ry="6" fill="#2060a0" opacity="0.7"/>
+      <ellipse cx="210" cy="101" rx="6.5" ry="5" fill="#2060a0" opacity="0.7"/>
+      <ellipse cx="215" cy="102" rx="3.5" ry="3" fill="#1a5090" opacity="0.7"/>
+      <ellipse cx="192" cy="99" rx="8" ry="3" fill="#1a5090" opacity="0.65" transform="rotate(-22,192,99)"/>
+      <ellipse cx="192" cy="109" rx="8" ry="3" fill="#1a5090" opacity="0.65" transform="rotate(22,192,109)"/>
+      <circle cx="203" cy="102" r="2" fill="#60d0ff" opacity="0.8"/>
+      <circle cx="198" cy="105" r="1.5" fill="#80e0ff" opacity="0.7"/>
+      <!-- 실제 크기 표시 -->
+      <line x1="185" y1="130" x2="215" y2="130" stroke="#a0b8d0" stroke-width="0.5"/>
+      <line x1="185" y1="127" x2="185" y2="133" stroke="#a0b8d0" stroke-width="0.8"/>
+      <line x1="215" y1="127" x2="215" y2="133" stroke="#a0b8d0" stroke-width="0.8"/>
+      <text x="200" y="143" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.6" font-family="sans-serif">7~9 cm</text>
+      <text x="200" y="162" text-anchor="middle" font-size="9" fill="#2a4a7a" font-family="sans-serif">바다별</text>
+      <!-- 확대 표시 -->
+      <text x="240" y="104" font-size="8" fill="var(--muted)" opacity="0.5" font-family="sans-serif">※확대</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">육기어강</span>
+    <span class="tag">해양 서식</span>
+    <span class="tag">발광</span>
+    <span class="tag">비행 가능</span>
+    <span class="tag">심해 수면층</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 육기어강 · 바다별목 · 해양 동물 · 발광 생물</span>
+    <span><em>Lampy Amphibia</em></span>
+  </div>
+
+</div>
+</body>
+</html>

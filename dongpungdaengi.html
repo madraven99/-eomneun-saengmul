@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>동풍뎅이 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f5ee;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #c8bfa0;
+    --accent: #7a4a1a;
+    --highlight: #f0e0c8;
+    --table-head: #e8d0b0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #2a2520;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 30px 16px;
+  }
+
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c8bfa0; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1);
+    padding: 48px 56px;
+  }
+
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+
+  .infobox {
+    float: right; clear: right; margin: 0 0 24px 28px; width: 240px;
+    border: 1px solid var(--border); background: #f0e8d8; font-size: 0.82rem;
+  }
+
+  .infobox-title { background: var(--accent); color: #f8f5ee; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+
+  .infobox-img {
+    width: 100%; height: 160px;
+    background: linear-gradient(160deg, #c8b890 0%, #a89060 40%, #d8c898 100%);
+    display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border);
+  }
+
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #d8c8a8; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+
+  .toc { background: #f0e8d8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: #7a4a1a; line-height: 1.9; }
+  .toc a { color: #7a4a1a; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  .status-badge { display: inline-block; background: #7a6a50; color: #f8f5ee; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html">← 도감 목록으로</a>
+</div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">동풍뎅이 銅龜子</div>
+    <div class="infobox-img">
+      <svg width="170" height="140" viewBox="0 0 170 140" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.65">
+        <!-- 딱지날개 (elytra) -->
+        <ellipse cx="85" cy="80" rx="32" ry="26" fill="#8B4513"/>
+        <ellipse cx="85" cy="80" rx="30" ry="24" fill="#A0522D"/>
+        <!-- 구리빛 광택 하이라이트 -->
+        <ellipse cx="78" cy="68" rx="10" ry="6" fill="#CD853F" opacity="0.6" transform="rotate(-20 78 68)"/>
+        <ellipse cx="92" cy="68" rx="10" ry="6" fill="#CD853F" opacity="0.6" transform="rotate(20 92 68)"/>
+        <!-- 가운데 봉합선 -->
+        <line x1="85" y1="56" x2="85" y2="104" stroke="#7a3a10" stroke-width="1.2" opacity="0.8"/>
+        <!-- 앞가슴등판 (pronotum) -->
+        <ellipse cx="85" cy="55" rx="20" ry="13" fill="#8B4513"/>
+        <ellipse cx="85" cy="54" rx="18" ry="11" fill="#A0522D"/>
+        <!-- 머리 -->
+        <ellipse cx="85" cy="41" rx="12" ry="9" fill="#8B4513"/>
+        <!-- 더듬이 -->
+        <path d="M79 35 Q70 22 65 18" stroke="#7a3a10" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M91 35 Q100 22 105 18" stroke="#7a3a10" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- 더듬이 끝 마디 (라멜라) -->
+        <ellipse cx="63" cy="17" rx="5" ry="3" fill="#7a3a10" transform="rotate(-30 63 17)"/>
+        <ellipse cx="107" cy="17" rx="5" ry="3" fill="#7a3a10" transform="rotate(30 107 17)"/>
+        <!-- 다리 (6개) -->
+        <path d="M65 68 Q52 64 46 60" stroke="#7a3a10" stroke-width="2" stroke-linecap="round"/>
+        <path d="M63 78 Q50 78 44 76" stroke="#7a3a10" stroke-width="2" stroke-linecap="round"/>
+        <path d="M65 88 Q52 92 48 96" stroke="#7a3a10" stroke-width="2" stroke-linecap="round"/>
+        <path d="M105 68 Q118 64 124 60" stroke="#7a3a10" stroke-width="2" stroke-linecap="round"/>
+        <path d="M107 78 Q120 78 126 76" stroke="#7a3a10" stroke-width="2" stroke-linecap="round"/>
+        <path d="M105 88 Q118 92 122 96" stroke="#7a3a10" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">성충 표본 — 구리빛이 두드러지는 딱지날개</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>절지동물문</td></tr>
+      <tr><td>강</td><td>곤충강</td></tr>
+      <tr><td>목</td><td>딱정벌레목</td></tr>
+      <tr><td>아목</td><td>측기문류</td></tr>
+      <tr><td>과</td><td>금풍뎅이과</td></tr>
+      <tr><td>종</td><td>동풍뎅이</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Protaetia metallica Cuprum</em></td></tr>
+      <tr><td>한자</td><td>銅龜子</td></tr>
+      <tr><td>성충 크기</td><td>17 ~ 23mm</td></tr>
+      <tr><td>생활사</td><td>1년</td></tr>
+      <tr><td>산란 수</td><td>20 ~ 40개</td></tr>
+      <tr><td>서식지</td><td>활엽수림, 과수원 주변</td></tr>
+      <tr><td>식성</td><td>잡식 (꽃·수액·부식물)</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">동풍뎅이 <span class="status-badge">곤충</span></div>
+  <div class="article-subtitle">銅龜子 · Protaetia metallica Cuprum</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#lifecycle">생활사</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#history">발견 경위</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>동풍뎅이</strong>(銅龜子, <em>Protaetia metallica Cuprum</em>)는 딱정벌레목 금풍뎅이과에 속하는 곤충이다. 딱지날개의 구리빛 광택이 근연종에 비해 강하게 나타나는 것이 특징이며, 활엽수림과 과수원 주변에 서식한다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>이름은 구리를 뜻하는 한자 동(銅)에서 비롯되었다. 금풍뎅이과 특유의 금속성 광택을 지니고 있으나 녹색·금색 계열이 일반적인 근연종들과 달리 이 종은 구리빛이 유독 강하게 나타난다는 점에서 붙여진 이름이다. 학명의 <em>Cuprum</em> 역시 구리의 라틴어 명칭으로, 같은 이유에서 붙었다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>성충의 몸길이는 17~23mm로 금풍뎅이과의 일반적인 범위에 해당한다. 딱지날개는 구릿빛의 강한 금속성 광택을 띠며, 각도에 따라 짙은 갈색에서 붉은 구릿빛으로 변화하는 것처럼 보인다. 앞가슴등판과 머리 부분도 유사한 색조를 보인다. 표면의 미세한 점각 패턴은 근연종과 동일하다.</p>
+    <p>유충은 C자형으로 굽은 흰색의 굼벵이 형태이며, 성충 전 단계에서는 외형만으로 근연종과 구별하기 어렵다.</p>
+  </section>
+
+  <section id="lifecycle">
+    <h2>생활사</h2>
+    <p>알에서 성충까지 약 1년의 생활사를 가진다. 성충은 늦봄에서 여름 사이에 출현하며, 활동 기간은 수 주에서 두 달 남짓에 불과하다. 암컷은 부식토나 썩은 나무 주변에 한 번에 20~40개의 알을 흩어서 산란하고, 부화한 유충은 낙엽층과 부식토 속에서 유기물을 분해하며 겨울을 난다. 이듬해 봄에 번데기가 되고 수 주 뒤 성충으로 우화한다. 성충 단계는 생활사 전체에서 가장 짧은 구간에 해당한다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>활엽수림과 과수원 주변 등 꽃과 수액 공급원이 풍부한 곳에 서식한다. 성충은 꽃의 화분과 꿀, 나무의 수액, 익은 과실 등을 먹이로 삼으며, 금풍뎅이과 특유의 비행 방식대로 딱지날개를 닫은 채 옆 가장자리의 틈새로 뒷날개를 펼쳐 날아오른다. 위협을 받을 경우 떨어지거나 날아서 이탈하며, 별다른 방어 수단은 없다.</p>
+    <p>유충은 낙엽층과 부식토 속의 유기물을 분해하는 역할을 하며, 이는 동풍뎅이뿐 아니라 금풍뎅이과 전반에서 공통적으로 나타나는 생태적 기능이다.</p>
+  </section>
+
+  <section id="history">
+    <h2>발견 경위</h2>
+    <p>표본이 처음 수집된 것은 상당히 오래전으로, 근연종과의 구별 없이 금풍뎅이류 표본으로 보관되어 있던 것이 이후 재검토 과정에서 별도 분류군으로 기재된 것으로 추정된다. 구리빛 광택이 강하게 나타난다는 점에서 학명에 구리를 뜻하는 <em>Cuprum</em>이 붙었다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>분포 범위와 개체수 모두 안정적인 것으로 추정된다. 서식지 환경이 근연종과 동일하므로 해당 지역 금풍뎅이과 전반의 현황과 크게 다르지 않을 것으로 본다. 별도의 보호 지정은 없다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 300 175" style="max-width:300px;display:block;">
+      <line x1="20" y1="148" x2="280" y2="148" stroke="#c8bfa0" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.3"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.3" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 손가락 위 동풍뎅이 -->
+      <path d="M165 130 Q175 126 195 124 Q215 122 225 125 Q235 128 232 134 Q225 138 215 136 Q195 135 175 138 Q165 140 165 136 Z" fill="var(--muted)" opacity="0.2"/>
+      <!-- 동풍뎅이 (실제 비율로는 점에 불과하므로 확대 표시) -->
+      <ellipse cx="196" cy="115" rx="11" ry="8" fill="#A0522D" opacity="0.75"/>
+      <ellipse cx="196" cy="115" rx="9" ry="6" fill="#CD853F" opacity="0.5"/>
+      <line x1="191" y1="115" x2="191" y2="115" stroke="#7a3a10" stroke-width="0.8"/>
+      <path d="M183 112 Q177 108 174 105" stroke="#7a3a10" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M183 115 Q176 113 172 113" stroke="#7a3a10" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M183 118 Q177 122 174 125" stroke="#7a3a10" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M209 112 Q215 108 218 105" stroke="#7a3a10" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M209 115 Q216 113 220 113" stroke="#7a3a10" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M209 118 Q215 122 218 125" stroke="#7a3a10" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <!-- 크기 표시 -->
+      <line x1="185" y1="138" x2="207" y2="138" stroke="#c8bfa0" stroke-width="0.5"/>
+      <line x1="185" y1="135" x2="185" y2="141" stroke="#c8bfa0" stroke-width="0.8"/>
+      <line x1="207" y1="135" x2="207" y2="141" stroke="#c8bfa0" stroke-width="0.8"/>
+      <text x="196" y="151" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.6" font-family="sans-serif">17~23mm</text>
+      <text x="196" y="163" text-anchor="middle" font-size="9" fill="#7a4a1a" font-family="sans-serif">동풍뎅이 ※확대</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">곤충강</span>
+    <span class="tag">딱정벌레목</span>
+    <span class="tag">금풍뎅이과</span>
+    <span class="tag">1년살이</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 딱정벌레목 · 금풍뎅이과</span>
+    <span><em>Protaetia metallica Cuprum</em></span>
+  </div>
+
+</div>
+</body>
+</html>
