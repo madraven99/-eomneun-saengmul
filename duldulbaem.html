@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>두머리두꼬리뱀 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4f2eb;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #b0a878;
+    --accent: #3a4e1a;
+    --highlight: #dde8c0;
+    --table-head: #ccd8a8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #181e08; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #b0a878; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #eaedd8; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f4f2eb; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #1a2408 0%, #283810 50%, #1e2c08 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #c0cc90; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #eaedd8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: #3a4e1a; color: #f4f2eb; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #eaedd8; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a2808; }
+  .notice-box strong { color: var(--accent); }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">두머리두꼬리뱀 雙頭尾蛇</div>
+    <div class="infobox-img">
+      <svg width="210" height="170" viewBox="0 0 210 170" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.85">
+        <!-- X자 몸통 — 중앙 교차 몸체 -->
+        <!-- 왼쪽 위 → 오른쪽 아래 대각선 몸체 -->
+        <path d="M38 28 Q65 55 105 85 Q145 115 172 142" stroke="#4a6828" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <!-- 오른쪽 위 → 왼쪽 아래 대각선 몸체 -->
+        <path d="M172 28 Q145 55 105 85 Q65 115 38 142" stroke="#4a6828" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <!-- 교차 중앙 두꺼운 몸통 암시 -->
+        <ellipse cx="105" cy="85" rx="12" ry="12" fill="#3a5818"/>
+
+        <!-- 머리 1 (왼쪽 위) -->
+        <ellipse cx="32" cy="22" rx="12" ry="9" fill="#4a6828"/>
+        <ellipse cx="24" cy="20" rx="7" ry="5" fill="#3a5818"/>
+        <circle cx="22" cy="18" r="2" fill="#0a1008"/>
+        <circle cx="23" cy="17.5" r="0.8" fill="white" opacity="0.7"/>
+        <!-- 혀 1 -->
+        <path d="M18 21 L12 19 M18 21 L12 23" stroke="#8a2020" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+        <!-- 머리 2 (오른쪽 위) -->
+        <ellipse cx="178" cy="22" rx="12" ry="9" fill="#4a6828"/>
+        <ellipse cx="186" cy="20" rx="7" ry="5" fill="#3a5818"/>
+        <circle cx="188" cy="18" r="2" fill="#0a1008"/>
+        <circle cx="189" cy="17.5" r="0.8" fill="white" opacity="0.7"/>
+        <!-- 혀 2 -->
+        <path d="M192 21 L198 19 M192 21 L198 23" stroke="#8a2020" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+        <!-- 꼬리 1 (왼쪽 아래) -->
+        <path d="M38 142 Q28 152 22 160" stroke="#4a6828" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M38 142 Q30 156 26 165" stroke="#3a5818" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- 꼬리 2 (오른쪽 아래) -->
+        <path d="M172 142 Q182 152 188 160" stroke="#4a6828" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M172 142 Q180 156 184 165" stroke="#3a5818" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- 비늘 패턴 암시 -->
+        <ellipse cx="70" cy="55" rx="5" ry="3" fill="#5a7830" opacity="0.5" transform="rotate(-45,70,55)"/>
+        <ellipse cx="140" cy="55" rx="5" ry="3" fill="#5a7830" opacity="0.5" transform="rotate(45,140,55)"/>
+        <ellipse cx="70" cy="115" rx="5" ry="3" fill="#5a7830" opacity="0.5" transform="rotate(45,70,115)"/>
+        <ellipse cx="140" cy="115" rx="5" ry="3" fill="#5a7830" opacity="0.5" transform="rotate(-45,140,115)"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">성체 — X자 체형과 두 머리가 각기 다른 방향을 향하고 있다</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>파충강</td></tr>
+      <tr><td>아강</td><td>석형류</td></tr>
+      <tr><td>목</td><td>둘둘뱀목</td></tr>
+      <tr><td>과</td><td>둘둘뱀과</td></tr>
+      <tr><td>속</td><td>둘둘뱀속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Serpentes duo</em></td></tr>
+      <tr><td>한자</td><td>雙頭尾蛇</td></tr>
+      <tr><td>별칭</td><td>둘둘뱀</td></tr>
+      <tr><td>전장</td><td>50 ~ 120cm</td></tr>
+      <tr><td>몸통 굵기</td><td>각 2~5cm / 교차부 8~10cm</td></tr>
+      <tr><td>독</td><td>살무사급</td></tr>
+      <tr><td>수명</td><td>4 ~ 8년</td></tr>
+      <tr class="section-header"><td colspan="2">번식</td></tr>
+      <tr><td>생식기</td><td>교차부 1개</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+      <tr><td>서식지</td><td>볕 좋고 습한 환경</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">두머리두꼬리뱀 <span class="status-badge">파충류</span></div>
+  <div class="article-subtitle">雙頭尾蛇 · Serpentes duo · 둘둘뱀</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형 및 신체 구조</a></li>
+      <li><a href="#brain">뇌와 신경 구조</a></li>
+      <li><a href="#movement">이동 방식</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#classification">분류 논쟁</a></li>
+      <li><a href="#history">역사적 기록</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>두머리두꼬리뱀</strong>(雙頭尾蛇, <em>Serpentes duo</em>)은 파충강 둘둘뱀목에 속하는 뱀으로, 머리 두 개와 꼬리 두 개를 가진 X자 형태의 체형이 특징이다. 쌍두사(雙頭蛇)와 같은 돌연변이로 오인되어 왔으나, 같은 형태의 개체가 다수 발견되고 번식이 확인되면서 독립된 종으로 분류되었다. 쌍두사와의 결정적인 차이는 머리만 둘인 것이 아니라 꼬리도 반드시 둘이라는 점이다. 약칭으로 <strong>둘둘뱀</strong>이라고도 불린다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>이름은 머리 둘, 꼬리 둘이라는 신체 구조를 직접 반영한다. 약칭인 '둘둘뱀'은 이 두 특징을 간결하게 담아낸 것으로, 공식 명칭보다 일상적으로 더 널리 쓰인다. 학명 <em>Serpentes duo</em>의 duo는 라틴어로 '둘'을 의미한다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형 및 신체 구조</h2>
+    <p>전체적인 체형은 중간이 긴 X자다. 중앙의 교차 몸통에서 네 방향으로 뻗어나가며, 각 방향의 끝이 머리 둘, 꼬리 둘로 마무리된다. 각 몸체의 굵기는 2~5cm이며, 두 몸체가 교차하는 중앙부는 8~10cm에 달한다. 전장은 50~120cm로 개체 편차가 있다.</p>
+    <p>두 머리 모두 눈·코·입·귀를 갖추고 있으며, 감각 기관이 완전하게 기능한다. 두 머리가 서로 다른 방향을 동시에 감지할 수 있어 시야와 청각 범위가 일반 뱀에 비해 크게 넓다. 살무사급의 독을 보유하며, 독샘은 두 머리에 각각 존재한다.</p>
+  </section>
+
+  <section id="brain">
+    <h2>뇌와 신경 구조</h2>
+    <p>두머리두꼬리뱀의 가장 주목받는 특성은 뇌의 분리 구조다. 두 머리가 각각 좌뇌와 우뇌를 하나씩 담당하며, 사실상 하나의 뇌가 두 머리에 걸쳐 물리적으로 분산된 형태다. 이 때문에 두 머리가 서로 다른 의지를 갖거나 충돌하는 경우는 나타나지 않는다. 같은 뇌가 좌우로 멀리 떨어져 있을 뿐이므로, 두 머리는 근본적으로 동일한 판단을 내린다는 것이 현재의 해석이다.</p>
+    <p>신체 지배 구조도 이 분리에 따라 나뉜다. 왼쪽 머리는 오른쪽 꼬리 쪽 몸체를, 오른쪽 머리는 왼쪽 꼬리 쪽 몸체를 담당하는 것으로 연구되었다. 이 교차 지배 구조가 이동 방식에도 그대로 반영된다.</p>
+  </section>
+
+  <section id="movement">
+    <h2>이동 방식</h2>
+    <p>일반 뱀의 사행 운동과 달리, 두 머리와 두 꼬리를 4족 보행 동물의 다리처럼 활용하여 이동한다. 특이한 점은 4족 보행 방식 중에서도 도마뱀식이 아닌 포유류식 보행을 한다는 것이다. 대각선으로 마주보는 신체 부위끼리 교차하며 앞으로 나아가는 방식으로, 이 구조 덕분에 같은 크기의 일반 뱀보다 이동 속도가 빠르다.</p>
+    <p>유년기에는 아직 교차 보행이 완성되지 않아, 두 머리와 두 꼬리 중 세 곳이 지면에 닿은 상태에서 하나씩 번갈아 움직이는 방식으로 이동한다. 대형 초식동물이 걸음마를 배우는 것과 유사한 형태다. 성체가 되면서 점대칭 위치의 신체 부위를 동시에 움직이는 교차 보행이 자리잡는다.</p>
+    <p>두 머리의 뇌가 각 몸체를 교차 지배하는 구조가 이 이동 방식과 직접적으로 연결된 것으로 추정된다. 이동 방향의 결정은 두 머리가 거의 동시에 이루어지며, 방향 충돌이 관찰된 사례는 없다.</p>
+    <div class="notice-box"><strong>이동 전환:</strong> 중앙 교차부에서 어느 방향으로든 나아갈 수 있어, 뒤를 돌지 않고도 진행 방향을 바꿀 수 있다. 이 특성이 포식자 회피에 유리하게 작용하는 것으로 보인다.</div>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>볕이 잘 들고 습한 환경을 선호하나 서식지를 크게 가리지 않는다. 소동물이나 알을 먹이로 삼으며, 사냥 방식은 일반 뱀과 크게 다르지 않다. 매복하거나 접근해 독으로 제압하는 방식을 주로 쓴다.</p>
+    <p>먹이를 섭취할 때는 두 머리가 번갈아가며 먹는 것이 확인되었다. 파충류 특성상 생존을 위해 먹는 것이기에 적극적으로 즐기는 행동은 보이지 않으며, 먹이를 먹는 행위 자체를 번거로워하는 듯한 반응을 보인다는 관찰 기록이 있다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>생식기는 두 몸체가 교차하는 중앙부에 하나만 존재하며, 번식 외에는 외부로 드러나지 않는다. 수명이 4~8년으로 다른 뱀들에 비해 짧은 편이다.</p>
+  </section>
+
+  <section id="classification">
+    <h2>분류 논쟁</h2>
+    <p>분명 파충강에 속하는 뱀이지만, 형태적 특이성으로 인해 기존 뱀 분류 체계에 편입하는 것이 적절한지에 대한 논의가 있었다. 옛도마뱀과 도마뱀의 관계보다 더 극단적인 형태 차이를 보인다는 점에서, 기존 뱀목과는 별도의 목으로 분류해야 한다는 주장이 설득력을 얻어 현재의 분류 체계로 확정되었다. 다만 파충강 내에서의 위치는 이견 없이 유지되고 있다.</p>
+  </section>
+
+  <section id="history">
+    <h2>역사적 기록</h2>
+    <p>오랫동안 쌍두사와 동일한 돌연변이로 취급되어 별도의 기록이 남아있지 않은 경우가 많다. 그러나 동양권에서는 이 생물의 독특한 체형이 일찍부터 문학적 상상력을 자극했다. 시작과 끝이 서로를 향하는 구조 덕분에 수미상관의 비유로 자주 인용되었으며, 이 관습은 현재까지 동양 문학에서 꾸준히 이어지고 있다.</p>
+    <p>서양에서는 전혀 다른 맥락으로 받아들여졌다. 사악한 용이 마녀와의 사이에서 낳은 기형아라는 설이 널리 퍼졌으며, 이를 목격하면 불길한 일이 생긴다고 믿었다. 둘둘뱀을 마주쳤을 때는 그 자리에서 뒤를 돌아 '오직 하나뿐입니다'를 되뇌며 집으로 돌아가 다음날까지 외출하지 않아야 한다는 관습이 일부 지역에 전해진다. 이 관습의 기원과 '오직 하나뿐입니다'라는 문구가 무엇을 의미하는지는 명확히 밝혀지지 않았다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>다수의 개체가 확인되어 개체수는 안정적인 것으로 평가된다. 서식지를 크게 가리지 않아 분포 범위도 넓은 편이다. 과거에는 불길한 존재로 여겨져 발견 즉시 제거하는 경우가 있었으나, 현재는 독립된 종으로 인정받아 무분별한 포획·제거가 자제되고 있다. 독이 살무사급이라 야외에서 마주쳤을 때의 주의 사항은 여타 독사와 동일하다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 320 185" style="max-width:320px;display:block;">
+      <line x1="20" y1="155" x2="300" y2="155" stroke="#b0a878" stroke-width="0.8"/>
+      <!-- 인간 (1m=55px) -->
+      <circle cx="50" cy="59" r="9.6" fill="var(--muted)" opacity="0.3"/>
+      <line x1="50" y1="69" x2="50" y2="107" stroke="var(--muted)" stroke-width="6.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="38" y1="75" x2="62" y2="75" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="50" y1="107" x2="42" y2="155" stroke="var(--muted)" stroke-width="5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="50" y1="107" x2="58" y2="155" stroke="var(--muted)" stroke-width="5" opacity="0.3" stroke-linecap="round"/>
+      <text x="50" y="170" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 둘둘뱀 X자 (1m=55px, 약 85cm 기준) -->
+      <path d="M160 62 Q185 90 200 108 Q215 126 230 148" stroke="#4a6828" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.75"/>
+      <path d="M230 62 Q205 90 190 108 Q175 126 160 148" stroke="#4a6828" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.75"/>
+      <ellipse cx="195" cy="105" rx="8" ry="8" fill="#3a5818" opacity="0.7"/>
+      <!-- 머리들 -->
+      <ellipse cx="155" cy="57" rx="9" ry="6" fill="#4a6828" opacity="0.8"/>
+      <ellipse cx="235" cy="57" rx="9" ry="6" fill="#4a6828" opacity="0.8"/>
+      <!-- 꼬리들 -->
+      <path d="M158 150 Q152 158 149 165" stroke="#4a6828" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M232 150 Q238 158 241 165" stroke="#4a6828" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <!-- 크기 표시 -->
+      <line x1="248" y1="57" x2="248" y2="148" stroke="#b0a878" stroke-width="0.5" stroke-dasharray="3 3"/>
+      <line x1="244" y1="57" x2="252" y2="57" stroke="#b0a878" stroke-width="0.8"/>
+      <line x1="244" y1="148" x2="252" y2="148" stroke="#b0a878" stroke-width="0.8"/>
+      <text x="195" y="172" text-anchor="middle" font-size="9" fill="#3a4e1a" font-family="sans-serif">두머리두꼬리뱀 ~85cm</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">파충강</span>
+    <span class="tag">둘둘뱀목</span>
+    <span class="tag">X자 체형</span>
+    <span class="tag">좌우뇌 분리</span>
+    <span class="tag">독사</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 파충강 · 둘둘뱀목 · 둘둘뱀과</span>
+    <span><em>Serpentes duo</em></span>
+  </div>
+
+</div>
+</body>
+</html>
