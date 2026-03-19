@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>톱새치 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2f4f8;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #8090b0;
+    --accent: #1a3060;
+    --highlight: #c8d8f0;
+    --table-head: #b0c4e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #080c18; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #8090b0; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #dce8f8; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f2f4f8; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #080c20 0%, #102040 50%, #0a1830 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #a0b8d8; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #dce8f8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: #1a3060; color: #f2f4f8; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #dce8f8; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #0a1830; }
+  .notice-box strong { color: var(--accent); }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">톱새치 鋸魚</div>
+    <div class="infobox-img">
+      <svg width="210" height="165" viewBox="0 0 210 165" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.9">
+        <!-- 몸통 -->
+        <ellipse cx="115" cy="90" rx="70" ry="22" fill="#1a3870"/>
+        <ellipse cx="115" cy="88" rx="68" ry="20" fill="#2448a0"/>
+        <!-- 배 부분 밝게 -->
+        <ellipse cx="115" cy="96" rx="55" ry="10" fill="#3060c0" opacity="0.4"/>
+        <!-- 등지느러미 -->
+        <path d="M80 68 Q95 45 115 52 Q130 48 145 68" fill="#1a3870" opacity="0.9"/>
+        <!-- 꼬리지느러미 -->
+        <path d="M182 90 Q200 72 205 60 Q202 88 205 108 Q200 105 182 90Z" fill="#1a3870" opacity="0.85"/>
+        <!-- 가슴지느러미 -->
+        <path d="M100 95 Q88 110 80 118 Q85 100 100 95Z" fill="#1a3870" opacity="0.75"/>
+        <path d="M100 85 Q88 72 80 65 Q85 80 100 85Z" fill="#1a3870" opacity="0.75"/>
+        <!-- 배지느러미 -->
+        <path d="M120 108 Q115 122 108 128 Q112 112 120 108Z" fill="#1a3870" opacity="0.7"/>
+        <!-- 항문지느러미 -->
+        <path d="M148 106 Q143 118 138 122 Q141 108 148 106Z" fill="#1a3870" opacity="0.65"/>
+        <!-- 주둥이 뭉툭한 끝 -->
+        <ellipse cx="38" cy="88" rx="8" ry="7" fill="#1a3060"/>
+        <!-- 톱날 코 -->
+        <path d="M38 85 Q55 80 72 78 Q90 76 105 76" stroke="#2448a0" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- 톱니 — 수직으로만 자람 -->
+        <line x1="50" y1="80" x2="50" y2="72" stroke="#e8f0ff" stroke-width="1.5" opacity="0.9"/>
+        <line x1="58" y1="79" x2="58" y2="71" stroke="#e8f0ff" stroke-width="1.5" opacity="0.9"/>
+        <line x1="66" y1="78" x2="66" y2="70" stroke="#e8f0ff" stroke-width="1.5" opacity="0.9"/>
+        <line x1="74" y1="77" x2="74" y2="69" stroke="#e8f0ff" stroke-width="1.5" opacity="0.9"/>
+        <line x1="82" y1="77" x2="82" y2="69" stroke="#e8f0ff" stroke-width="1.5" opacity="0.9"/>
+        <line x1="90" y1="76" x2="90" y2="68" stroke="#e8f0ff" stroke-width="1.5" opacity="0.9"/>
+        <line x1="98" y1="76" x2="98" y2="68" stroke="#e8f0ff" stroke-width="1.5" opacity="0.85"/>
+        <!-- 눈 -->
+        <circle cx="158" cy="84" r="5" fill="#0a1030"/>
+        <circle cx="159" cy="83" r="2" fill="#6090e0" opacity="0.6"/>
+        <!-- 옆선 -->
+        <path d="M48 88 Q100 86 160 88" stroke="#4070c0" stroke-width="0.8" fill="none" opacity="0.4" stroke-dasharray="4 3"/>
+        <!-- 광택 -->
+        <ellipse cx="130" cy="80" rx="18" ry="5" fill="#6090e0" opacity="0.2" transform="rotate(-15,130,80)"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">성체 — 뭉툭한 코끝과 수직으로 난 톱니가 특징</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>조기어강</td></tr>
+      <tr><td>목</td><td>전갱이목</td></tr>
+      <tr><td>과</td><td>돛새치과</td></tr>
+      <tr><td>속</td><td>톱새치속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Tobro dabeda</em></td></tr>
+      <tr><td>한자</td><td>鋸魚</td></tr>
+      <tr><td>최대 크기</td><td>4m / 650kg</td></tr>
+      <tr><td>평균 크기</td><td>3~3.5m / 500kg</td></tr>
+      <tr><td>수명</td><td>15 ~ 20년</td></tr>
+      <tr><td>서식지</td><td>근해 바닥층</td></tr>
+      <tr><td>식성</td><td>어류, 연체류, 갑각류</td></tr>
+      <tr><td>산란기</td><td>여름 (분할산란)</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>생활</td><td>단독 생활</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">톱새치 <span class="status-badge">어류</span></div>
+  <div class="article-subtitle">鋸魚 · Tobro dabeda</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#evolution">진화 배경</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#diet">식성</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#relation">다른 동물과의 관계</a></li>
+      <li><a href="#human">인간과의 관계</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>톱새치</strong>(鋸魚, <em>Tobro dabeda</em>)는 전갱이목 돛새치과에 속하는 대형 어류로, 새치류에서 진화한 종이다. 다른 새치류와 마찬가지로 길게 돌출된 주둥이를 지니나, 그 주둥이에 수직 방향의 톱니가 나 있고 끝이 뭉툭하다는 점에서 뚜렷이 구별된다. 평균 체장 3~3.5m, 체중 500kg에 달하는 대형종으로, 갑각류까지 포함한 폭넓은 먹이 범위와 공격적인 성격으로 잘 알려져 있다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>이름은 새치류 특유의 돌출된 주둥이 부분이 톱처럼 생겼다는 점에서 유래한다. 한자명 鋸魚는 톱을 뜻하는 鋸와 물고기를 뜻하는 魚를 합친 것으로, 외형의 가장 두드러진 특징을 직접 반영한 명칭이다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전체적인 체형은 돛새치과의 유선형 체형을 따른다. 가장 두드러진 특징은 주둥이로, 다른 새치류의 뾰족한 끝과 달리 뭉툭하게 마무리되며 주둥이 전면을 따라 수직 방향의 톱니가 촘촘하게 나 있다. 톱니는 저항을 최소화하기 위해 수직으로만 자라며, 수평 방향 돌기는 없다. 멀리서 보면 일반 새치류와 구별이 어렵고, 가까이에서 주둥이를 자세히 들여다봐야 톱니의 존재를 확인할 수 있다.</p>
+    <p>체색은 등 쪽이 짙은 청남색, 배 쪽이 은백색으로 전형적인 조기어류의 반음영 패턴을 따른다.</p>
+  </section>
+
+  <section id="evolution">
+    <h2>진화 배경</h2>
+    <p>기존 새치류는 날카롭고 뾰족한 주둥이로 먹이를 베거나 찌르는 방식으로 사냥한다. 이 방식은 한 번에 제압하면 효과적이지만, 먹이가 어떻게든 도망치는 경우 에너지 손실이 크다는 단점이 있었다. 톱새치는 이 문제를 수직 톱니 구조로 보완한 것으로 분석된다. 톱니가 먹이에 걸리는 방식으로 작용해 탈출을 막으며, 이 구조가 갑각류의 단단한 외골격에도 유효하게 적용되었다.</p>
+    <p>주둥이 끝이 뭉툭해진 것도 같은 맥락으로 해석된다. 날카로운 끝을 유지하는 데 드는 에너지보다 톱니를 발달시키는 쪽이 사냥 효율에 유리했던 것으로 보인다. 비교적 최근에 진화한 종으로 추정되며, 주둥이의 차이를 자세히 확인하지 않으면 근연종과 구별이 어렵다는 점이 그 근거 중 하나다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>단독 생활을 하며 다른 개체와의 접촉을 기피하는 편이다. 다른 새치류와 서식지가 겹치나 우연히 마주칠 경우 먼저 공격하는 행동이 관찰된다. 대형 상어류에 대해서도 적극적으로 맞서 싸우는 것으로 알려져 있어, 상어 중에서도 이 종을 기피하는 경우가 많다고 전해진다.</p>
+    <p>다른 새치류에 비해 해저 바닥층을 선호한다. 이 습성이 비교적 늦게 발견된 원인 중 하나로 꼽히며, 발견 이전에도 상어에게 덤비는 새치류 목격담이 있었는데 그것이 이 종이었을 가능성이 제기된다.</p>
+  </section>
+
+  <section id="diet">
+    <h2>식성</h2>
+    <p>어류, 연체류, 갑각류를 가리지 않고 사냥한다. 다른 새치류가 갑각류를 먹지 못하는 것과 달리 톱니 구조 덕분에 단단한 외골격을 가진 먹이도 제압할 수 있어, 같은 근해에서 먹이 경쟁을 하면서도 먹이 범위에서 우위를 점한다.</p>
+    <p>위 내용물 조사에서 바다별이 확인된 사례가 있다. 그러나 바다별의 섭취 빈도는 낮은 것으로 보이며, 육기어강 특유의 흙 냄새와 강한 비린내로 인해 선호하지 않고 매우 배고픈 상황에서 섭취한 것으로 추정된다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>산란기는 여름이며 분할산란 방식을 따른다. 번식 방식은 다른 새치류와 크게 다르지 않다. 수명은 15~20년으로 알려져 있다.</p>
+  </section>
+
+  <section id="relation">
+    <h2>다른 동물과의 관계</h2>
+    <p>천적은 대형 상어류이나, 톱새치가 적극적으로 맞서 싸우는 성격 탓에 실제로 포식하는 경우는 드물다. 상어 중에서도 이 종을 마주치면 회피하는 경향이 관찰된다는 보고가 있다. 같은 근해에 서식하는 다른 새치류와도 우연히 마주칠 경우 먼저 공격하는 행동을 보여, 사실상 해당 해역에서 적을 가리지 않는 것으로 알려져 있다.</p>
+    <div class="notice-box"><strong>주의:</strong> 잠수 중 톱새치와 조우할 경우 적극적인 회피가 권고된다. 자극하지 않더라도 먼저 공격하는 사례가 보고되어 있다.</div>
+  </section>
+
+  <section id="human">
+    <h2>인간과의 관계</h2>
+    <p>회로 먹을 경우 다른 새치류와 마찬가지로 담백하고 쫄깃하거나 고소한 맛이 난다고 전해진다.</p>
+    <p>발견 이후 공격적인 성격과 상어에게도 물러서지 않는 특성이 알려지면서 매스컴의 주목을 받았다. 다른 새치류보다 훨씬 많이 소개되었으며, 바다의 무법자 이미지를 가진 상어에 대항하는 동물로 자주 등장한다. 특히 남자아이들이 좋아하는 동물로 자주 꼽히는 종이기도 하다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>개체수는 안정적인 것으로 파악된다. 먹이 범위가 넓고 대형 포식자와의 경쟁에서도 밀리지 않는 편이라 생존에 불리한 요인이 적다. 별도의 보호 지정은 없다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 420 185" style="max-width:420px;display:block;">
+      <line x1="20" y1="155" x2="400" y2="155" stroke="#8090b0" stroke-width="0.8"/>
+      <!-- 인간 (1m=44px) -->
+      <circle cx="45" cy="78" r="7.7" fill="var(--muted)" opacity="0.3"/>
+      <line x1="45" y1="86" x2="45" y2="116" stroke="var(--muted)" stroke-width="5.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="36" y1="92" x2="54" y2="92" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="45" y1="116" x2="38" y2="155" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="45" y1="116" x2="52" y2="155" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="45" y="170" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 톱새치 3.5m = 154px -->
+      <ellipse cx="240" cy="102" rx="77" ry="18" fill="#1a3870" opacity="0.8"/>
+      <ellipse cx="240" cy="100" rx="75" ry="16" fill="#2448a0" opacity="0.75"/>
+      <!-- 등지느러미 -->
+      <path d="M200 84 Q215 68 235 74 Q248 70 258 84" fill="#1a3870" opacity="0.8"/>
+      <!-- 꼬리 -->
+      <path d="M316 102 Q332 88 336 78 Q333 100 336 118 Q332 114 316 102Z" fill="#1a3870" opacity="0.8"/>
+      <!-- 주둥이 -->
+      <path d="M156 98 Q175 94 195 92" stroke="#2448a0" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <ellipse cx="152" cy="99" rx="7" ry="6" fill="#1a3060" opacity="0.9"/>
+      <!-- 톱니 -->
+      <line x1="163" y1="94" x2="163" y2="88" stroke="#e8f0ff" stroke-width="1.2" opacity="0.85"/>
+      <line x1="170" y1="93" x2="170" y2="87" stroke="#e8f0ff" stroke-width="1.2" opacity="0.85"/>
+      <line x1="177" y1="93" x2="177" y2="87" stroke="#e8f0ff" stroke-width="1.2" opacity="0.85"/>
+      <line x1="184" y1="92" x2="184" y2="86" stroke="#e8f0ff" stroke-width="1.2" opacity="0.85"/>
+      <!-- 크기 표시 -->
+      <line x1="152" y1="140" x2="336" y2="140" stroke="#8090b0" stroke-width="0.5" stroke-dasharray="3 3"/>
+      <line x1="152" y1="136" x2="152" y2="144" stroke="#8090b0" stroke-width="0.8"/>
+      <line x1="336" y1="136" x2="336" y2="144" stroke="#8090b0" stroke-width="0.8"/>
+      <text x="244" y="170" text-anchor="middle" font-size="9" fill="#1a3060" font-family="sans-serif">톱새치 평균 3~3.5m</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">조기어강</span>
+    <span class="tag">돛새치과</span>
+    <span class="tag">대형 어류</span>
+    <span class="tag">공격성</span>
+    <span class="tag">갑각류 포식</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 전갱이목 · 돛새치과 · 톱새치속</span>
+    <span><em>Tobro dabeda</em></span>
+  </div>
+
+</div>
+</body>
+</html>
