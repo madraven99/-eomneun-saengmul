@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회피성향 전략 해리성 장애 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4f2f8;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #9890b8;
+    --accent: #3a2860;
+    --highlight: #dcd8f0;
+    --table-head: #c8c0e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0c0810; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #9890b8; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .phenomenon-label { display: inline-block; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; margin-bottom: 12px; opacity: 0.8; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #e8e4f4; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f4f2f8; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #0c0818 0%, #181028 50%, #100c20 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #b0a8d8; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 80px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #e8e4f4; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .notice-box { background: #e8e4f4; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a1030; }
+  .notice-box strong { color: var(--accent); }
+  .reaction-box { background: #f0eef8; border: 1px solid #c0b8e0; padding: 16px 20px; margin: 16px 0; font-size: 0.84rem; line-height: 2; color: #2a2040; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">회피성향 전략 해리성 장애</div>
+    <div class="infobox-img">
+      <svg width="200" height="165" viewBox="0 0 200 165" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.85">
+        <!-- 원래 인격 실루엣 — 선명 -->
+        <circle cx="80" cy="55" r="18" fill="#5040a0" opacity="0.8"/>
+        <line x1="80" y1="73" x2="80" y2="115" stroke="#5040a0" stroke-width="10" opacity="0.8" stroke-linecap="round"/>
+        <line x1="62" y1="82" x2="98" y2="82" stroke="#5040a0" stroke-width="7" opacity="0.8" stroke-linecap="round"/>
+        <line x1="80" y1="115" x2="68" y2="148" stroke="#5040a0" stroke-width="8" opacity="0.8" stroke-linecap="round"/>
+        <line x1="80" y1="115" x2="92" y2="148" stroke="#5040a0" stroke-width="8" opacity="0.8" stroke-linecap="round"/>
+        <!-- 전환 인격 실루엣 — 흐릿하게 -->
+        <circle cx="130" cy="55" r="18" fill="#a090e0" opacity="0.3"/>
+        <line x1="130" y1="73" x2="130" y2="115" stroke="#a090e0" stroke-width="10" opacity="0.25" stroke-linecap="round"/>
+        <line x1="112" y1="82" x2="148" y2="82" stroke="#a090e0" stroke-width="7" opacity="0.25" stroke-linecap="round"/>
+        <line x1="130" y1="115" x2="118" y2="148" stroke="#a090e0" stroke-width="8" opacity="0.25" stroke-linecap="round"/>
+        <line x1="130" y1="115" x2="142" y2="148" stroke="#a090e0" stroke-width="8" opacity="0.25" stroke-linecap="round"/>
+        <!-- 화살표 — 전환 -->
+        <path d="M100 82 Q105 82 110 82" stroke="#c0b0f0" stroke-width="1.5" fill="none" stroke-dasharray="3 3" opacity="0.6"/>
+        <polygon points="110,78 118,82 110,86" fill="#c0b0f0" opacity="0.5"/>
+        <!-- 물음표 — 전환 인격의 정체 불명 -->
+        <text x="122" y="42" font-size="22" fill="#c0b0f0" opacity="0.4" font-family="serif">?</text>
+      </svg>
+    </div>
+    <div class="infobox-caption">곤란한 상황에서 원래 인격이 사라지고 새로운 인격이 나타나는 양상을 도식화한 것</div>
+    <table>
+      <tr class="section-header"><td colspan="2">현상 정보</td></tr>
+      <tr><td>유형</td><td>사회·심리적 현상</td></tr>
+      <tr><td>주 발생군</td><td>소아·청소년</td></tr>
+      <tr><td>발생 배경</td><td>코로나 이후 사회적 고립</td></tr>
+      <tr class="section-header"><td colspan="2">핵심 특성</td></tr>
+      <tr><td>유발 조건</td><td>곤란한 상황 직면</td></tr>
+      <tr><td>전환 방식</td><td>약한 발작 후 인격 교체</td></tr>
+      <tr><td>전환 인격</td><td>원래 기억 없이 행동</td></tr>
+      <tr><td>복귀 조건</td><td>상황 해소 시 자동 복귀</td></tr>
+      <tr class="section-header"><td colspan="2">연구 현황</td></tr>
+      <tr><td>원인</td><td>복합적 · 연구 중</td></tr>
+      <tr><td>치료법</td><td>미확립</td></tr>
+    </table>
+  </div>
+
+  <div class="phenomenon-label">사회·심리적 현상</div>
+  <div class="article-title">회피성향 전략 해리성 장애</div>
+  <div class="article-subtitle">곤란한 상황에서 인격이 교체되는 소아·청소년 심리 현상</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#background">발생 배경</a></li>
+      <li><a href="#symptoms">증상 및 양상</a></li>
+      <li><a href="#difference">기존 해리성 장애와의 차이</a></li>
+      <li><a href="#cause">원인 분석</a></li>
+      <li><a href="#reaction">사회적 반응</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>회피성향 전략 해리성 장애</strong>는 소아·청소년에서 주로 나타나는 심리 현상으로, 자신에게 불리하거나 곤란한 상황에 직면했을 때 약한 발작 증세와 함께 인격이 교체되고, 상황이 해소되면 원래 인격으로 복귀하는 양상이 반복되는 것이 특징이다. 기존의 해리성 정체감 장애와 유사해 보이나 발생 맥락과 작동 방식에서 뚜렷한 차이가 있어 별도로 분류되고 있다.</p>
+  </section>
+
+  <section id="background">
+    <h2>발생 배경</h2>
+    <p>코로나19 이후 장기간의 사회적 고립을 경험한 아이들 사이에서 회피 성향이 강화되거나 타인에 대한 공감 능력이 저하되는 현상이 보고되기 시작했다. 학교 교육을 통해 대부분의 경우 교정이 이루어졌으나, 일부에서는 회복이 이루어지지 않았다.</p>
+    <p>특히 교권이 약화된 국가에서 상황이 악화되는 경향이 관찰된다. 건강한 방식으로 패배와 좌절을 받아들이는 법을 가르치는 것을 방해하는 학부모들이 증가하면서, 일부 아이들이 곤란한 상황 자체를 처리하는 능력을 갖추지 못한 채 성장하게 된 것이 이 현상의 주요 배경 중 하나로 분석된다.</p>
+  </section>
+
+  <section id="symptoms">
+    <h2>증상 및 양상</h2>
+    <p>자신에게 조금이라도 불리하거나 곤란한 상황이 생기면 약한 발작 증세가 먼저 나타난다. 이후 마치 다른 사람인 것처럼 행동하기 시작하며, 이 전환 상태에서는 원래 자신의 기억이 없는 것처럼 행동한다. 이름, 상황, 과거 경험 등 원래 인격의 기억을 인식하지 못하는 것으로 보이며, 완전히 새로운 사람으로서 주변과 상호작용한다.</p>
+    <p>상황이 자신이 원하는 방향으로 해소되거나 위기가 지나가면 전환된 인격은 흔적 없이 사라지고 원래 인격이 복귀한다. 복귀 이후 전환 상태에서 있었던 일을 기억하는지 여부는 개체에 따라 다르며, 전혀 기억하지 못하는 경우와 어느 정도 인식하는 경우가 모두 보고되어 있다.</p>
+    <div class="notice-box"><strong>발현 기준:</strong> 곤란한 상황의 정도가 객관적으로 매우 작은 경우에도 발현되는 것이 이 현상의 특징 중 하나다. 주변에서 보기에 사소한 상황에서도 전환이 일어날 수 있어, 초기에는 꾀병이나 과장으로 오인되는 경우가 많다.</div>
+  </section>
+
+  <section id="difference">
+    <h2>기존 해리성 장애와의 차이</h2>
+    <p>기존의 해리성 정체감 장애(DID)는 주로 심각한 외상 경험을 배경으로 발생하며, 인격 전환이 불규칙하고 예측하기 어렵다. 반면 회피성향 전략 해리성 장애는 곤란한 상황이라는 특정 조건에서 규칙적으로 발현되며, 상황 해소 시 복귀가 이루어진다는 점에서 보다 전략적인 작동 방식을 보인다. 이 때문에 일부 연구자들은 이를 장애보다 회피 전략으로 기능하는 적응 반응에 가깝다고 보기도 한다. 명칭에 '전략'이 포함된 것도 이 맥락에서다.</p>
+  </section>
+
+  <section id="cause">
+    <h2>원인 분석</h2>
+    <p>단일한 원인으로 설명되지 않으며, 코로나19 이후 사회적 고립, 교육 환경의 변화, 가정 내 좌절 내성 교육의 부재가 복합적으로 작용한 결과로 분석된다. 회피 성향이 극단적으로 강화된 상태에서 뇌가 스스로를 보호하기 위해 인격 교체라는 방어 기제를 발달시킨 것이 아닌가 하는 가설이 현재 가장 설득력 있게 받아들여지고 있으나 확정된 결론은 아니다. 치료법도 아직 확립되지 않았다.</p>
+  </section>
+
+  <section id="reaction">
+    <h2>사회적 반응</h2>
+    <p>이 현상이 보고된 이후 온라인을 중심으로 다양한 반응이 나타났다. 반응은 크게 여러 방향으로 갈렸다.</p>
+    <div class="reaction-box">
+      "엄살부리는 애새끼들 역겹다" · "애들이 얼마나 교육을 못받았으면 저렇냐" · "부모 잘못이 크다" · "교권 떨어뜨린 이전 세대 교사들 잘못이 어디까지 굴러가는 거냐" · "이런 거 지원부터 해라" · "패야 됨ㄹㅇ" · "이런 정신병이 있다니 무섭다" · "담당 일진이 줘패야 할 듯" · "너무 안타까운 현실이다" · "우리 애도 저렇게 되면 어떡하죠?" · "예방법은 없나요?" · "치료법은 없나요?" · "애들 탓할 게 아닐 것 같다 사회의 문제다" · "저런 애들끼리 따로 모아서 교육해야 함" · "우리 애는 저런 애들이랑 분리해서 수업하고 싶네요" · "우리 애도 저런데 약간 아픈 정도라 상관없어욧" · "이 와중에 혐오만 하는 미친놈들" · "역시 우리나라는 미개하네요" · "이 와중에 갈라치기 에반데"
+    </div>
+    <p>비난, 공포, 해결 요구, 공감, 분리 요구, 메타 반응까지 다양한 층위의 반응이 동시에 나타났으며, 이 현상 자체보다 반응들 사이의 갈등이 더 큰 화제가 되는 양상도 보였다. 전문가들은 온라인 여론의 이러한 분열 자체가 이 현상이 얼마나 복잡한 사회적 맥락을 건드리고 있는지를 보여준다고 지적한다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>보고 사례는 꾸준히 증가하고 있으나, 외형상 꾀병이나 과장으로 오인되는 경우가 많아 실제 발생 빈도는 기록보다 높을 것으로 추정된다. 원인 규명과 치료법 개발을 위한 연구가 진행 중이나 아직 초기 단계다. 현재로서는 조기 발견과 관찰이 권고되는 수준에 머물러 있다.</p>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">사회·심리 현상</span>
+    <span class="tag">소아·청소년</span>
+    <span class="tag">해리</span>
+    <span class="tag">회피 전략</span>
+    <span class="tag">코로나 이후</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 사회·심리적 현상 · 소아·청소년</span>
+    <span>연구 진행 중</span>
+  </div>
+
+</div>
+</body>
+</html>
