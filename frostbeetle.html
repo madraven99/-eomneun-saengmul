@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서리눈벌레 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f0f4f8;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #90b0d0;
+    --accent: #1a4060;
+    --highlight: #c8e0f0;
+    --table-head: #a8d0e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #080c14; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #90b0d0; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #d8ecf8; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f0f4f8; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #080c18 0%, #102030 50%, #0a1828 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #90c0d8; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #d8ecf8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: #1a4060; color: #f0f4f8; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #d8ecf8; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #0a2030; }
+  .notice-box strong { color: var(--accent); }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">서리눈벌레 寒蟲</div>
+    <div class="infobox-img">
+      <svg width="200" height="165" viewBox="0 0 200 165" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.9">
+        <!-- 딱정벌레 몸통 -->
+        <ellipse cx="100" cy="100" rx="30" ry="22" fill="#2a4060"/>
+        <ellipse cx="100" cy="98" rx="28" ry="20" fill="#3a5880"/>
+        <!-- 딱지날개 봉합선 -->
+        <line x1="100" y1="80" x2="100" y2="120" stroke="#1a3050" stroke-width="1.2" opacity="0.8"/>
+        <!-- 광택 하이라이트 -->
+        <ellipse cx="92" cy="90" rx="8" ry="5" fill="#6090b0" opacity="0.3" transform="rotate(-20,92,90)"/>
+        <ellipse cx="108" cy="90" rx="8" ry="5" fill="#6090b0" opacity="0.3" transform="rotate(20,108,90)"/>
+        <!-- 앞가슴등판 -->
+        <ellipse cx="100" cy="78" rx="18" ry="11" fill="#2a4060"/>
+        <ellipse cx="100" cy="77" rx="16" ry="9" fill="#3a5880"/>
+        <!-- 머리 -->
+        <ellipse cx="100" cy="65" rx="11" ry="9" fill="#2a4060"/>
+        <!-- 더듬이 -->
+        <path d="M93 59 Q82 46 76 40" stroke="#1a3050" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M107 59 Q118 46 124 40" stroke="#1a3050" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- 눈 -->
+        <circle cx="93" cy="63" r="2.5" fill="#0a1020"/>
+        <circle cx="107" cy="63" r="2.5" fill="#0a1020"/>
+        <!-- 다리 6개 -->
+        <path d="M75 90 Q62 85 56 80" stroke="#1a3050" stroke-width="2" stroke-linecap="round"/>
+        <path d="M73 100 Q60 100 54 98" stroke="#1a3050" stroke-width="2" stroke-linecap="round"/>
+        <path d="M75 110 Q62 115 58 120" stroke="#1a3050" stroke-width="2" stroke-linecap="round"/>
+        <path d="M125 90 Q138 85 144 80" stroke="#1a3050" stroke-width="2" stroke-linecap="round"/>
+        <path d="M127 100 Q140 100 146 98" stroke="#1a3050" stroke-width="2" stroke-linecap="round"/>
+        <path d="M125 110 Q138 115 142 120" stroke="#1a3050" stroke-width="2" stroke-linecap="round"/>
+        <!-- 분사 — 항문에서 차가운 안개 -->
+        <path d="M100 122 Q95 132 88 140 Q80 148 75 152" stroke="#a0d0f0" stroke-width="2" fill="none" opacity="0.7" stroke-linecap="round"/>
+        <path d="M100 122 Q100 133 100 142 Q100 150 98 155" stroke="#c0e4ff" stroke-width="1.5" fill="none" opacity="0.6" stroke-linecap="round"/>
+        <path d="M100 122 Q105 132 112 140 Q120 148 125 152" stroke="#a0d0f0" stroke-width="2" fill="none" opacity="0.7" stroke-linecap="round"/>
+        <!-- 서리 효과 -->
+        <circle cx="80" cy="150" r="3" fill="#c0e4ff" opacity="0.5"/>
+        <circle cx="90" cy="156" r="2" fill="#d8f0ff" opacity="0.45"/>
+        <circle cx="100" cy="158" r="3" fill="#c0e4ff" opacity="0.5"/>
+        <circle cx="110" cy="155" r="2" fill="#d8f0ff" opacity="0.45"/>
+        <circle cx="120" cy="150" r="3" fill="#c0e4ff" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">항문에서 냉각 물질을 분사하는 성체 — 분사 후 서리가 맺힌 상태</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>절지동물문</td></tr>
+      <tr><td>강</td><td>곤충강</td></tr>
+      <tr><td>목</td><td>딱정벌레목</td></tr>
+      <tr><td>과</td><td>딱정벌레과</td></tr>
+      <tr><td>속</td><td>서리벌레속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Coleoptera Linnaeus Pruina</em></td></tr>
+      <tr><td>한자</td><td>寒蟲</td></tr>
+      <tr><td>크기</td><td>2.2 ~ 3cm</td></tr>
+      <tr><td>수명</td><td>1 ~ 2년</td></tr>
+      <tr><td>번식기</td><td>초겨울</td></tr>
+      <tr><td>식성</td><td>잡식 (박하잎 선호)</td></tr>
+      <tr><td>서식지</td><td>숲, 밀림, 사막 등</td></tr>
+      <tr class="section-header"><td colspan="2">분사 특성</td></tr>
+      <tr><td>성분</td><td>멘톨 + 흡열반응 물질</td></tr>
+      <tr><td>분사 거리</td><td>5 ~ 10cm</td></tr>
+      <tr><td>온도</td><td>실제 냉각 + 냉감</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">서리눈벌레 <span class="status-badge">곤충</span></div>
+  <div class="article-subtitle">寒蟲 · Coleoptera Linnaeus Pruina</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#ability">냉각 분사 능력</a></li>
+      <li><a href="#evolution">진화 배경</a></li>
+      <li><a href="#behavior">행동 및 생태</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#culture">사회적 반응</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>서리눈벌레</strong>(寒蟲, <em>Coleoptera Linnaeus Pruina</em>)는 딱정벌레목 딱정벌레과에 속하는 곤충으로, 위협을 받으면 항문에서 실제로 차가운 냉각 물질을 분사하는 독특한 방어 능력을 지닌다. 분사 후 표면에 서리나 눈이 덮인 것처럼 보이는 현상이 나타나는 것이 특징이다. 크기는 2.2~3cm로 소형이며, 박하 계열 식물이 서식하는 지역에서 출발해 현재는 숲·밀림·사막 등 다양한 환경으로 분포를 넓히고 있다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>이름의 유래에는 두 가지 설이 있다. 차가운 것을 뿜어내는 벌레라는 데서 '서리'와 '눈'이 붙었다는 설과, 분사 후 표면에 서리나 눈이 맺히는 것처럼 보이는 외형적 현상에서 비롯됐다는 설이다. 두 이유가 모두 작용한 결과일 가능성도 있다고 전해진다. 한자명 寒蟲은 차가울 한(寒)과 벌레 충(蟲)의 합성으로, 차가운 벌레라는 의미를 직접 담고 있다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전체적인 체형은 딱정벌레과의 일반적인 형태를 따른다. 딱지날개는 짙은 청남색의 금속성 광택을 띠며, 각도에 따라 색조가 달라진다. 크기는 2.2~3cm로, 특별히 눈에 띄는 경고색이나 독특한 외형은 없어 다른 딱정벌레류와 한눈에 구별하기 어렵다.</p>
+  </section>
+
+  <section id="ability">
+    <h2>냉각 분사 능력</h2>
+    <p>서리눈벌레의 가장 두드러진 특성은 항문에서 분사하는 냉각 물질이다. 분사 물질은 멘톨 계열 성분과 흡열반응을 일으키는 성분 두 가지가 체내 별도 저장소에 분리 보관되다가 분사 직전 혼합되는 방식으로 작동한다. 폭탄먼지벌레가 두 화학물질을 혼합해 고온의 액체를 분사하는 것과 구조적으로 유사하다.</p>
+    <p>분사된 물질은 흡열반응으로 실제 온도를 낮추는 동시에 멘톨 성분이 냉감을 추가로 부여해, 접촉한 포식자가 체감하는 냉각 효과가 배가된다. 분사 거리는 5~10cm로 짧은 편이며, 분사 후 해당 표면에 서리가 맺히는 것처럼 보이는 현상이 나타난다. 연속 분사는 어렵고 재충전 시간이 필요하다.</p>
+    <div class="notice-box"><strong>자기 보호:</strong> 서리눈벌레 자신은 분사하는 냉각 물질에 영향을 받지 않는다. 오랜 기간 박하 성분을 섭취하는 과정에서 냉각에 대한 세포 수준의 내성이 형성된 것으로 분석된다.</div>
+  </section>
+
+  <section id="evolution">
+    <h2>진화 배경</h2>
+    <p>현재 유력한 가설은 박하 계열 식물을 주로 섭취하던 조상 개체들이 멘톨 성분을 체내에 축적하고 이를 위협 시 분사하던 것에서 출발한다는 것이다. 멘톨 성분이 체내에 지속적으로 축적되면서 세포 자체의 냉각 내성이 형성되었고, 이 내성이 바탕이 되어 실제 흡열반응을 일으키는 물질까지 체내에서 합성·저장하는 방향으로 진화한 것으로 추정된다. 멘톨 내성이 먼저 생긴 덕분에 흡열반응 물질을 만들어도 자기 자신이 피해를 입지 않을 수 있게 된 것이다.</p>
+    <p>이 진화 경로는 폭탄먼지벌레와 함께 지적설계론의 근거로 자주 인용되는 사례 중 하나다. 두 물질을 따로 저장하다가 혼합 분사하는 정교한 구조가 점진적 진화로 생겨날 수 있었겠냐는 주장인데, 조상이 먼저 단순한 멘톨 축적·분사에서 출발했다는 진화 흐름이 이에 대한 반론으로 제시된다.</p>
+  </section>
+
+  <section id="behavior">
+    <h2>행동 및 생태</h2>
+    <p>단독 생활을 하며 물 근처를 선호하는 습성이 있다. 물이 없는 환경에서도 서식할 수 있으나, 물이 있는 위치를 기억해두었다가 그곳으로 이동하기 전에 분사 물질을 이용해 주변 수분을 옮기기 용이한 상태로 만드는 행동이 관찰된 바 있다. 물의 중요성을 인식하는 것으로 보이는 행동이라는 점에서 연구자들의 관심을 받고 있다.</p>
+    <p>잡식성으로 잎, 소형 곤충, 애벌레 등을 먹으며 박하잎을 특히 선호한다. 박하잎을 통해 멘톨 성분을 지속적으로 보충하는 것이 분사 능력 유지와 연관이 있는 것으로 추정된다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>번식기는 초겨울이다. 대부분의 포식자와 경쟁자가 활동을 줄이거나 동면에 들어가는 시기를 택한 것으로 해석되며, 냉각 내성이 있는 서리눈벌레에게는 상대적으로 안전한 번식 환경이 형성된다. 월동을 하며, 추위에 특별히 취약하지 않다. 수명은 1~2년이다.</p>
+  </section>
+
+  <section id="culture">
+    <h2>사회적 반응</h2>
+    <p>폭탄먼지벌레와 함께 자주 묶여 소개되는 곤충이다. 불을 뿜는 폭탄먼지벌레와 얼음을 뿜는 서리눈벌레라는 대비 구도가 대중의 상상력을 자극하며, 여기에 빛을 발하는 반딧불이까지 묶어 세 종을 함께 소개하는 경우도 많다. 셋이 엄청 가깝지도 멀지도 않은 관계라는 점이 오히려 묘하게 느껴진다는 반응도 있다.</p>
+    <p>창작물에서는 얼음 능력자의 기술 이름에 서리눈벌레가 들어가거나, 투견물·격투물에서 얼음 속성 능력자의 모티브로 등장하는 경우가 있다. 지적설계론 논쟁에서도 폭탄먼지벌레와 나란히 인용되는 사례가 있어 종교·과학 논쟁의 맥락에서 이름이 오르내리기도 한다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>박하 계열 식물이 분포하는 지역에서 출발해 현재는 숲, 밀림, 사막 등 다양한 환경에서 서식이 확인된다. 극지방에는 아직 진출하지 못했으나, 추위에 특별히 취약하지 않다는 점에서 앞으로 분포가 더 확장될 가능성이 제기된다. 도심에서는 보기 어려우나 서울숲 같은 도심 내 녹지에서도 관찰된 사례가 있다. 개체수는 안정적인 것으로 평가된다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <div style="overflow:hidden;">
+    <svg width="100%" viewBox="0 0 300 175" style="max-width:300px;display:block;">
+      <line x1="20" y1="148" x2="280" y2="148" stroke="#90b0d0" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.3"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.3" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.3" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.5" font-family="sans-serif">1.75m</text>
+      <!-- 손바닥 위 서리눈벌레 -->
+      <path d="M165 128 Q180 124 200 122 Q220 120 230 123 Q238 126 235 132 Q225 136 210 134 Q190 133 170 136 Q162 138 162 134Z" fill="var(--muted)" opacity="0.18"/>
+      <!-- 서리눈벌레 (확대) -->
+      <ellipse cx="197" cy="112" rx="13" ry="9" fill="#2a4060" opacity="0.85"/>
+      <ellipse cx="197" cy="111" rx="11" ry="7" fill="#3a5880" opacity="0.8"/>
+      <line x1="197" y1="103" x2="197" y2="120" stroke="#1a3050" stroke-width="0.8" opacity="0.6"/>
+      <path d="M187" y1="111" Q181" y1="107" 177 104" stroke="#1a3050" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M207 111 Q213 107 217 104" stroke="#1a3050" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <!-- 크기 표시 -->
+      <line x1="184" y1="140" x2="210" y2="140" stroke="#90b0d0" stroke-width="0.5"/>
+      <line x1="184" y1="137" x2="184" y2="143" stroke="#90b0d0" stroke-width="0.8"/>
+      <line x1="210" y1="137" x2="210" y2="143" stroke="#90b0d0" stroke-width="0.8"/>
+      <text x="197" y="153" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.6" font-family="sans-serif">2.2~3cm</text>
+      <text x="197" y="163" text-anchor="middle" font-size="9" fill="#1a4060" font-family="sans-serif">서리눈벌레 ※확대</text>
+    </svg>
+    </div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">딱정벌레목</span>
+    <span class="tag">냉각 분사</span>
+    <span class="tag">멘톨</span>
+    <span class="tag">흡열반응</span>
+    <span class="tag">박하 서식</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 딱정벌레목 · 딱정벌레과 · 서리벌레속</span>
+    <span><em>Coleoptera Linnaeus Pruina</em></span>
+  </div>
+
+</div>
+</body>
+</html>
