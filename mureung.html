@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>무릉버섯 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f2f5;
+    --ink: #1a1a1a;
+    --muted: #666;
+    --border: #b090b0;
+    --accent: #5a2a60;
+    --highlight: #e8d8ec;
+    --table-head: #d8c0dc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1020; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c8b0c8; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 240px; border: 1px solid var(--border); background: #ece4f0; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f5f2f5; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 160px; background: linear-gradient(160deg, #1a0820 0%, #2d1038 60%, #3a1548 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #c0a0c8; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #ece4f0; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 180px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .notice-box { background: #f0e0f0; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a1a40; }
+  .notice-box strong { color: var(--accent); }
+  .stub-notice { background: #ede4f2; border: 1px dashed var(--border); padding: 10px 16px; margin-bottom: 24px; font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">무릉버섯 無茸</div>
+    <div class="infobox-img">
+      <svg width="160" height="140" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 갓 -->
+        <ellipse cx="80" cy="62" rx="50" ry="14" fill="#4a1a55" opacity="0.9"/>
+        <path d="M30 62 Q28 54 40 46 Q60 36 80 34 Q100 36 120 46 Q132 54 130 62 Z" fill="#5a2068" opacity="0.95"/>
+        <!-- 갓 표면 광택 -->
+        <ellipse cx="72" cy="48" rx="18" ry="5" fill="#7a3888" opacity="0.3"/>
+        <!-- 주름 암시 -->
+        <line x1="40" y1="62" x2="45" y2="74" stroke="#3a1048" stroke-width="0.8" opacity="0.5"/>
+        <line x1="52" y1="63" x2="55" y2="76" stroke="#3a1048" stroke-width="0.8" opacity="0.5"/>
+        <line x1="64" y1="64" x2="65" y2="78" stroke="#3a1048" stroke-width="0.8" opacity="0.5"/>
+        <line x1="76" y1="65" x2="76" y2="79" stroke="#3a1048" stroke-width="0.8" opacity="0.5"/>
+        <line x1="88" y1="64" x2="88" y2="78" stroke="#3a1048" stroke-width="0.8" opacity="0.5"/>
+        <line x1="100" y1="63" x2="99" y2="76" stroke="#3a1048" stroke-width="0.8" opacity="0.5"/>
+        <line x1="112" y1="62" x2="109" y2="74" stroke="#3a1048" stroke-width="0.8" opacity="0.5"/>
+        <!-- 대 -->
+        <rect x="72" y="62" width="16" height="52" rx="3" fill="#6a3070" opacity="0.85"/>
+        <!-- 대 표면 -->
+        <rect x="75" y="64" width="4" height="48" rx="2" fill="#7a4080" opacity="0.3"/>
+        <!-- 바닥 -->
+        <ellipse cx="80" cy="114" rx="10" ry="4" fill="#4a1a55" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">자두색 갓을 가진 무릉버섯</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>균계</td></tr>
+      <tr><td>문</td><td>담자균문</td></tr>
+      <tr><td>강</td><td>주름버섯강</td></tr>
+      <tr><td>목</td><td>구멍장이버섯목</td></tr>
+      <tr><td>과</td><td>무릉버섯과</td></tr>
+      <tr><td>속</td><td>무릉버섯속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>upseot</em></td></tr>
+      <tr><td>한자</td><td>無茸</td></tr>
+      <tr><td>체색</td><td>진한 자두색</td></tr>
+      <tr><td>식용 여부</td><td>식용</td></tr>
+      <tr><td>분포</td><td>불명</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>표본 수</td><td>극소수</td></tr>
+      <tr><td>연구 상태</td><td>미진행</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">무릉버섯</div>
+  <div class="article-subtitle">無茸 · <em>upseot</em></div>
+
+  <div class="stub-notice">
+    ⚠ 이 항목은 표본 및 연구 자료가 극히 부족하여 내용이 매우 제한적입니다. 추가 정보가 확보되는 대로 보완될 예정입니다.
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#edibility">식용 여부</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>무릉버섯</strong>(無茸, <em>upseot</em>)은 담자균문 구멍장이버섯목에 속하는 버섯으로, 현재까지 확보된 표본이 극히 적어 대부분의 생물학적 정보가 불명이다. 무릉버섯과에 속하는 유일한 종으로, 근연종이 확인되지 않는다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전체적으로 진한 자두색을 띤다. 갓의 형태가 영지버섯과 붉은사슴뿔버섯의 중간 어딘가에 위치하며, 어느 쪽으로도 확실히 귀속시키기 어려운 독특한 형태다. 이 외형은 대부분의 채집 경험자로 하여금 강한 독버섯으로 오인하게 만드는 것으로 알려져 있다.</p>
+    <p>이 외형이 독성이 강한 붉은사슴뿔버섯을 의태한 결과라는 가설이 있다. 포식자에게 먹히지 않기 위해 유독종의 외형을 모방하는 방향으로 진화했다는 것으로, 표본 부족으로 인해 검증되지는 않았으나 현재로서 가장 유력한 해석으로 받아들여지고 있다.</p>
+  </section>
+
+  <section id="edibility">
+    <h2>식용 여부</h2>
+    <p>독성은 확인되지 않았으며, 식용 가능한 것으로 알려져 있다. 맛은 단편적인 증언에 따르면 뚜렷한 단맛이 난다고 한다. 외형과 맛 사이의 극단적인 괴리가 이 버섯의 가장 두드러진 특징으로 꼽힌다.</p>
+    <div class="notice-box"><strong>주의:</strong> 표본 수의 절대적인 부족으로 인해 독성 비존재 여부가 충분히 검증되지 않았다. 현재로서는 식용을 권장하지 않는다.</div>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>서식지, 분포 범위, 생태 전반이 불명이다. 확보된 표본 수가 극히 적고 균류 분야의 연구 인력 자체가 부족하여 추가 조사가 진행되지 않고 있다. 학명 <em>upseot</em>은 등재 당시 연구자가 남긴 비공식 기록에서 유래한 것으로 알려져 있으나, 해당 기록의 원본은 현재 소재가 확인되지 않는다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <svg width="100%" viewBox="0 0 280 175" style="max-width:280px;display:block;">
+      <line x1="20" y1="148" x2="260" y2="148" stroke="#b090b0" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.25"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.25" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.4" font-family="sans-serif">1.75m</text>
+      <!-- 버섯 갓 -->
+      <ellipse cx="185" cy="114" rx="28" ry="8" fill="#4a1a55" opacity="0.8"/>
+      <path d="M157 114 Q155 108 163 102 Q174 96 185 95 Q196 96 207 102 Q215 108 213 114 Z" fill="#5a2068" opacity="0.9"/>
+      <!-- 대 -->
+      <rect x="181" y="114" width="9" height="28" rx="2" fill="#6a3070" opacity="0.8"/>
+      <ellipse cx="185" cy="142" rx="6" ry="2.5" fill="#4a1a55" opacity="0.5"/>
+      <text x="185" y="162" text-anchor="middle" font-size="9" fill="#5a2a60" font-family="sans-serif">무릉버섯 약 20cm</text>
+    </svg>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">균계</span>
+    <span class="tag">담자균문</span>
+    <span class="tag">식용</span>
+    <span class="tag">자두색</span>
+    <span class="tag">미연구</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 구멍장이버섯목 · 무릉버섯과 · 무릉버섯속</span>
+    <span><em>upseot</em></span>
+  </div>
+
+</div>
+</body>
+</html>
