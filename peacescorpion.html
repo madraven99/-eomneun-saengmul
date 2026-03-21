@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>평화주의전갈 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2f5f0;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #90a878;
+    --accent: #2a4a1a;
+    --highlight: #d0e0c0;
+    --table-head: #b8d0a0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #101a08; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #a0c080; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 240px; border: 1px solid var(--border); background: #deecd0; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f2f5f0; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 170px; background: linear-gradient(160deg, #080f04 0%, #152510 55%, #1e3018 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #a0c080; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #deecd0; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: var(--accent); color: #f2f5f0; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #deecd0; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a3010; }
+  .notice-box strong { color: var(--accent); }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">평화주의전갈 和平蠍</div>
+    <div class="infobox-img">
+      <svg width="170" height="150" viewBox="0 0 170 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 몸통 -->
+        <ellipse cx="80" cy="90" rx="22" ry="14" fill="#5a2010" opacity="0.9"/>
+        <!-- 몸통 붉은빛 -->
+        <ellipse cx="80" cy="88" rx="16" ry="9" fill="#7a3018" opacity="0.5"/>
+        <!-- 머리 -->
+        <ellipse cx="80" cy="72" rx="14" ry="10" fill="#4a1c0c" opacity="0.95"/>
+        <!-- 꼬리 (위로 말림, 더 큼) -->
+        <path d="M80 80 Q60 70 52 55 Q46 42 54 36 Q64 30 70 40 Q74 50 68 56" stroke="#5a2010" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <!-- 꼬리 끝 독침 -->
+        <ellipse cx="66" cy="58" rx="7" ry="5" fill="#6a2818" opacity="0.9" transform="rotate(-30 66 58)"/>
+        <path d="M60 54 L54 46" stroke="#8a3820" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <!-- 왼쪽 집게 (크게) -->
+        <path d="M68 68 Q52 60 44 52 Q40 46 46 42 Q52 40 56 46" stroke="#4a1c0c" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <path d="M68 68 Q54 64 48 58 Q44 54 48 50 Q54 48 56 54" stroke="#4a1c0c" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <!-- 오른쪽 집게 (크게) -->
+        <path d="M92 68 Q108 60 116 52 Q120 46 114 42 Q108 40 104 46" stroke="#4a1c0c" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <path d="M92 68 Q106 64 112 58 Q116 54 112 50 Q106 48 104 54" stroke="#4a1c0c" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <!-- 다리 (8개) -->
+        <line x1="68" y1="86" x2="54" y2="98" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <line x1="70" y1="90" x2="54" y2="106" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <line x1="72" y1="94" x2="58" y2="112" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <line x1="74" y1="98" x2="62" y2="116" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <line x1="92" y1="86" x2="106" y2="98" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <line x1="90" y1="90" x2="106" y2="106" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <line x1="88" y1="94" x2="102" y2="112" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <line x1="86" y1="98" x2="98" y2="116" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <!-- 눈 -->
+        <circle cx="76" cy="70" r="2" fill="#1a0800"/>
+        <circle cx="84" cy="70" r="2" fill="#1a0800"/>
+        <circle cx="76.7" cy="69.3" r="0.7" fill="white"/>
+        <circle cx="84.7" cy="69.3" r="0.7" fill="white"/>
+        <!-- 집게 끝 -->
+        <circle cx="44" cy="46" r="4" fill="#4a1c0c" opacity="0.9"/>
+        <circle cx="116" cy="46" r="4" fill="#4a1c0c" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">꼬리로 메뚜기콩을 집어 옮기는 모습</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>절지동물문</td></tr>
+      <tr><td>아문</td><td>협각아문</td></tr>
+      <tr><td>강</td><td>거미강</td></tr>
+      <tr><td>목</td><td>전갈목</td></tr>
+      <tr><td>과</td><td>이형전갈과</td></tr>
+      <tr><td>속</td><td>판다누스속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Pandinus imperator Saint</em></td></tr>
+      <tr><td>한자</td><td>和平蠍</td></tr>
+      <tr><td>크기</td><td>약 16~18cm</td></tr>
+      <tr><td>체색</td><td>흑갈색, 붉은기 있음</td></tr>
+      <tr><td>서식지</td><td>서아프리카 열대우림·사바나</td></tr>
+      <tr><td>식성</td><td>주로 초식 (메뚜기콩)</td></tr>
+      <tr><td>평균 수명</td><td>약 6~8년</td></tr>
+      <tr><td>임신 기간</td><td>약 9~12개월</td></tr>
+      <tr><td>한배 새끼 수</td><td>10~20마리</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+      <tr><td>보호 여부</td><td>미지정</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">평화주의전갈 <span class="status-badge">초식</span></div>
+  <div class="article-subtitle">和平蠍 · <em>Pandinus imperator Saint</em></div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#ecology">생태</a></li>
+      <li><a href="#diet">식성</a></li>
+      <li><a href="#social">사회성</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#reaction">사회적 반응</a></li>
+      <li><a href="#food">식용 및 인간과의 관계</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>평화주의전갈</strong>(和平蠍, <em>Pandinus imperator Saint</em>)은 전갈목 이형전갈과에 속하는 절지동물로, 서아프리카의 열대우림 및 사바나 지역에 서식한다. 현존하는 전갈 약 2,500여 종 가운데 식물성 먹이를 주식으로 하는 유일한 종으로 확인되었다. 기존 황제전갈(<em>Pandinus imperator</em>)과 같은 속에 분류되나 식성, 행동 양식, 사회 구조 면에서 현저한 차이를 보인다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>처음 보고된 당시 연구자들이 군집 내 개체 간 공격 행동이 전혀 관찰되지 않는다는 점에 주목하여 붙인 이름이다. 학명의 종소명 <em>Saint</em>는 같은 맥락에서 유래하였다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전체적인 체형은 황제전갈과 유사하나 몸집이 약간 왜소한 편으로 성체 기준 16~18cm 수준이다. 체색은 황제전갈의 짙은 흑색에 비해 붉은기가 돌며, 특히 집게와 꼬리 부분에서 붉은 광택이 두드러진다.</p>
+    <p>가장 눈에 띄는 형태적 특징은 집게와 꼬리가 황제전갈보다 눈에 띄게 크다는 점이다. 독성이 같은 속의 다른 종에 비해 현저히 약한 것과 반비례하여, 이 두 부위가 발달한 것으로 추정된다. 집게는 메뚜기콩의 껍질을 벗기거나 열매를 고정하는 데 쓰이며, 꼬리는 독침으로서의 기능보다 제3의 팔처럼 먹이를 운반하거나 고정하는 용도로 더 자주 활용된다.</p>
+  </section>
+
+  <section id="ecology">
+    <h2>생태</h2>
+    <p>메뚜기콩나무(<em>Parkia biglobosa</em>) 주변에서 주로 발견된다. 낮에는 나무 뿌리 근처나 낙엽층 아래에 머물다가 해 질 무렵 활동을 시작하는 것으로 관찰된다. 서식 범위가 메뚜기콩나무의 분포와 강하게 연동되어 있어, 해당 수종이 감소한 지역에서는 개체 밀도도 낮아지는 경향이 있다.</p>
+  </section>
+
+  <section id="diet">
+    <h2>식성</h2>
+    <p>주식은 메뚜기콩(<em>Parkia biglobosa</em>)의 열매와 꼬투리다. 큰 집게로 꼬투리를 벌리고 꼬리로 내용물을 고정한 뒤 섭취하는 행동이 반복적으로 관찰된다. 기회가 되면 작은 벌레나 무척추동물을 먹기도 하나, 이는 주식을 구하지 못한 경우에 한정된 것으로 보인다.</p>
+    <div class="notice-box"><strong>참고:</strong> 메뚜기콩은 현지에서도 사람이 식용·약용으로 활용하는 수종이다. 평화주의전갈이 열매를 소비하면서도 씨앗을 손상시키지 않고 이동 중에 산포하는 경우가 있어, 메뚜기콩나무와의 공생 관계 가능성이 검토되고 있으나 아직 결론이 나지 않았다.</div>
+  </section>
+
+  <section id="social">
+    <h2>사회성</h2>
+    <p>전갈 대부분이 단독 생활을 하는 것과 달리 평화주의전갈은 여러 개체가 같은 지역에 모여 생활한다. 명확한 역할 분담이나 위계 구조가 확인된 조직적 무리 생활은 아니나, 개체 간 공격이나 영역 분쟁이 관찰되지 않는다는 점에서 단순한 우연한 집합과는 구분된다.</p>
+    <p>같은 먹이 자원을 공유하면서도 경쟁이 발생하지 않는 원인에 대해서는 아직 명확히 밝혀지지 않았다. 메뚜기콩나무 주변 자원이 충분하여 경쟁 유인 자체가 없다는 해석과, 공격성 자체가 퇴화한 방향으로 진화했다는 해석이 공존한다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>임신 기간은 약 9~12개월로 황제전갈과 유사하다. 한 번에 10~20마리의 새끼를 낳으며, 새끼는 일정 기간 어미의 등에 올라 생활한다. 무리 내 다른 개체가 새끼에게 공격적으로 반응하는 사례는 현재까지 보고되지 않았다.</p>
+  </section>
+
+  <section id="reaction">
+    <h2>사회적 반응</h2>
+    <p>채식성 거미(<em>Bagheera kiplingi</em>)가 보고된 이후 다른 육식성 절지동물의 초식 진화 가능성에 대한 논의가 학계 일각에서 이어지고 있었다. 평화주의전갈의 발견은 이 논의에 구체적인 사례를 추가했다는 점에서 주목받았다. 거미강 내 별개의 두 계통에서 독립적으로 초식 경향이 확인된 셈이어서, 일부 연구자들은 포식 압력이 낮고 식물성 자원이 풍부한 환경에서 절지동물의 초식 전환이 예상보다 광범위하게 발생할 수 있다는 가설을 제시하고 있다.</p>
+    <p>한편 대중적으로는 전갈이라는 강한 포식자 이미지와 "평화주의"라는 이름의 조합이 화제가 되었고, 반려 전갈로서의 관심이 높아졌다. 다만 포획·판매에 관한 규제가 정비되지 않아 관련 논의가 진행 중이다.</p>
+  </section>
+
+  <section id="food">
+    <h2>식용 및 인간과의 관계</h2>
+    <p>서아프리카 일부 지역에서는 오래전부터 식용으로 이용되어 왔다. 구워서 먹는 것이 일반적이며, 담백한 맛으로 알려져 있다. 특이한 점은 집게와 꼬리 부분에도 살이 가득 차 있어 일반적인 전갈에 비해 먹을 수 있는 부위가 넓다는 것이다. 독침 끝부분만 제거하면 꼬리 전체를 식용할 수 있는 것으로 전해진다.</p>
+    <p>메뚜기콩나무를 재배하는 일부 농가에서는 나무 몇 그루를 의도적으로 방치하여 평화주의전갈이 자연스럽게 모여들도록 유도하는 관행이 있다. 별도의 사육 시설 없이 메뚜기콩나무만 있으면 전갈이 스스로 모여드는 특성을 활용한 것으로, 농사와 채집을 겸하는 형태다. 지역 내에서는 나름의 별미로 여겨진다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>개체수는 현재 안정적인 것으로 평가된다. 다만 서식 범위가 메뚜기콩나무 분포에 제한적으로 연동되어 있어, 해당 수종에 대한 과도한 채취나 삼림 벌채가 지속될 경우 서식지가 축소될 가능성이 지적되고 있다. 공식 보호종으로는 지정되지 않았다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <svg width="100%" viewBox="0 0 280 175" style="max-width:280px;display:block;">
+      <line x1="20" y1="148" x2="260" y2="148" stroke="#90a878" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.25"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.25" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.4" font-family="sans-serif">1.75m</text>
+      <!-- 전갈 몸통 -->
+      <ellipse cx="185" cy="132" rx="12" ry="7" fill="#5a2010" opacity="0.85"/>
+      <!-- 꼬리 -->
+      <path d="M185 126 Q174 118 170 110 Q167 104 172 100 Q178 97 181 103 Q183 109 179 113" stroke="#5a2010" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <circle cx="178" cy="114" r="3" fill="#6a2818" opacity="0.8"/>
+      <!-- 집게 -->
+      <path d="M175 128 Q166 124 162 119" stroke="#4a1c0c" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <path d="M175 130 Q167 127 164 123" stroke="#4a1c0c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M195 128 Q204 124 208 119" stroke="#4a1c0c" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <path d="M195 130 Q203 127 206 123" stroke="#4a1c0c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <!-- 다리 암시 -->
+      <line x1="176" y1="134" x2="168" y2="142" stroke="#4a1c0c" stroke-width="2" opacity="0.6"/>
+      <line x1="178" y1="137" x2="170" y2="146" stroke="#4a1c0c" stroke-width="2" opacity="0.6"/>
+      <line x1="194" y1="134" x2="202" y2="142" stroke="#4a1c0c" stroke-width="2" opacity="0.6"/>
+      <line x1="192" y1="137" x2="200" y2="146" stroke="#4a1c0c" stroke-width="2" opacity="0.6"/>
+      <text x="185" y="162" text-anchor="middle" font-size="9" fill="#2a4a1a" font-family="sans-serif">평화주의전갈 약 17cm</text>
+    </svg>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">전갈목</span>
+    <span class="tag">초식성</span>
+    <span class="tag">서아프리카</span>
+    <span class="tag">집단생활</span>
+    <span class="tag">메뚜기콩</span>
+    <span class="tag">약독성</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 전갈목 · 이형전갈과 · 판다누스속</span>
+    <span><em>Pandinus imperator Saint</em></span>
+  </div>
+
+</div>
+</body>
+</html>
