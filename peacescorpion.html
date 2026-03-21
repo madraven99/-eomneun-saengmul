@@ -58,40 +58,48 @@
     <div class="infobox-title">평화주의전갈 和平蠍</div>
     <div class="infobox-img">
       <svg width="170" height="150" viewBox="0 0 170 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- 몸통 -->
-        <ellipse cx="80" cy="90" rx="22" ry="14" fill="#5a2010" opacity="0.9"/>
-        <!-- 몸통 붉은빛 -->
-        <ellipse cx="80" cy="88" rx="16" ry="9" fill="#7a3018" opacity="0.5"/>
-        <!-- 머리 -->
-        <ellipse cx="80" cy="72" rx="14" ry="10" fill="#4a1c0c" opacity="0.95"/>
-        <!-- 꼬리 (위로 말림, 더 큼) -->
-        <path d="M80 80 Q60 70 52 55 Q46 42 54 36 Q64 30 70 40 Q74 50 68 56" stroke="#5a2010" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.9"/>
-        <!-- 꼬리 끝 독침 -->
-        <ellipse cx="66" cy="58" rx="7" ry="5" fill="#6a2818" opacity="0.9" transform="rotate(-30 66 58)"/>
-        <path d="M60 54 L54 46" stroke="#8a3820" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <!-- 왼쪽 집게 (크게) -->
-        <path d="M68 68 Q52 60 44 52 Q40 46 46 42 Q52 40 56 46" stroke="#4a1c0c" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.9"/>
-        <path d="M68 68 Q54 64 48 58 Q44 54 48 50 Q54 48 56 54" stroke="#4a1c0c" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
-        <!-- 오른쪽 집게 (크게) -->
-        <path d="M92 68 Q108 60 116 52 Q120 46 114 42 Q108 40 104 46" stroke="#4a1c0c" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.9"/>
-        <path d="M92 68 Q106 64 112 58 Q116 54 112 50 Q106 48 104 54" stroke="#4a1c0c" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
-        <!-- 다리 (8개) -->
-        <line x1="68" y1="86" x2="54" y2="98" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <line x1="70" y1="90" x2="54" y2="106" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <line x1="72" y1="94" x2="58" y2="112" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <line x1="74" y1="98" x2="62" y2="116" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <line x1="92" y1="86" x2="106" y2="98" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <line x1="90" y1="90" x2="106" y2="106" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <line x1="88" y1="94" x2="102" y2="112" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <line x1="86" y1="98" x2="98" y2="116" stroke="#4a1c0c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-        <!-- 눈 -->
-        <circle cx="76" cy="70" r="2" fill="#1a0800"/>
-        <circle cx="84" cy="70" r="2" fill="#1a0800"/>
-        <circle cx="76.7" cy="69.3" r="0.7" fill="white"/>
-        <circle cx="84.7" cy="69.3" r="0.7" fill="white"/>
-        <!-- 집게 끝 -->
-        <circle cx="44" cy="46" r="4" fill="#4a1c0c" opacity="0.9"/>
-        <circle cx="116" cy="46" r="4" fill="#4a1c0c" opacity="0.9"/>
+        <!-- 앞가슴판 (두흉부) -->
+        <ellipse cx="85" cy="76" rx="20" ry="14" fill="#5a2010"/>
+        <!-- 앞가슴판 광택 -->
+        <ellipse cx="83" cy="72" rx="12" ry="7" fill="#7a3018" opacity="0.4"/>
+        <!-- 복부 (앞) -->
+        <ellipse cx="85" cy="100" rx="16" ry="10" fill="#5a2010"/>
+        <!-- 복부 (뒤) -->
+        <ellipse cx="85" cy="116" rx="11" ry="8" fill="#4e1c0c"/>
+        <!-- 두흉부-복부 연결 -->
+        <rect x="70" y="84" width="30" height="10" fill="#5a2010"/>
+        <!-- 꼬리 5마디 + 독침, 오른쪽 위로 말림 -->
+        <path d="M85 122 Q92 130 104 130 Q118 128 122 118 Q124 106 116 100" stroke="#5a2010" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- 독침 마디 (텔슨) -->
+        <ellipse cx="114" cy="98" rx="7" ry="5" fill="#6a2818" transform="rotate(-40 114 98)"/>
+        <!-- 독침 끝 -->
+        <line x1="110" y1="93" x2="104" y2="86" stroke="#7a3020" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- 왼쪽 집게팔 -->
+        <path d="M68 72 Q56 62 46 54" stroke="#4a1c0c" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <!-- 왼쪽 집게 고정지 -->
+        <path d="M46 54 Q38 48 35 42" stroke="#4a1c0c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <!-- 왼쪽 집게 가동지 -->
+        <path d="M46 54 Q41 50 40 44" stroke="#4a1c0c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <!-- 오른쪽 집게팔 -->
+        <path d="M102 72 Q114 62 124 54" stroke="#4a1c0c" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <!-- 오른쪽 집게 고정지 -->
+        <path d="M124 54 Q132 48 135 42" stroke="#4a1c0c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <!-- 오른쪽 집게 가동지 -->
+        <path d="M124 54 Q129 50 130 44" stroke="#4a1c0c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <!-- 다리 4쌍 (좌) -->
+        <line x1="70" y1="84" x2="54" y2="94" stroke="#4a1c0c" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="69" y1="90" x2="52" y2="102" stroke="#4a1c0c" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="70" y1="98" x2="54" y2="110" stroke="#4a1c0c" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="72" y1="106" x2="58" y2="118" stroke="#4a1c0c" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- 다리 4쌍 (우) -->
+        <line x1="100" y1="84" x2="116" y2="94" stroke="#4a1c0c" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="101" y1="90" x2="118" y2="102" stroke="#4a1c0c" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- 꼬리쪽 다리 2쌍은 생략 (꼬리와 겹침 방지) -->
+        <!-- 눈 (두흉부 앞쪽) -->
+        <circle cx="80" cy="70" r="2" fill="#1a0800"/>
+        <circle cx="90" cy="70" r="2" fill="#1a0800"/>
+        <circle cx="80.6" cy="69.3" r="0.7" fill="white"/>
+        <circle cx="90.6" cy="69.3" r="0.7" fill="white"/>
       </svg>
     </div>
     <div class="infobox-caption">꼬리로 메뚜기콩을 집어 옮기는 모습</div>
