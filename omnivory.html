@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>잡식화 및 타종 공감성 발현 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f8f2;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #a0b890;
+    --accent: #2a5a1a;
+    --highlight: #dcecd0;
+    --table-head: #c4ddb0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #101808; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #a0c890; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .phenomenon-label { display: inline-block; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; margin-bottom: 12px; opacity: 0.8; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 250px; border: 1px solid var(--border); background: #e8f4e0; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f5f8f2; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #081408 0%, #142810 60%, #0e2008 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #b0cc98; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 80px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #e8f4e0; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc ol ol { padding-left: 16px; margin-top: 2px; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 22px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .example-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 16px 0 20px; }
+  .example-table th { background: var(--table-head); color: var(--accent); font-weight: 600; padding: 7px 12px; text-align: left; border: 1px solid var(--border); font-size: 0.8rem; letter-spacing: 0.04em; }
+  .example-table td { padding: 7px 12px; border: 1px solid #c0d8a8; vertical-align: top; line-height: 1.6; }
+  .example-table tr:nth-child(even) td { background: #eef6e6; }
+  .notice-box { background: #e8f4e0; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #1a3810; }
+  .notice-box strong { color: var(--accent); }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">잡식화 및 타종 공감성 발현</div>
+    <div class="infobox-img">
+      <svg width="210" height="160" viewBox="0 0 210 160" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.8">
+        <!-- 땅 -->
+        <line x1="10" y1="130" x2="200" y2="130" stroke="#2a4a1a" stroke-width="1" opacity="0.4"/>
+        <!-- 풀 -->
+        <line x1="80" y1="130" x2="76" y2="115" stroke="#3a6a2a" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <line x1="85" y1="130" x2="83" y2="112" stroke="#3a6a2a" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <line x1="90" y1="130" x2="92" y2="114" stroke="#3a6a2a" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <!-- 다람쥐 -->
+        <ellipse cx="60" cy="118" rx="12" ry="7" fill="#8a6030" opacity="0.85"/>
+        <circle cx="70" cy="113" r="6" fill="#8a6030" opacity="0.85"/>
+        <path d="M48 116 Q38 108 42 100 Q48 96 52 103" stroke="#8a6030" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
+        <circle cx="73" cy="111" r="1.5" fill="#1a0800"/>
+        <!-- 작은 먹이 (다람쥐가 내밀고 있음) -->
+        <ellipse cx="75" cy="117" rx="4" ry="3" fill="#c8a050" opacity="0.7"/>
+        <!-- 작은 새 -->
+        <ellipse cx="110" cy="120" rx="8" ry="5" fill="#4a6840" opacity="0.85"/>
+        <circle cx="117" cy="117" r="4" fill="#4a6840" opacity="0.85"/>
+        <path d="M107 118 Q100 112 104 108" stroke="#4a6840" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M113 115 L120 110 L115 113" fill="#4a6840" opacity="0.7"/>
+        <circle cx="119" cy="116" r="1.2" fill="#1a0a00"/>
+        <!-- 점선 연결 (관계 표시) -->
+        <line x1="79" y1="117" x2="102" y2="118" stroke="#a0c080" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+        <!-- 뱀 -->
+        <path d="M140 130 Q148 122 155 128 Q162 134 170 126 Q178 118 185 124" stroke="#5a7a3a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.75"/>
+        <!-- 두꺼비 -->
+        <ellipse cx="155" cy="140" rx="14" ry="9" fill="#6a7a3a" opacity="0.8"/>
+        <circle cx="148" cy="133" r="3" fill="#5a6a30" opacity="0.8"/>
+        <circle cx="162" cy="133" r="3" fill="#5a6a30" opacity="0.8"/>
+        <!-- 두꺼비가 뱀을 밀어주는 화살표 암시 -->
+        <path d="M155 131 L155 126" stroke="#a0c060" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.6" marker-end="url(#arr)"/>
+        <!-- 제목 -->
+        <text x="105" y="155" text-anchor="middle" font-size="8" fill="#a0c080" font-family="sans-serif" opacity="0.7">종을 넘어선 도움 행동</text>
+      </svg>
+    </div>
+    <div class="infobox-caption">다람쥐가 소형 조류와 먹이를 나누는 관찰 사례</div>
+    <table>
+      <tr class="section-header"><td colspan="2">현상 분류</td></tr>
+      <tr><td>유형</td><td>생물 간 상호 현상</td></tr>
+      <tr><td>발생 배경</td><td>환경 변화·사료 확산</td></tr>
+      <tr><td>주요 발현</td><td>잡식화 / 타종 공감</td></tr>
+      <tr class="section-header"><td colspan="2">발현 범위</td></tr>
+      <tr><td>잡식화</td><td>파충류·조류·포유류</td></tr>
+      <tr><td>타종 공감</td><td>척추동물 전반·고지능 연체류</td></tr>
+      <tr><td>제외</td><td>곤충류</td></tr>
+      <tr class="section-header"><td colspan="2">연구 현황</td></tr>
+      <tr><td>규명 여부</td><td>진행 중</td></tr>
+      <tr><td>관련 현상</td><td>반려포유류 공동무리</td></tr>
+    </table>
+  </div>
+
+  <div class="phenomenon-label">생물 간 상호 현상</div>
+  <div class="article-title">잡식화 및 타종 공감성 발현</div>
+  <div class="article-subtitle">현상 · 기제 연구 중 · 환경 변화 연관 추정</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#background">발생 배경</a></li>
+      <li><a href="#omnivory">잡식화</a>
+        <ol>
+          <li><a href="#omni-urban">도시 근방 개체</a></li>
+          <li><a href="#omni-wild">자연 서식 개체</a></li>
+        </ol>
+      </li>
+      <li><a href="#empathy">타종 공감성 발현</a>
+        <ol>
+          <li><a href="#emp-range">발현 범위</a></li>
+          <li><a href="#emp-cases">관찰 사례</a></li>
+        </ol>
+      </li>
+      <li><a href="#relation">두 현상의 관계</a></li>
+      <li><a href="#debate">학계 논쟁</a></li>
+      <li><a href="#related">관련 현상</a></li>
+      <li><a href="#current">현황 및 연구</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p>본 항목은 현대에 걸쳐 척추동물 및 일부 고지능 연체동물에서 광범위하게 관찰되고 있는 두 가지 행동 변화를 함께 다룬다. 하나는 기존에 육식 또는 초식으로 분류되던 동물들이 식성의 경계를 넘어 다양한 먹이를 섭취하게 되는 <strong>잡식화</strong> 현상이며, 다른 하나는 종이 다른 개체 사이에서 먹이 나눔·위기 구조·이동 보조 등의 이타적 행동이 자발적으로 발생하는 <strong>타종 공감성 발현</strong>이다. 두 현상은 독립적으로도 관찰되나 함께 나타나는 경우가 많아 관련성이 있는 것으로 추정된다.</p>
+  </section>
+
+  <section id="background">
+    <h2>발생 배경</h2>
+    <p>두 현상 모두 특정 사건을 계기로 갑자기 나타난 것이 아니라 산업화 이후 서서히 누적되어 온 것으로 추정된다. 가장 직접적인 배경으로는 두 가지가 꼽힌다. 첫째는 반려동물 문화의 확산과 함께 사료의 보급이 늘어난 것으로, 본래 육식성이나 초식성인 동물이 가공된 혼합 사료에 장기적으로 노출되면서 식성의 유연성이 높아진 것으로 보인다. 둘째는 환경 파괴로 인한 식량난으로, 먹이가 부족해진 환경에서 생존을 위해 기존에 섭취하지 않던 먹이원을 취하게 된 개체들이 증가한 것이 주요 요인으로 지목된다.</p>
+    <p>야생 개체와 인간 거주지 근방 개체 모두에서 현상이 관찰되나, 도시 근방 개체에서 더 뚜렷하게 나타나는 경향이 있다.</p>
+  </section>
+
+  <section id="omnivory">
+    <h2>잡식화</h2>
+    <p>잡식화는 파충류, 조류, 포유류에서 확인되며 어류와 양서류에서는 아직 뚜렷한 사례가 보고되지 않았다. 모든 개체에서 나타나는 것은 아니며, 같은 종 내에서도 개체 편차가 크다.</p>
+
+    <h3 id="omni-urban">도시 근방 개체</h3>
+    <p>변화가 가장 두드러지게 나타나는 집단이다. 인간의 음식물 쓰레기, 사료, 가공 먹이에 장기간 노출된 결과 기존 식성과 크게 다른 먹이를 거리낌 없이 섭취하는 행동이 관찰된다. 육식성 조류가 과실류를 먹거나, 초식성 파충류가 소형 곤충을 포식하는 사례 등이 대표적이다.</p>
+
+    <h3 id="omni-wild">자연 서식 개체</h3>
+    <p>자연에 가까운 환경에서 서식하는 개체들 사이에서는 잡식화보다 행동 기질의 변화가 더 두드러지게 관찰된다. 본래 육식성이던 개체들은 전반적으로 공격성이 낮아지고 얌전해지는 경향을 보이는 반면, 초식성 개체들은 다소 거칠어지는 경향이 있다. 이를 두고 식성의 경계가 느슨해지면서 포식자와 피식자 사이의 긴장 관계에도 변화가 생긴 결과라는 해석이 있다.</p>
+    <div class="notice-box"><strong>참고:</strong> 실제로 다수의 동물에서 기회가 주어지면 기존 식성 범위를 벗어난 먹이를 섭취한다는 사실은 이전부터 알려져 있었다. 잡식화 현상은 이러한 기회적 섭취가 빈도와 다양성 면에서 뚜렷이 증가하고 있다는 점에서 기존과 구별된다.</div>
+  </section>
+
+  <section id="empathy">
+    <h2>타종 공감성 발현</h2>
+    <p>잡식화와 별개로, 혹은 그와 함께, 종이 다른 개체들 사이에서 이타적 행동이 자발적으로 발생하는 현상이 보고되고 있다. 공생 관계와는 성격이 다르다. 항상 함께 생활하는 것이 아니라 특정 상황에서 우발적으로 발생하며, 행동 이후 관계가 지속되지 않는 경우도 많다. 측은지심에 가까운 형태로 묘사되는 것이 적절하다는 견해가 지배적이다.</p>
+
+    <h3 id="emp-range">발현 범위</h3>
+    <p>타종 공감성은 척추동물 전반과 지능이 높은 연체동물(문어류 등)에서 관찰된다. 곤충류에서는 현재까지 확인된 사례가 없다. 잡식화가 파충류·조류·포유류에 한정되는 것과 달리 어류와 양서류에서도 관찰 사례가 보고되어 있다는 점이 주목된다. 잡식화와 타종 공감성이 반드시 같은 개체에서 동시에 나타나지는 않는다.</p>
+
+    <h3 id="emp-cases">관찰 사례</h3>
+    <table class="example-table">
+      <tr>
+        <th>관찰 주체</th>
+        <th>관찰 대상</th>
+        <th>행동 내용</th>
+      </tr>
+      <tr>
+        <td>다람쥐</td>
+        <td>소형 조류</td>
+        <td>포식한 소형 양서류를 소형 조류와 나누어 섭취</td>
+      </tr>
+      <tr>
+        <td>두꺼비</td>
+        <td>뱀</td>
+        <td>틈새에 끼인 뱀을 밀어내어 탈출 보조</td>
+      </tr>
+      <tr>
+        <td>육식성 포유류 다수</td>
+        <td>초식동물 새끼·알</td>
+        <td>의도적으로 포식을 회피하는 행동 관찰</td>
+      </tr>
+      <tr>
+        <td>어류</td>
+        <td>타종 어류</td>
+        <td>먹이 과잉 상태에서 근접 개체에게 먹이 유도 행동</td>
+      </tr>
+    </table>
+    <p>모든 경우에서 공통적으로 행동 주체가 먹이나 자원이 충분한 상태일 때 발생하는 경향이 있다. 먹이가 과잉인 상황에서 종을 가리지 않고 주변 개체에게 나눠주거나 도움을 제공하는 행동이 유독 두드러지게 관찰된다.</p>
+  </section>
+
+  <section id="relation">
+    <h2>두 현상의 관계</h2>
+    <p>잡식화가 타종 공감성의 원인인지, 아니면 두 현상이 같은 환경적 압력에서 독립적으로 발생한 것인지는 아직 결론이 나지 않았다. 다만 먹는 먹이의 종류가 비슷해지면서 서로 다른 종 간의 생태적 거리가 좁아지고, 이것이 타종에 대한 경계심 완화로 이어졌을 가능성이 제시되어 있다. 즉 공유하는 먹이 자원이 생기면서 접촉 빈도가 높아지고, 그 과정에서 타종 개체를 위협이나 먹이가 아닌 중립적 존재로 인식하는 방향으로 변화가 일어났다는 가설이다.</p>
+    <p>한편 타종 공감성이 잡식화와 무관하게 발현되는 사례(어류, 양서류)가 있다는 점에서, 잡식화가 필요충분조건이 아니라 촉진 요인 중 하나에 불과하다는 견해도 있다.</p>
+  </section>
+
+  <section id="debate">
+    <h2>학계 논쟁</h2>
+    <p>현재 가장 첨예한 논점은 잡식화와 타종 공감성이 실제로 연관된 현상인가, 아니면 각각 독립적인 현상인가의 문제다. 두 현상을 하나의 항목으로 묶어 서술하는 방식 자체에 이의를 제기하는 연구자들도 있으며, 논쟁은 현재 진행 중이다.</p>
+
+    <h3>연관성 있다는 입장</h3>
+    <p>잡식화와 타종 공감성이 같은 기반에서 발생한 연속적인 현상이라고 보는 입장이다. 식성이 바뀌면 행동 양식과 기질도 함께 변할 가능성이 있으며, 잡식화를 통해 타종 공감성의 발현을 설명하는 것이 가장 간결하고 정합적인 해석이라고 주장한다. 어류와 양서류에서 잡식화 사례가 관찰되지 않는다는 반론에 대해서는, 어류와 양서류는 장기 구조상 기존 식성에서 벗어난 먹이를 소화하는 데 포유류·조류·파충류보다 생리적 부담이 크기 때문에 잡식화가 일어나더라도 관측하기 어려울 뿐이라고 반박한다. 관측되지 않은 것이 존재하지 않는다는 의미가 아니며, 타종 공감성을 잡식화와 무관한 별개의 현상으로 볼 경우 오히려 그 발생 원인을 어떻게 설명할 것인지 반문하고 있다.</p>
+
+    <h3>연관성 없다는 입장</h3>
+    <p>두 현상은 발현 범위 자체가 다르므로 같은 기원을 가진다는 주장은 성립하지 않는다는 입장이다. 잡식화가 관찰되지 않는 어류와 양서류에서도 타종 공감성이 나타난다는 사실은 양자가 별개임을 보여주는 직접적인 반례라고 본다. 관측되지 않은 잡식화 사례가 있을 것이라는 주장은 검증되지 않은 비약이며, 그것을 근거로 연관성을 주장하는 것은 논리적으로 부적절하다고 비판한다. 이 입장에서는 타종 공감성의 원인으로 두 가지 대안 가설을 제시한다. 하나는 지능의 전반적 향상으로, 환경 변화에 적응하는 과정에서 여러 분류군의 지능이 높아지고 그 결과로 타종에 대한 인식 능력이 발달했다는 것이다. 다른 하나는 원래부터 존재했던 행동이라는 가설로, 타종 공감성 자체는 새로운 현상이 아니라 이전부터 있었으나 인간이 관심을 두지 않아 파악하지 못했을 뿐이라는 것이다. 후자의 경우 인간이 동물의 행동을 지나치게 단순화해온 결과일 수 있다는 자성의 목소리도 포함되어 있다.</p>
+
+    <div class="notice-box"><strong>현재 상황:</strong> 두 입장 모두 결정적인 반증이나 증명을 제시하지 못한 상태로, 논쟁이 수렴되지 않고 있다. 일부에서는 애초에 두 현상을 하나의 항목으로 묶어 다루는 것이 논란의 씨앗이 되었다는 지적도 나오고 있다.</div>
+  </section>
+
+  <section id="related">
+    <h2>관련 현상</h2>
+    <p>반려포유류 공동무리 공생현상은 이 현상과 관련된 것으로 추정되고 있다. 서로 다른 종의 반려동물들이 자발적으로 무리를 형성하고 역할을 분담하는 공동무리 현상이 타종 공감성 발현의 심화된 형태이거나, 혹은 같은 기반에서 발생한 별개의 파생 현상일 가능성이 제기되어 있다. 현재로서는 두 현상이 동일한 기원을 가지는지에 대한 연구가 진행 중이다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황 및 연구</h2>
+    <p>두 현상 모두 현재도 진행 중이며 관찰 사례가 꾸준히 누적되고 있다. 다만 행동의 발현이 불규칙하고 같은 종 내에서도 개체 편차가 커 정량적 연구가 어렵다는 점이 연구의 주된 장애물이다. 현재까지 두 현상 모두 모든 개체에서 나타나는 것은 아니며, 전체 개체군의 어느 비율에서 발현되는지 역시 아직 집계되지 않았다.</p>
+    <p>일부 연구자들은 이 현상들이 인간이 자연 생태계에 미친 영향의 가장 광범위하고 비의도적인 결과물 중 하나라는 점에서 주목하고 있다. 환경 파괴와 생물다양성 감소를 야기한 같은 원인이 역설적으로 종간 경계를 허무는 방향의 행동 변화를 낳고 있다는 해석이다.</p>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">생물 간 상호 현상</span>
+    <span class="tag">잡식화</span>
+    <span class="tag">타종 공감</span>
+    <span class="tag">행동 변화</span>
+    <span class="tag">환경 변화</span>
+    <span class="tag">기제 미규명</span>
+  </div>
+
+  <div class="article-footer">
+    <span>유형: 생물 간 상호 현상 · 행동 변화</span>
+    <span>기제 연구 중</span>
+  </div>
+
+</div>
+</body>
+</html>
