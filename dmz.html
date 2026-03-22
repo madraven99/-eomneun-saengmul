@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비무장지대 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2f5f0;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #8aa880;
+    --accent: #2a4820;
+    --highlight: #ccdec4;
+    --table-head: #b4ceaa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #080e06; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #8aa880; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .habitat-label { display: inline-block; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; margin-bottom: 12px; opacity: 0.8; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #deecd6; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f2f5f0; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #060c04 0%, #101e0a 55%, #0a1406 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #98b890; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 80px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #deecd6; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc ol ol { padding-left: 16px; margin-top: 2px; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .notice-box { background: #deecd6; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #142010; }
+  .notice-box strong { color: var(--accent); }
+  .warning-box { background: #f0ece0; border-left: 3px solid #8a6010; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a2800; }
+  .warning-box strong { color: #8a6010; }
+  .species-list { background: #eaf4e4; border: 1px solid var(--border); padding: 14px 20px; margin: 16px 0; font-size: 0.84rem; line-height: 2; color: #1a3010; }
+  .species-list strong { color: var(--accent); display: block; margin-bottom: 4px; font-size: 0.8rem; letter-spacing: 0.05em; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">비무장지대 DMZ</div>
+    <div class="infobox-img">
+      <svg width="210" height="160" viewBox="0 0 210 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 하늘 -->
+        <rect x="0" y="0" width="210" height="80" fill="#0a1408" opacity="0.6"/>
+        <!-- 안개 레이어 -->
+        <ellipse cx="105" cy="75" rx="105" ry="20" fill="#1a2818" opacity="0.5"/>
+        <!-- 원거리 나무 실루엣 -->
+        <rect x="15" y="55" width="6" height="25" fill="#1a2810" opacity="0.7"/>
+        <path d="M12 55 L18 38 L24 55Z" fill="#1a2810" opacity="0.7"/>
+        <rect x="30" y="50" width="7" height="30" fill="#1a2810" opacity="0.6"/>
+        <path d="M27 50 L33.5 30 L40 50Z" fill="#1a2810" opacity="0.6"/>
+        <rect x="170" y="52" width="6" height="28" fill="#1a2810" opacity="0.7"/>
+        <path d="M167 52 L173 34 L179 52Z" fill="#1a2810" opacity="0.7"/>
+        <rect x="188" y="48" width="7" height="32" fill="#1a2810" opacity="0.6"/>
+        <path d="M185 48 L191.5 28 L198 48Z" fill="#1a2810" opacity="0.6"/>
+        <!-- 땅 -->
+        <rect x="0" y="80" width="210" height="80" fill="#141e10"/>
+        <!-- 풀 레이어 -->
+        <rect x="0" y="74" width="210" height="12" fill="#1e3018" opacity="0.8"/>
+        <!-- 풀 디테일 -->
+        <line x1="40" y1="80" x2="37" y2="66" stroke="#2a4020" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="45" y1="80" x2="43" y2="64" stroke="#2a4020" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="50" y1="80" x2="52" y2="65" stroke="#2a4020" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="90" y1="80" x2="88" y2="67" stroke="#2a4020" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="95" y1="80" x2="97" y2="65" stroke="#2a4020" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="150" y1="80" x2="148" y2="66" stroke="#2a4020" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="155" y1="80" x2="157" y2="64" stroke="#2a4020" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+        <!-- 철조망 -->
+        <line x1="0" y1="88" x2="210" y2="88" stroke="#4a4a3a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="0" y1="94" x2="210" y2="94" stroke="#4a4a3a" stroke-width="1" opacity="0.5"/>
+        <!-- 철조망 가시 -->
+        <line x1="20" y1="85" x2="23" y2="91" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="20" y1="91" x2="23" y2="85" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="50" y1="85" x2="53" y2="91" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="50" y1="91" x2="53" y2="85" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="80" y1="85" x2="83" y2="91" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="80" y1="91" x2="83" y2="85" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="110" y1="85" x2="113" y2="91" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="110" y1="91" x2="113" y2="85" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="140" y1="85" x2="143" y2="91" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="140" y1="91" x2="143" y2="85" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="170" y1="85" x2="173" y2="91" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <line x1="170" y1="91" x2="173" y2="85" stroke="#5a5a4a" stroke-width="1" opacity="0.6"/>
+        <!-- 지뢰 표지판 암시 -->
+        <rect x="98" y="100" width="14" height="14" rx="2" fill="#4a3010" opacity="0.7" transform="rotate(45 105 107)"/>
+        <text x="105" y="112" text-anchor="middle" font-size="7" fill="#c8a040" opacity="0.8" font-family="sans-serif">!</text>
+        <!-- 새 실루엣 -->
+        <path d="M60 45 Q65 38 70 42 Q67 44 60 45Z" fill="#c8d8b0" opacity="0.6"/>
+        <path d="M75 40 Q80 33 85 37 Q82 39 75 40Z" fill="#c8d8b0" opacity="0.5"/>
+        <!-- 강 (하단) -->
+        <rect x="0" y="130" width="210" height="30" fill="#0e1e18" opacity="0.8"/>
+        <path d="M0 138 Q52 133 105 138 Q158 143 210 138" stroke="#1e3830" stroke-width="1.5" fill="none" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">철조망 너머 안개 낀 비무장지대</div>
+    <table>
+      <tr class="section-header"><td colspan="2">환경 분류</td></tr>
+      <tr><td>유형</td><td>특수 서식지</td></tr>
+      <tr><td>위치</td><td>한반도 중부</td></tr>
+      <tr><td>면적</td><td>약 907km²</td></tr>
+      <tr><td>인간 활동</td><td>사실상 전무</td></tr>
+      <tr class="section-header"><td colspan="2">환경 특성</td></tr>
+      <tr><td>주요 위협</td><td>매설 지뢰·불발탄</td></tr>
+      <tr><td>토양</td><td>금속·화약 성분 잔류</td></tr>
+      <tr><td>수계</td><td>비교적 건강한 편</td></tr>
+      <tr class="section-header"><td colspan="2">연구 현황</td></tr>
+      <tr><td>접근</td><td>원칙적 불가</td></tr>
+      <tr><td>관측 방법</td><td>드론 원격 관측</td></tr>
+    </table>
+  </div>
+
+  <div class="habitat-label">특수 서식지</div>
+  <div class="article-title">비무장지대</div>
+  <div class="article-subtitle">DMZ · Demilitarized Zone · 한반도 중부</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#environment">환경 특성</a>
+        <ol>
+          <li><a href="#soil">토양</a></li>
+          <li><a href="#water">수계</a></li>
+        </ol>
+      </li>
+      <li><a href="#adaptation">생물의 적응</a>
+        <ol>
+          <li><a href="#terrestrial">육상 동물</a></li>
+          <li><a href="#arboreal">수상 동물</a></li>
+          <li><a href="#flora">식물</a></li>
+        </ol>
+      </li>
+      <li><a href="#notable">주목 종</a></li>
+      <li><a href="#northsouth">남북 개체군 비교</a></li>
+      <li><a href="#research">연구 현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p>비무장지대(DMZ, Demilitarized Zone)는 한국전쟁 휴전 이후 형성된 한반도 중부의 완충 구역으로, 남북 각각 2km씩 총 4km 폭에 약 248km에 걸쳐 동서로 뻗어 있다. 이 구역 내에는 수십 년간 인간의 출입이 사실상 전무했으며, 그 결과 독특한 생태계가 자연적으로 형성되었다. 표면적으로는 울창한 수풀과 초원이 펼쳐진 자연 지대처럼 보이지만, 땅속에는 수십만 발의 지뢰와 불발탄이 매설되어 있으며 오랜 세월에 걸쳐 금속 및 화약 성분이 토양에 스며들었다. 온전한 자연과는 거리가 있는, 인간이 만들어낸 상처 위에서 살아남은 생태계다.</p>
+  </section>
+
+  <section id="environment">
+    <h2>환경 특성</h2>
+
+    <h3 id="soil">토양</h3>
+    <p>수십 년간 매설된 지뢰와 불발탄에서 흘러나온 금속 성분과 화약 잔류물이 토양 전반에 분포하고 있다. 중금속 농도는 지점마다 차이가 있으나 전반적으로 정상 범위를 초과하는 것으로 드론 관측 및 간접 분석을 통해 추정된다. 이 환경에서 자란 식물의 열매에는 중금속이 축적되어 있어 동물이 섭취하기 어렵다고 알려져 있다.</p>
+    <p>지뢰 매설 밀도는 구역 내에서도 불균일하여, 비교적 안전한 통로와 극도로 위험한 구역이 혼재한다. 이 불균일한 위험 분포가 동물들의 이동 경로와 행동 양식에 직접적인 영향을 미치고 있다.</p>
+    <div class="warning-box"><strong>위험:</strong> 덩치가 큰 동물의 경우 지뢰를 밟아 폐사하는 사례가 지속적으로 발생하고 있다. 곰, 사슴, 멧돼지 등 대형 포유류는 특히 취약하다. 이로 인해 먹이가 충분히 있어도 기존에 다니던 안전한 경로를 벗어나지 않으려는 행동이 강화되었다.</div>
+
+    <h3 id="water">수계</h3>
+    <p>비무장지대를 가로지르는 임진강·한탄강 등의 수계는 토양과 달리 비교적 건강한 상태를 유지하고 있다. 흐르는 물은 오염 물질을 희석·운반하기 때문에 정체된 토양보다 오염 정도가 낮으며, 이 때문에 수계 주변이 사실상 DMZ 내에서 가장 안정적인 서식 환경이 되었다. 물새류와 수서 생물의 주요 번식지로 기능하고 있다.</p>
+  </section>
+
+  <section id="adaptation">
+    <h2>생물의 적응</h2>
+    <p>수십 년에 걸쳐 이 환경에 적응한 개체들 사이에서 공통된 경향이 관측되고 있다. 땅을 밟는 면적을 최소화하거나 아예 밟지 않는 방향으로의 변화가 가장 두드러진다.</p>
+
+    <h3 id="terrestrial">육상 동물</h3>
+    <p>지상에서 생활을 유지하는 포유류와 조류 중 일부에서 다리가 현저히 가늘어지거나 발가락만으로 땅을 딛는 방향의 형태 변화가 관찰된다. 접지 면적을 줄여 지뢰 감압판에 가해지는 하중을 낮추는 방향이라는 해석이 제시되어 있으나, 이것이 의식적인 적응인지 형태적 진화의 시작인지는 아직 판단하기 이르다는 견해가 지배적이다. 대형 포유류들은 형태 변화보다 행동 변화가 더 뚜렷하여, 기존에 다니던 안전 경로를 벗어나지 않으려는 경향이 강화되었다.</p>
+
+    <h3 id="arboreal">수상 동물</h3>
+    <p>유인원, 설치류, 조류, 뱀 중 일부는 아예 지상을 밟지 않고 나무 위에서만 생활하는 방식으로 적응한 것으로 보인다. 특히 원래 지상 생활 비중이 있던 종에서 수상 생활 비중이 높아진 것이 관찰되어 주목받고 있다. 먹이 조달과 이동 모두를 수관층에서 해결하는 방식이 정착된 것으로 추정된다.</p>
+
+    <h3 id="flora">식물</h3>
+    <p>오염된 토양에서도 식물들은 강한 생명력을 보이며 자라고 있다. 금속 및 화약 성분에 대한 약한 내성을 갖추게 된 것으로 추정되나, 그 성분이 열매에 그대로 농축되어 동물이 섭취하기 어려운 상태다. 씨앗을 심으면 자라기는 하지만 열매를 먹으면 중독되는 기이한 상황이 연출된다. 이 때문에 DMZ 내 식물의 열매는 사실상 먹이 사슬에서 차단된 상태로, 동물들은 주로 잎이나 뿌리 등 다른 부위를 먹거나 수계 주변의 식물에 의존하는 경향이 있다.</p>
+  </section>
+
+  <section id="notable">
+    <h2>주목 종</h2>
+    <p>수계 주변에서는 황새, 저어새, 노랑부리백로, 먹황새, 흰목물떼새 등 국내에서 보기 드문 물새류의 번식이 확인되었다. 강에서는 종어와 좀수수치가 서식하는 것으로 알려져 있다.</p>
+    <p>특히 크낙새 한 쌍이 드론 관측을 통해 확인된 것이 연구자들 사이에서 가장 큰 화제가 되었다. 크낙새는 한반도에서 사실상 절멸한 것으로 여겨졌던 종으로, DMZ 내에 잔존 개체군이 있을 가능성이 처음으로 시각적으로 확인된 사례다. 한 쌍만 확인된 상태라 개체군 규모나 번식 여부는 아직 파악되지 않았으며, 연구자들의 관심이 집중되고 있다.</p>
+    <div class="species-list">
+      <strong>드론 관측으로 확인된 주요 종 (일부)</strong>
+      황새 · 저어새 · 노랑부리백로 · 먹황새 · 흰목물떼새 · 크낙새(한 쌍 확인) · 종어 · 좀수수치
+    </div>
+  </section>
+
+  <section id="northsouth">
+    <h2>남북 개체군 비교</h2>
+    <p>DMZ를 경계로 남쪽과 북쪽에 서식하는 동일 종의 개체군 사이에는 미묘한 차이가 관찰된다. 남쪽 개체들은 전반적으로 더 튼실한 경향이 있다. 이는 한국의 급격한 개발로 인해 서식지를 잃고 DMZ 인근으로 밀려온 개체들이 상대적으로 풍족한 먹이 환경을 누리고 있기 때문으로 해석된다. 반면 북쪽 개체들은 식량 사정이 어려운 환경에서 포식 위협을 피해 이동해온 경우가 많은 것으로 추정된다.</p>
+    <p>그러나 두 개체군 사이의 교류가 완전히 단절된 것은 아닌 것으로 보인다. 남북 개체군 간 번식이 이루어지는 것으로 관측되어 유전적 단절은 발생하지 않고 있다. 철조망과 지뢰 지대를 어떻게 넘나드는지는 아직 명확히 확인되지 않았으며, 수계를 통한 이동 가능성이 가장 유력한 경로로 제시되고 있다.</p>
+  </section>
+
+  <section id="research">
+    <h2>연구 현황</h2>
+    <p>DMZ는 생태학적 가치가 높은 지역임에도 불구하고 접근 자체가 원칙적으로 불가능하다. 현재 이루어지는 관측은 거의 전적으로 드론을 이용한 원격 관측에 의존하고 있으며, 직접 채취나 현장 조사는 극히 제한적인 상황에서만 가능하다. 지뢰 제거 없이는 연구 인력의 장기 체류 자체가 불가능하기 때문이다.</p>
+    <p>이러한 접근 제약이 역설적으로 DMZ의 생태를 보존하는 요인이기도 하다는 지적이 있다. 인간이 들어갈 수 없기 때문에 개발과 포획이 원천 차단되었고, 그 결과 70여 년간 독자적인 생태계가 형성될 수 있었다. 남북 관계 변화에 따라 DMZ의 지위가 달라질 경우 이 생태계가 급격히 교란될 수 있다는 우려가 생태학자들 사이에서 꾸준히 제기되고 있다.</p>
+    <div class="notice-box"><strong>관측 한계:</strong> 드론 관측만으로는 확인 가능한 정보에 한계가 있다. 현재 파악된 종 목록과 개체군 현황은 실제보다 훨씬 적을 가능성이 높으며, 지상과 지하 생태계에 대한 정보는 사실상 전무하다.</div>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">특수 서식지</span>
+    <span class="tag">비무장지대</span>
+    <span class="tag">지뢰 환경</span>
+    <span class="tag">중금속 토양</span>
+    <span class="tag">접근 불가</span>
+    <span class="tag">희귀종</span>
+  </div>
+
+  <div class="article-footer">
+    <span>유형: 특수 서식지 · 한반도 중부</span>
+    <span>드론 원격 관측 중</span>
+  </div>
+
+</div>
+</body>
+</html>
