@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>늪낙지 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2f4ee;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #8a9870;
+    --accent: #2a3a10;
+    --highlight: #ccd8a8;
+    --table-head: #b8c890;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #080a04; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #8a9870; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #dce4c8; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f2f4ee; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #060804 0%, #101408 55%, #0a1006 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #a0b078; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #dce4c8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .notice-box { background: #dce4c8; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #141e08; }
+  .notice-box strong { color: var(--accent); }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">늪낙지 沼絡蹄魚</div>
+    <div class="infobox-img">
+      <svg width="180" height="155" viewBox="0 0 180 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 나뭇가지 -->
+        <line x1="20" y1="40" x2="160" y2="40" stroke="#2a1e0a" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+        <line x1="80" y1="40" x2="60" y2="20" stroke="#2a1e0a" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+        <!-- 몸통 (가지에 붙어있음) -->
+        <ellipse cx="105" cy="52" rx="22" ry="14" fill="#5a7030" opacity="0.9"/>
+        <!-- 몸통 광택 -->
+        <ellipse cx="100" cy="47" rx="13" ry="8" fill="#7a9050" opacity="0.4"/>
+        <!-- 눈 -->
+        <circle cx="120" cy="47" r="5" fill="#1a0e00"/>
+        <circle cx="121" cy="46" r="2" fill="#8ab060" opacity="0.5"/>
+        <!-- 다리 8개 (나뭇가지에 빨판으로 붙어있음) -->
+        <!-- 위쪽 다리들 (가지에 붙어있음) -->
+        <path d="M88 48 Q75 42 62 40" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M90 45 Q78 36 68 32" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M96 43 Q88 33 82 26" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- 빨판 암시 (위쪽 다리) -->
+        <circle cx="72" cy="41" r="2" fill="#3a5018" opacity="0.7"/>
+        <circle cx="62" cy="40" r="2" fill="#3a5018" opacity="0.7"/>
+        <circle cx="73" cy="35" r="2" fill="#3a5018" opacity="0.7"/>
+        <!-- 아래쪽 다리들 (늘어짐) -->
+        <path d="M92 62 Q80 78 72 92 Q68 104 70 116" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M98 64 Q90 80 88 96 Q86 110 90 122" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M106 65 Q102 82 104 98 Q106 112 108 124" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M114 63 Q116 80 118 96 Q120 110 118 122" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M120 60 Q126 76 130 90 Q132 104 128 116" stroke="#4a6020" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- 빨판 암시 (아래 다리) -->
+        <circle cx="72" cy="100" r="2" fill="#3a5018" opacity="0.6"/>
+        <circle cx="89" cy="108" r="2" fill="#3a5018" opacity="0.6"/>
+        <circle cx="107" cy="110" r="2" fill="#3a5018" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">나뭇가지에 빨판으로 붙어 있는 성체</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>연체동물문</td></tr>
+      <tr><td>강</td><td>두족강</td></tr>
+      <tr><td>목</td><td>문어목</td></tr>
+      <tr><td>속</td><td>문어속</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Octopus minor palustris</em></td></tr>
+      <tr><td>한자</td><td>沼絡蹄魚</td></tr>
+      <tr><td>크기</td><td>낙지와 유사</td></tr>
+      <tr><td>서식지</td><td>염습지·내륙 늪</td></tr>
+      <tr><td>식성</td><td>갑각류·수서 무척추동물</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+      <tr><td>식용</td><td>단백질원으로 이용</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">늪낙지</div>
+  <div class="article-subtitle">沼絡蹄魚 · <em>Octopus minor palustris</em></div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형 및 신체 특성</a></li>
+      <li><a href="#distribution">분포 및 서식지</a></li>
+      <li><a href="#ecology">생태 및 행동</a></li>
+      <li><a href="#diet">식성</a></li>
+      <li><a href="#reproduction">번식</a></li>
+      <li><a href="#evolution">진화적 위치</a></li>
+      <li><a href="#human">인간과의 관계</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>늪낙지</strong>(沼絡蹄魚, <em>Octopus minor palustris</em>)는 연체동물문 두족강 문어목에 속하는 동물로, 낙지(<em>Octopus minor</em>)에서 분화한 것으로 추정된다. 외형은 낙지와 크게 다르지 않으나 공기 노출에 대한 내성이 강하고 수분이 부족한 환경에서도 더 오래 생존할 수 있다는 점에서 구별된다. 염습지에서 내륙 늪으로 점진적으로 분포를 넓혀온 것으로 추정되며, 연체동물 중 육상화의 과도기 단계에 있을 가능성이 제기되어 있다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>서식지인 늪에서 유래한 직관적인 이름이다. 실제 분포는 염습지에서 내륙 늪까지 걸쳐 있어 이름이 서식지 전체를 정확히 대변하지는 않는다는 지적도 있다. 학명의 <em>palustris</em>는 라틴어로 습지·늪을 의미한다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형 및 신체 특성</h2>
+    <p>전체적인 체형과 크기는 낙지와 유사하다. 가장 두드러진 차이는 피부 상태로, 일반 낙지에 비해 피부가 건조한 편이다. 이는 체내 염분과 수분을 보존하기 위해 피부의 수분 투과성이 낮아지는 방향으로 진화한 결과로 추정된다.</p>
+    <p>반면 빨판만큼은 항상 촉촉한 상태를 유지한다. 빨판에 집중적으로 수분을 공급하는 방식으로, 다리를 통해서만 주변 환경의 수분을 흡수하고 몸통 피부는 건조하게 유지하는 독특한 수분 관리 전략이다. 이 덕분에 나뭇가지나 바위 등 육상 구조물에도 빨판으로 단단히 달라붙을 수 있으며, 나무 위까지 올라가는 행동이 관찰된다.</p>
+  </section>
+
+  <section id="distribution">
+    <h2>분포 및 서식지</h2>
+    <p>현재 분포는 염습지와 내륙 늪을 포함하며, 이름과 달리 순수한 민물 늪에만 사는 것은 아니다. 분포 변화의 경위는 두 단계로 추정된다.</p>
+    <p>초기에는 바다와 인접한 염습지에서 정착한 것으로 보인다. 민물과 바닷물이 섞이는 염습지는 삼투압 부담이 일반 해양보다 낮아, 체액 조절 능력이 아직 완전하지 않은 초기 개체들이 적응하기 유리한 환경이었을 것으로 해석된다. 이후 세대를 거치며 점차 내륙 쪽으로 서식 범위를 넓혀온 것으로 추정된다.</p>
+    <p>내륙 늪까지의 확산에는 조류의 역할이 있었을 가능성이 제기된다. 염습지에 서식하는 조류가 늪낙지의 알을 먹은 후 내륙 습지에서 배설하는 과정에서, 소화를 거친 일부 알이 새로운 환경에서 부화하고 그곳에서도 적응에 성공했다는 가설이다. 실제로 물새의 소화기관을 통과한 무척추동물 알이 생존하여 분포를 넓히는 사례가 다른 수서 생물에서도 알려져 있다.</p>
+    <div class="notice-box"><strong>참고:</strong> 이름의 '늪낙지'라는 표현 때문에 민물 늪에서만 발견된다는 인식이 있으나, 염습지에서도 빈번하게 관찰된다. 이름이 분포 전체를 반영하지 못한다는 지적이 있다.</div>
+  </section>
+
+  <section id="ecology">
+    <h2>생태 및 행동</h2>
+    <p>낙지와 마찬가지로 야행성 경향이 있으며 몸 색을 주변 환경에 맞게 변화시키는 능력을 보유한다. 물속에서 활동하는 시간과 물 밖 구조물 위에서 머무는 시간이 혼재하며, 낙지보다 물 밖 활동 비중이 높다. 나뭇가지에 빨판으로 매달려 주변을 관찰하는 행동이 자주 포착된다.</p>
+    <p>소형 포유류와 파충류에게 자주 포식된다. 물 밖 활동 비중이 높은 만큼 이들 포식자와의 접촉 기회도 늘어났으며, 영양가 높은 단백질원으로 인식된 것으로 보인다.</p>
+  </section>
+
+  <section id="diet">
+    <h2>식성</h2>
+    <p>가재, 새우, 논우렁이, 물달팽이 등 늪에 서식하는 자신보다 작은 갑각류와 연체동물을 주로 포식한다. 모기 유충과 각다귀 유충도 먹이로 삼는 것으로 확인되어 해충 억제에 기여하는 이로운 동물로 평가받기도 했다. 그러나 잠자리 유충도 포식한다는 사실이 추가로 확인되면서 평가가 다소 복잡해졌다. 잠자리 유충 역시 수서 생태계에서 중요한 포식자이기 때문이다.</p>
+  </section>
+
+  <section id="reproduction">
+    <h2>번식</h2>
+    <p>번식 방식은 낙지와 크게 다르지 않다. 암컷이 산란 후 알을 돌보며 부화까지 지키다가 이후 폐사하는 생애 주기를 따른다. 산란 장소로 물 가장자리의 돌 틈이나 수초 아래를 선호하는 것으로 관찰된다.</p>
+  </section>
+
+  <section id="evolution">
+    <h2>진화적 위치</h2>
+    <p>늪낙지는 연체동물 중에서도 두족류가 육상화의 과도기 단계에 있을 가능성을 보여주는 사례로 거론된다. 어류에서 양서류로의 전환처럼, 해양 연체동물이 육상 환경으로 진출하는 과정의 초기 단계일 수 있다는 것이다.</p>
+    <p>그러나 이 해석에 대한 반론도 있다. 피부 건조화와 공기 내성 증가가 육상화로 향하는 방향성을 가진 적응인지, 아니면 습지라는 특수한 환경에 대한 제한적 적응에 불과한지 구분하기 어렵다는 것이다. 진화 경로가 일반적인 육상화 경로와 비교할 때 급진적이라는 점도 단순한 육상화의 과도기로 볼 수 없다는 근거로 제시된다. 현재로서는 어느 쪽으로도 단정 짓기 어렵다는 것이 지배적인 견해다.</p>
+  </section>
+
+  <section id="human">
+    <h2>인간과의 관계</h2>
+    <p>훌륭한 단백질원으로 인식되어 일부 지역에서는 몸보신 목적으로 채취하여 먹는 문화가 있다. 낙지와 생물학적으로 가까운 만큼 맛과 식감도 유사한 것으로 전해진다. 모기 유충을 먹는다는 점에서 해충 방제 관점의 관심도 있으나, 잠자리 유충까지 포식한다는 사실 때문에 단순히 이로운 동물로 분류하기는 어렵다는 시각이 있다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>개체수는 안정적인 것으로 파악된다. 습지 개발과 염습지 감소가 장기적인 서식지 위협 요인으로 지목되고 있으나 현재까지 개체군에 뚜렷한 영향이 확인된 것은 아니다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <svg width="100%" viewBox="0 0 280 175" style="max-width:280px;display:block;">
+      <line x1="20" y1="148" x2="260" y2="148" stroke="#8a9870" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.25"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.25" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.4" font-family="sans-serif">1.75m</text>
+      <!-- 늪낙지 -->
+      <ellipse cx="185" cy="110" rx="16" ry="10" fill="#5a7030" opacity="0.8"/>
+      <circle cx="197" cy="104" r="4" fill="#0a1000" opacity="0.7"/>
+      <path d="M170 116 Q162 128 160 140" stroke="#4a6020" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M174 118 Q170 132 170 146" stroke="#4a6020" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M180 120 Q180 134 182 148" stroke="#4a6020" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M186 120 Q190 134 192 148" stroke="#4a6020" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M192 118 Q198 130 200 144" stroke="#4a6020" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <text x="183" y="162" text-anchor="middle" font-size="9" fill="#2a3a10" font-family="sans-serif">늪낙지 낙지 유사</text>
+    </svg>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">두족강</span>
+    <span class="tag">연체동물</span>
+    <span class="tag">염습지</span>
+    <span class="tag">육상 적응</span>
+    <span class="tag">빨판 수분 유지</span>
+    <span class="tag">진화 논쟁</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 문어목 · 문어속</span>
+    <span><em>Octopus minor palustris</em></span>
+  </div>
+
+</div>
+</body>
+</html>

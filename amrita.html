@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>암리타개구리 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4f8f4;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #90b898;
+    --accent: #1a5030;
+    --highlight: #c8e4cc;
+    --table-head: #aed4b4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #060e08; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #90b898; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #dceede; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f4f8f4; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #060e06 0%, #0e2010 55%, #081408 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #98c49e; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #dceede; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: var(--accent); color: #f4f8f4; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #dceede; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #102818; }
+  .notice-box strong { color: var(--accent); }
+  .warning-box { background: #f0ece0; border-left: 3px solid #8a6010; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a2800; }
+  .warning-box strong { color: #8a6010; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">암리타개구리 藥蛙</div>
+    <div class="infobox-img">
+      <svg width="180" height="155" viewBox="0 0 180 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 몸통 -->
+        <ellipse cx="90" cy="98" rx="38" ry="26" fill="#d8eeda"/>
+        <!-- 몸통 광택 (진액 암시) -->
+        <ellipse cx="84" cy="90" rx="24" ry="15" fill="#eaf8ec" opacity="0.5"/>
+        <!-- 머리 -->
+        <ellipse cx="90" cy="72" rx="28" ry="20" fill="#d0ecd2"/>
+        <!-- 눈 (발톱개구리 특유의 작은 눈) -->
+        <circle cx="76" cy="66" r="5" fill="#0a1808"/>
+        <circle cx="104" cy="66" r="5" fill="#0a1808"/>
+        <circle cx="77" cy="65" r="1.8" fill="#c8e8ca" opacity="0.6"/>
+        <circle cx="105" cy="65" r="1.8" fill="#c8e8ca" opacity="0.6"/>
+        <!-- 코 -->
+        <ellipse cx="87" cy="60" rx="2.5" ry="1.5" fill="#a0c8a2" opacity="0.6"/>
+        <ellipse cx="93" cy="60" rx="2.5" ry="1.5" fill="#a0c8a2" opacity="0.6"/>
+        <!-- 앞다리 -->
+        <path d="M56 90 Q44 82 36 76" stroke="#b8d8ba" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M36 76 Q28 72 24 68" stroke="#b8d8ba" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- 앞발 발가락 -->
+        <line x1="24" y1="68" x2="18" y2="62" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round"/>
+        <line x1="24" y1="68" x2="20" y2="60" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round"/>
+        <line x1="24" y1="68" x2="23" y2="59" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round"/>
+        <path d="M124 90 Q136 82 144 76" stroke="#b8d8ba" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M144 76 Q152 72 156 68" stroke="#b8d8ba" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="156" y1="68" x2="162" y2="62" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round"/>
+        <line x1="156" y1="68" x2="160" y2="60" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round"/>
+        <line x1="156" y1="68" x2="157" y2="59" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round"/>
+        <!-- 뒷다리 (발톱개구리 특유의 강한 뒷다리) -->
+        <path d="M60 118 Q48 128 38 138" stroke="#b8d8ba" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <!-- 뒷발 발가락 + 발톱 암시 -->
+        <line x1="38" y1="138" x2="28" y2="144" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <line x1="38" y1="138" x2="32" y2="148" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <line x1="38" y1="138" x2="38" y2="150" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <line x1="38" y1="138" x2="44" y2="150" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <path d="M120 118 Q132 128 142 138" stroke="#b8d8ba" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <line x1="142" y1="138" x2="152" y2="144" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <line x1="142" y1="138" x2="148" y2="148" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <line x1="142" y1="138" x2="142" y2="150" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <line x1="142" y1="138" x2="136" y2="150" stroke="#b8d8ba" stroke-width="4" stroke-linecap="round"/>
+        <!-- 진액 방울 암시 -->
+        <ellipse cx="68" cy="108" rx="4" ry="5" fill="#c8f0ca" opacity="0.5"/>
+        <ellipse cx="112" cy="112" rx="3" ry="4" fill="#c8f0ca" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">성체 — 진액이 배어나오는 흰빛 피부</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>양서강</td></tr>
+      <tr><td>목</td><td>개구리목</td></tr>
+      <tr><td>과</td><td>피파개구리과</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Xenopus Nectar</em></td></tr>
+      <tr><td>한자</td><td>藥蛙</td></tr>
+      <tr><td>크기</td><td>약 6~8cm (발톱개구리보다 소형)</td></tr>
+      <tr><td>체색</td><td>주로 흰색</td></tr>
+      <tr><td>서식지</td><td>아프리카 수계 (발톱개구리류와 유사)</td></tr>
+      <tr><td>식성</td><td>수서 무척추동물·소형 어류</td></tr>
+      <tr><td>수명</td><td>약 10~15년 추정</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+      <tr><td>사육</td><td>인기 있음</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">암리타개구리 <span class="status-badge">재생 진액</span></div>
+  <div class="article-subtitle">藥蛙 · <em>Xenopus Nectar</em> · "약이 되는 개구리"</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#ecology">생태</a></li>
+      <li><a href="#secretion">재생 진액</a></li>
+      <li><a href="#biochem">성분 및 기제</a></li>
+      <li><a href="#human">인간과의 관계</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>암리타개구리</strong>(藥蛙, <em>Xenopus Nectar</em>)는 개구리목 피파개구리과에 속하는 양서류로, 발톱개구리류와 생태적으로 유사하나 체구가 더 작고 체색이 주로 흰색을 띤다. 현존하는 개구리 중 가장 뛰어난 재생 능력을 보유한 것으로 알려져 있으며, 이 능력의 기반이 되는 진액을 피부에서 분비한다. 과거부터 약용으로 이용되어 왔으나 포유류에게는 실질적인 효과가 없는 것으로 확인되었다. 현재는 재생 기제 연구와 미용·주류 산업에서 주목받고 있다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>암리타(Amrita)는 산스크리트어로 불사 또는 신의 음료를 뜻하는 단어로, 인도 신화에서 신들이 마시는 불로불사의 액체를 가리킨다. 이 개구리가 분비하는 진액의 달콤한 맛과 재생 능력에서 유래한 명칭이다. 한자명 藥蛙는 약이 되는 개구리라는 뜻이나, 실제로 인간에게 약효가 없다는 사실이 밝혀진 이후로 다소 과장된 명칭이라는 지적도 있다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>발톱개구리류보다 체구가 작아 성체 기준 6~8cm 수준이다. 체색은 주로 흰색이며 옅은 녹빛이 감도는 개체도 있다. 피부 표면은 항상 젖어 있는 듯한 광택을 띠는데, 이는 진액이 상시 소량 분비되기 때문이다. 눈은 발톱개구리류와 마찬가지로 작고 머리 위쪽에 위치하며, 수중 생활과 육상 생활을 모두 고려한 구조다. 뒷발에는 발톱개구리류 특유의 발톱이 존재한다.</p>
+  </section>
+
+  <section id="ecology">
+    <h2>생태</h2>
+    <p>전반적인 생태는 발톱개구리류와 크게 다르지 않다. 아프리카 수계에 서식하며 수서 무척추동물과 소형 어류를 먹이로 삼는다. 다른 발톱개구리류보다 물 밖에서 머무는 시간이 길다는 점이 두드러진 차이다. 이는 수중에 있으면 분비된 진액이 물에 희석되어 흩어지기 때문으로, 물 밖에 있을 때 진액이 피부 전체에 고르게 유지되어 재생 효과가 온전히 발휘된다는 것이 현재의 해석이다.</p>
+    <p>유생 기간이 동과의 다른 발톱개구리류에 비해 긴 것으로 알려져 있다. 이 기간 동안의 생리적 변화가 성체의 재생 능력 발달과 연관이 있을 것으로 추정되나 아직 연구 중이다.</p>
+  </section>
+
+  <section id="secretion">
+    <h2>재생 진액</h2>
+    <p>암리타개구리의 가장 두드러진 특징은 피부에서 분비되는 진액을 통한 탁월한 재생 능력이다. 도롱뇽류의 재생 능력을 상회하는 것으로 평가되며, 사지 일부가 손상되어도 빠른 속도로 원형을 회복하는 것이 확인되었다. 재생 과정에서 흉터 없이 원래 조직 구조를 되살리는 방식은 일반 양서류의 상처 치유와도 구분된다.</p>
+    <p>진액은 독특한 향기를 지니는데, 한국인에게는 깻잎향과 유사하다는 반응이 많다. 맛은 단맛이 난다. 이 향미의 조합이 천적들에게는 기피 요인으로 작용하는 것으로 보인다.</p>
+  </section>
+
+  <section id="biochem">
+    <h2>성분 및 기제</h2>
+    <p>재생 능력의 핵심 기제는 레티노산과 관련 유전자의 조합으로 분석되고 있다. 진액에는 레티노산이 풍부하게 포함되어 있으며, 암리타개구리 자체의 유전자에는 <strong>ERK 유전자</strong>와 <strong>CYP26b1 효소</strong>가 존재한다. ERK 유전자는 세포 증식과 분화를 조절하는 신호 전달 경로에 관여하며, CYP26b1 효소는 레티노산의 농도를 세포 수준에서 정밀하게 조절하는 역할을 한다. 이 두 요소가 함께 작동할 때 재생이 과잉되거나 부족하지 않은 적정 수준으로 진행될 수 있다는 것이 현재까지의 분석이다.</p>
+    <p>레티노산만 외부에서 공급해도 해당 유전자와 효소가 없으면 재생이 제대로 이루어지지 않는다. 이 때문에 진액을 포유류에게 바르더라도 레티노산은 흡수될 수 있어도 ERK 유전자와 CYP26b1 효소가 없는 포유류 피부에서는 재생 기제가 작동하지 않는다. 실질적인 효과가 없다는 결론이 나온 것도 이 때문이다.</p>
+    <div class="notice-box"><strong>연구 현황:</strong> 현재 ERK 유전자와 CYP26b1 효소의 작동 원리를 분석하여 포유류에게도 적용 가능한 방식을 찾는 연구가 진행 중이다. 레티노산 기반 피부 재생 연구와 연결 짓는 시도도 이루어지고 있으나, 실용화까지는 상당한 시간이 필요할 것으로 보인다.</div>
+    <p>깻잎향의 원인은 진액에 포함된 <strong>페릴라케톤</strong> 성분으로 확인되었다. 페릴라케톤은 일부 포유류에게 독성을 나타내는 성분으로, 특히 설치류와 식육목 동물에게 유해하다. 뱀과 비슷한 환경에서 서식하면서도 뱀보다는 설치류나 식육목 포식자에게 더 취약한 조건에 놓인 암리타개구리가, 이들을 기피하게 만드는 화학적 방어 수단으로 이 성분을 갖게 된 것으로 추정된다.</p>
+    <div class="warning-box"><strong>주의:</strong> 페릴라케톤은 고양이, 개, 설치류에게 독성을 나타낼 수 있다. 사육 시 이들 동물과 함께 두지 않도록 권고된다.</div>
+  </section>
+
+  <section id="human">
+    <h2>인간과의 관계</h2>
+    <h3>민간 약용 기록</h3>
+    <p>흰 개구리에서 나오는 달콤한 액체가 상처를 낫게 한다는 기록이 일부 지역의 민간 의학에 남아 있다. 실제로 암리타개구리에게만 해당되는 기록인지, 다른 종과 혼용된 것인지는 명확하지 않다. 포유류에게는 실질적인 효과가 없다는 사실이 확인된 이후에도 민간에서의 사용이 완전히 사라지지는 않았다.</p>
+    <h3>산업적 이용</h3>
+    <p>진액은 현재 미용 업계에서 원료로 사용되고 있다. 레티노산은 피부 미용 성분으로 이미 널리 알려져 있어, 암리타개구리 진액을 원료로 한 고농도 레티노산 제품이 고가에 유통되고 있다. 재생 능력 자체를 인간에게 전달하지는 못하지만 성분 자체의 피부 개선 효과는 일반 레티노산 제품과 동일한 수준이다. 일부 고급 증류주의 재료로도 쓰이는데, 단맛과 독특한 향이 풍미에 기여한다는 평가가 있다.</p>
+    <h3>사육</h3>
+    <p>발톱개구리류 자체가 반려동물로 인기 있는 분류군이라 암리타개구리도 자연스럽게 관심을 받고 있다. 관리 방식은 일반 발톱개구리와 크게 다르지 않으며, 물 밖에서 머무는 시간이 길다는 특성을 고려한 환경 구성이 필요하다. 페릴라케톤의 독성 때문에 고양이·개와 같은 공간에서 사육하는 것은 권장되지 않는다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>개체수는 안정적인 것으로 평가된다. 진액 채취를 위한 사육 수요가 늘고 있으나 야생 개체군에 직접적인 영향을 줄 수준은 아닌 것으로 보인다. 재생 기제 연구에 대한 학계의 관심이 높아지면서 연구용 개체 수요도 함께 늘고 있는 추세다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <svg width="100%" viewBox="0 0 280 175" style="max-width:280px;display:block;">
+      <line x1="20" y1="148" x2="260" y2="148" stroke="#90b898" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.25"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.25" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="148" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <text x="55" y="162" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.4" font-family="sans-serif">1.75m</text>
+      <!-- 암리타개구리 -->
+      <ellipse cx="185" cy="136" rx="14" ry="9" fill="#c8e8ca" opacity="0.85"/>
+      <ellipse cx="185" cy="130" rx="10" ry="7" fill="#d0ecd2" opacity="0.9"/>
+      <circle cx="179" cy="127" r="3" fill="#0a1808" opacity="0.7"/>
+      <circle cx="191" cy="127" r="3" fill="#0a1808" opacity="0.7"/>
+      <line x1="171" y1="134" x2="163" y2="142" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+      <line x1="199" y1="134" x2="207" y2="142" stroke="#b8d8ba" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+      <text x="185" y="162" text-anchor="middle" font-size="9" fill="#1a5030" font-family="sans-serif">암리타개구리 약 7cm</text>
+    </svg>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">양서강</span>
+    <span class="tag">피파개구리과</span>
+    <span class="tag">재생 능력</span>
+    <span class="tag">레티노산</span>
+    <span class="tag">페릴라케톤</span>
+    <span class="tag">사육 인기</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 개구리목 · 피파개구리과</span>
+    <span><em>Xenopus Nectar</em></span>
+  </div>
+
+</div>
+</body>
+</html>
