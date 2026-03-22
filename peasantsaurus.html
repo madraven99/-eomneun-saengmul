@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>페전트사우루스 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f0e8;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #b09060;
+    --accent: #5a3810;
+    --highlight: #e8d8b0;
+    --table-head: #d8c490;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #181008; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c0a870; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #ede0c0; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f5f0e8; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #200e04 0%, #382010 55%, #281808 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #c0a060; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #ede0c0; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .status-badge { display: inline-block; background: #8a2010; color: #f5f0e8; font-size: 0.72rem; padding: 2px 8px; letter-spacing: 0.05em; font-weight: 500; vertical-align: middle; margin-left: 6px; position: relative; top: -2px; }
+  .notice-box { background: #f0e4c0; border-left: 3px solid #a07020; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a2400; }
+  .notice-box strong { color: #7a4800; }
+  .warning-box { background: #f0e0d8; border-left: 3px solid #a03010; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a1000; }
+  .warning-box strong { color: #a03010; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">페전트사우루스 龍雉</div>
+    <div class="infobox-img">
+      <svg width="180" height="155" viewBox="0 0 180 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 몸통 (깃털 있음) -->
+        <ellipse cx="85" cy="95" rx="32" ry="20" fill="#5a3010"/>
+        <!-- 깃털 암시 (몸통) -->
+        <ellipse cx="75" cy="88" rx="20" ry="12" fill="#6a4018" opacity="0.5"/>
+        <ellipse cx="95" cy="100" rx="18" ry="10" fill="#7a5020" opacity="0.3"/>
+        <!-- 날개 -->
+        <path d="M60 85 Q42 72 35 58 Q38 74 50 88Z" fill="#4a2808" opacity="0.85"/>
+        <path d="M110 85 Q128 72 135 58 Q132 74 120 88Z" fill="#4a2808" opacity="0.85"/>
+        <!-- 목 (비늘 시작) -->
+        <rect x="76" y="64" width="18" height="22" rx="4" fill="#3a2808"/>
+        <!-- 머리 (비늘, 파충류 느낌) -->
+        <ellipse cx="85" cy="56" rx="16" ry="12" fill="#3a2808"/>
+        <!-- 비늘 패턴 암시 -->
+        <path d="M72 58 Q76 54 80 58 Q84 54 88 58 Q92 54 96 58" stroke="#5a4020" stroke-width="1" fill="none" opacity="0.6"/>
+        <path d="M72 62 Q76 58 80 62 Q84 58 88 62 Q92 58 96 62" stroke="#5a4020" stroke-width="1" fill="none" opacity="0.6"/>
+        <!-- 주둥이 (이빨 암시) -->
+        <path d="M85 56 Q78 60 74 62 Q76 66 80 64 Q82 68 85 65 Q88 68 90 64 Q94 66 96 62 Q92 60 85 56Z" fill="#2a1808"/>
+        <!-- 이빨 -->
+        <line x1="79" y1="63" x2="79" y2="67" stroke="#e8e0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="83" y1="64" x2="83" y2="68" stroke="#e8e0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="87" y1="64" x2="87" y2="68" stroke="#e8e0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="91" y1="63" x2="91" y2="67" stroke="#e8e0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- 눈 -->
+        <circle cx="80" cy="52" r="3" fill="#1a0800"/>
+        <circle cx="80.8" cy="51.2" r="1" fill="#d0a020" opacity="0.6"/>
+        <!-- 앞발톱 -->
+        <path d="M60 100 L50 112 L46 122" stroke="#2a1808" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M50 112 L40 118" stroke="#2a1808" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M50 112 L44 124" stroke="#2a1808" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M110 100 L120 112 L124 122" stroke="#2a1808" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M120 112 L130 118" stroke="#2a1808" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M120 112 L126 124" stroke="#2a1808" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- 긴 꼬리 -->
+        <path d="M117 95 Q135 100 148 110 Q160 120 165 135 Q158 128 150 120 Q138 112 125 105" stroke="#4a3010" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.85"/>
+        <path d="M165 135 Q168 140 170 148" stroke="#3a2808" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">성체 — 비늘로 덮인 머리와 깃털 몸통의 대비</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>동물계</td></tr>
+      <tr><td>문</td><td>척삭동물문</td></tr>
+      <tr><td>강</td><td>조강</td></tr>
+      <tr><td>목</td><td>닭목</td></tr>
+      <tr><td>과</td><td>옛꿩과</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Phasianusaurus</em></td></tr>
+      <tr><td>한자</td><td>龍雉</td></tr>
+      <tr><td>크기</td><td>꿩보다 크게 진화</td></tr>
+      <tr><td>서식지</td><td>몬태나 주 일대</td></tr>
+      <tr><td>식성</td><td>소형~중형 동물</td></tr>
+      <tr><td>비행</td><td>활공 가능</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>분류 논쟁</td><td>진행 중</td></tr>
+      <tr><td>교란 위험</td><td>경고 단계</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">페전트사우루스 <span class="status-badge">분류 논쟁</span></div>
+  <div class="article-subtitle">龍雉 · <em>Phasianusaurus</em> · 인위적 유전자 발현 개체</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#origin">탄생 경위</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#ecology">생태 및 행동</a></li>
+      <li><a href="#classification">분류 논쟁</a></li>
+      <li><a href="#ecosystem">생태계 영향</a></li>
+      <li><a href="#responsibility">세바스찬 책임 문제</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>페전트사우루스</strong>(龍雉, <em>Phasianusaurus</em>)는 꿩을 기반으로 억제되어 있던 조상 형질 관련 유전자를 인위적으로 발현시켜 탄생한 개체군이다. 유체 시절에는 꺼병이와 구별하기 어려울 정도로 유사하나, 성체가 되면 머리와 목에 비늘이 발달하고 이빨과 날카로운 발톱이 생기며 꼬리가 길어져 전혀 다른 외형을 갖추게 된다. 현재 몬태나 주 일대 야생에서 중간 포식자로 기능하고 있으며, 의도치 않게 방사된 개체들이 번식에 성공하여 야생 개체군을 형성하였다.</p>
+  </section>
+
+  <section id="origin">
+    <h2>탄생 경위</h2>
+    <p>페전트사우루스의 탄생은 고생물학자 잭 호너 박사의 치키노사우루스 프로젝트에서 비롯된다. 닭의 유전자를 조작해 공룡의 형질을 되살리는 연구를 진행하던 중, 당시 연구팀의 일원이었던 <strong>아이리스 캘러웨이 세바스찬</strong>은 연구 자료 일부를 빼돌려 독자적인 실험을 시작했다.</p>
+    <p>세바스찬은 닭으로는 이미 대중에게 노출된 결과물밖에 나오지 않을 것이라 판단했다. 동시에 닭목에 속하지 않는 조류에 동일한 방법을 적용하는 것은 자신의 기술 수준으로는 불가능했다. 여러 조류를 대상으로 실험한 결과, 닭과 근연관계에 있는 꿩에서만 이빨 발현, 앞발톱 성장, 꼬리 연장 유전자를 동시에 활성화하는 데 성공했다. 이후 그는 부화율을 높이기 위해 대량의 알을 준비하여 실험을 진행했으며, 결과를 공개할 시점을 기다렸다.</p>
+    <p>그러나 연구 자료 유출이 발각되면서 상황이 급변했다. 덜미가 잡힌 세바스찬은 증거를 폐기하고 실험 중이던 알들을 연구소 인근 온실에 급히 숨겼다. 이후 배임 및 산업기밀 유출 혐의로 기소되어 법적 절차에 매몰된 나머지 온실에 둔 알의 존재를 잊어버렸다. 재판 과정 중 현장 점검을 위해 잠시 연구소에 들른 시점에야 알을 떠올려 온실을 찾았으나 이미 비어 있었다.</p>
+    <p>온실 주인은 알의 존재를 전혀 알지 못했으며, 어느 날 삐약거리는 소리가 들려 확인하니 꺼병이들이 부화해 있었다고 진술했다. 당시 부화율은 대부분의 알이 부화할 정도로 높았다. 온실 주인은 이를 일반 꿩으로 여겨 어느 정도 키운 뒤 야생에 방사했다. 유체와 성체의 외형이 전혀 달라진다는 사실을 아무도 몰랐기 때문이다.</p>
+    <div class="notice-box"><strong>방사 경위:</strong> 온실 주인은 현재 어떠한 법적 책임도 지지 않는 것으로 정리되었다. 알의 존재 자체를 인지하지 못했고, 성체의 특성을 예측할 방법이 없었다는 것이 그 근거다.</div>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <h3>유체</h3>
+    <p>부화 직후부터 일정 성장 단계까지는 꺼병이와 외형적으로 거의 구별이 불가능하다. 솜털이 보송보송하게 나 있으며 눈에 띄는 특이점이 없다. 이 시기에는 식성도 일반 꿩 새끼와 유사한 수준으로 알려져 있다.</p>
+    <h3>성체</h3>
+    <p>성장하면서 머리와 목 부분의 깃털이 빠지고 비늘이 자라기 시작한다. 완전히 성숙한 개체는 머리와 꼬리에 깃털이 없어 파충류에 가까운 인상을 주는 반면, 몸통은 깃털이 유지되어 영락없는 조류의 외형을 띤다. 이빨이 발달해 있으며 꼬리는 일반 꿩에 비해 현저히 길다.</p>
+    <p>팔의 구조가 특히 복합적이다. 손목과 발톱 부분은 공룡을 연상시키는 날카로운 발톱이 나 있는 반면, 팔꿈치에서 어깨까지는 깃털이 자라 있어 활공에 활용된다. 발톱과 날개 기능이 한 팔에 공존하는 형태로, 현생 조류에서는 찾아볼 수 없는 구조다.</p>
+    <p>수컷과 암컷의 외형 차이가 두드러진다. 수컷은 몸통의 깃털이 매우 화려하며 비늘 역시 알록달록한 색채를 띤다. 머리와 꼬리 쪽에 깃털이 없는 탓에 나머지 부위에서라도 발색이 강화된 것으로 추정된다. 반면 암컷은 깃털과 비늘 모두 눈에 띄지 않는 밋밋한 색조를 유지하는데, 이는 원종인 꿩 암컷이 새끼를 보호하기 위해 보호색을 띠는 특성이 그대로 유지된 결과로 해석된다. 인위적 유전자 발현으로 외형이 크게 바뀐 상황에서도 성적 이형성의 방향성 자체는 원종의 것을 그대로 따르고 있다는 점이 주목된다.</p>
+    <p>현재까지 관찰된 성체들은 꿩보다 눈에 띄게 크며, 야생에서 번식을 거듭하면서 초기 개체보다 체구가 더 커지고 있는 것으로 관측된다.</p>
+  </section>
+
+  <section id="ecology">
+    <h2>생태 및 행동</h2>
+    <p>야생 방사 이후 몬태나 주 일대의 환경에 빠르게 적응했다. 소형 동물을 주로 사냥하며 중형 포식자와도 충돌하는 모습이 관찰된다. 특이한 점은 유전적으로 직계 후손 관계에 있는 꿩을 적극적으로 사냥한다는 것으로, 이는 먹이 경쟁 상황에서 근연종을 구별하지 않는다는 것을 시사한다.</p>
+    <p>이빨과 발톱을 활용한 포식 방식은 현생 조류보다 수각류 공룡의 사냥 방식에 가깝다는 평가를 받는다. 활공 능력을 이용해 높은 곳에서 급강하하여 사냥감을 제압하는 행동이 자주 관찰된다.</p>
+  </section>
+
+  <section id="classification">
+    <h2>분류 논쟁</h2>
+    <p>페전트사우루스의 분류를 둘러싼 논쟁은 현재까지도 해결되지 않았다. 핵심 쟁점은 세 가지다.</p>
+    <p>첫째, 이 개체군을 꿩의 변이체로 볼 것인지 독립된 종으로 볼 것인지의 문제다. 자연 발생이 아닌 인위적 유전자 조작에 의해 탄생했으나, 이후 야생에서 자연 번식을 통해 개체군을 유지하고 있다는 점에서 단순한 변이체로 보기도 어렵다는 입장이 있다.</p>
+    <p>둘째, 생식 능력을 갖춘 자연 번식 개체군이 형성된 이상 이를 종으로 인정해야 하는가의 문제다. 일반적인 종의 기준을 적용하면 독립 종으로 분류할 근거가 있으나, 탄생 자체가 인위적이었다는 점에서 자연 분류체계에 편입하는 것을 꺼리는 입장도 있다.</p>
+    <p>셋째, 이 개체군의 존재가 공식화될 경우 치키노사우루스 프로젝트 및 관련 유전자 조작 연구에 대한 법적·윤리적 선례를 만들 수 있다는 우려가 분류 논쟁에 외부 압력으로 작용하고 있다는 지적도 있다.</p>
+    <div class="notice-box"><strong>현재 상태:</strong> 공식 분류 체계에는 잠정적으로 옛꿩과로 등재되어 있으나, 이에 이의를 제기하는 연구자가 상당수 존재한다.</div>
+  </section>
+
+  <section id="ecosystem">
+    <h2>생태계 영향</h2>
+    <p>야생 방사 이후 몬태나 주 일대에서 중간 포식자로 기능하고 있다. 현재까지는 생태계 내 먹이사슬에 어느 정도 편입된 것으로 보이나, 개체수가 계속 증가하고 체구가 커지는 추세가 확인됨에 따라 생태계 교란 가능성이 경고 단계로 상향되었다.</p>
+    <p>특히 꿩 개체군에 대한 직접적인 사냥이 꿩의 지역 분포에 영향을 미치기 시작했다는 관측이 나오고 있다. 장기적으로 페전트사우루스가 어느 수준까지 세력을 확장할 수 있는지, 그리고 기존 중형 포식자들과의 경쟁에서 어떤 위치를 점하게 될지가 현재 가장 주목받는 연구 과제다.</p>
+    <div class="warning-box"><strong>교란 위험:</strong> 일부 생태학자들은 페전트사우루스가 현재의 성장 추세를 유지할 경우 수십 년 내에 교란종으로 공식 지정될 가능성이 있다고 전망하고 있다.</div>
+  </section>
+
+  <section id="responsibility">
+    <h2>세바스찬 책임 문제</h2>
+    <p>아이리스 캘러웨이 세바스찬은 배임 및 산업기밀 유출 혐의로 유죄 판결을 받았다. 그러나 페전트사우루스 개체군의 야생 확산에 따른 생태적 책임에 대해서는 별도의 법적 판단이 이루어지지 않았다. 당시 법적 체계가 유전자 조작 생물의 비의도적 방사를 명시적으로 규정하지 않았다는 점이 그 이유다.</p>
+    <p>세바스찬 본인은 알을 온실에 숨긴 사실은 인정하나, 방사 자체는 온실 주인의 행위로 인한 것이며 자신의 의도된 행동이 아니라는 입장을 유지하고 있다. 그러나 야생에서 번식 가능한 개체를 만들어 관리 체계 밖에 둔 최초 행위자라는 점에서 도의적 책임을 피할 수 없다는 것이 지배적인 여론이다. 생태계 교란 위험이 현실화될수록 그에 대한 법적 추가 조치를 요구하는 목소리도 높아지고 있다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>현재 몬태나 주 일대에 야생 개체군이 형성되어 있으며 개체수는 증가 추세다. 포획 및 개체수 조절 시도가 이루어지고 있으나, 활공 능력과 높은 경계심으로 인해 성체 포획이 쉽지 않다. 분류 논쟁이 해결되지 않은 상태에서 개체수 조절을 위한 법적 근거 마련도 지연되고 있어 사실상 관리 공백 상태에 있다는 지적이 있다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <svg width="100%" viewBox="0 0 320 185" style="max-width:320px;display:block;">
+      <line x1="20" y1="158" x2="300" y2="158" stroke="#b09060" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.25"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.25" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="158" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="158" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <text x="55" y="172" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.4" font-family="sans-serif">1.75m</text>
+      <!-- 꿩 -->
+      <ellipse cx="175" cy="138" rx="14" ry="8" fill="#8a6030" opacity="0.5"/>
+      <circle cx="186" cy="132" r="6" fill="#8a6030" opacity="0.5"/>
+      <path d="M161 138 Q154 136 150 134" stroke="#8a6030" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <text x="170" y="155" text-anchor="middle" font-size="8" fill="var(--muted)" opacity="0.4" font-family="sans-serif">꿩 약 80cm</text>
+      <!-- 페전트사우루스 성체 -->
+      <ellipse cx="248" cy="120" rx="22" ry="13" fill="#5a3010" opacity="0.8"/>
+      <circle cx="264" cy="108" r="10" fill="#3a2008" opacity="0.85"/>
+      <!-- 비늘 암시 -->
+      <path d="M256 106 Q260 103 264 106 Q268 103 272 106" stroke="#6a4020" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <!-- 꼬리 -->
+      <path d="M226 122 Q214 128 208 138 Q204 148 206 158" stroke="#4a2808" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.75"/>
+      <!-- 날개 암시 -->
+      <path d="M240 112 Q230 100 224 92" stroke="#4a2808" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <text x="245" y="172" text-anchor="middle" font-size="9" fill="#5a3810" font-family="sans-serif">페전트사우루스 약 1.2m+</text>
+    </svg>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">닭목</span>
+    <span class="tag">인위적 발현</span>
+    <span class="tag">분류 논쟁</span>
+    <span class="tag">몬태나</span>
+    <span class="tag">중간 포식자</span>
+    <span class="tag">교란 위험</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 닭목 · 옛꿩과 (잠정)</span>
+    <span><em>Phasianusaurus</em></span>
+  </div>
+
+</div>
+</body>
+</html>
