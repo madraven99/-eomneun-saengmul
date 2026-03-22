@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쓰레기 섬 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4f2ee;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #a09070;
+    --accent: #4a3a10;
+    --highlight: #e0d8b8;
+    --table-head: #ccc0a0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #100e08; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #a09070; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .habitat-label { display: inline-block; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; margin-bottom: 12px; opacity: 0.8; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 245px; border: 1px solid var(--border); background: #ece8d8; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f4f2ee; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #0c0a06 0%, #1c1808 55%, #141008 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #b8a880; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 80px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #ece8d8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc ol ol { padding-left: 16px; margin-top: 2px; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .notice-box { background: #ece8d8; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #2a1e08; }
+  .notice-box strong { color: var(--accent); }
+  .warning-box { background: #f0e8d8; border-left: 3px solid #8a4010; padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a1800; }
+  .warning-box strong { color: #8a4010; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">쓰레기 섬</div>
+    <div class="infobox-img">
+      <svg width="210" height="160" viewBox="0 0 210 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 바다 배경 -->
+        <rect x="0" y="0" width="210" height="160" fill="#0a0e10"/>
+        <!-- 물결 -->
+        <path d="M0 110 Q52 104 105 110 Q158 116 210 110" stroke="#1a2830" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M0 118 Q52 112 105 118 Q158 124 210 118" stroke="#1a2830" stroke-width="1" fill="none" opacity="0.4"/>
+        <!-- 쓰레기 더미 기반 -->
+        <ellipse cx="105" cy="112" rx="80" ry="18" fill="#2a2418" opacity="0.9"/>
+        <!-- 플라스틱/쓰레기 더미 -->
+        <rect x="50" y="96" width="18" height="10" rx="2" fill="#3a5030" opacity="0.7"/>
+        <rect x="72" y="90" width="12" height="16" rx="1" fill="#5a4020" opacity="0.8"/>
+        <rect x="88" y="88" width="22" height="12" rx="2" fill="#2a3848" opacity="0.7"/>
+        <rect x="114" y="92" width="16" height="14" rx="1" fill="#483020" opacity="0.8"/>
+        <rect x="134" y="94" width="20" height="10" rx="2" fill="#3a4828" opacity="0.7"/>
+        <!-- 유리병 -->
+        <rect x="62" y="82" width="8" height="18" rx="3" fill="#2a5838" opacity="0.5"/>
+        <rect x="100" y="78" width="6" height="20" rx="3" fill="#4a3820" opacity="0.6"/>
+        <rect x="148" y="80" width="7" height="18" rx="3" fill="#1a3848" opacity="0.5"/>
+        <!-- 쇳조각 -->
+        <path d="M80 100 L92 96 L95 102 L83 106Z" fill="#4a4838" opacity="0.6"/>
+        <path d="M120 98 L135 95 L137 101 L122 104Z" fill="#3a3828" opacity="0.6"/>
+        <!-- 그물 -->
+        <path d="M55 88 Q75 82 95 88 Q115 94 135 88 Q155 82 170 88" stroke="#4a4020" stroke-width="1" fill="none" opacity="0.5" stroke-dasharray="3 2"/>
+        <path d="M60 92 Q80 86 100 92 Q120 98 140 92 Q160 86 175 92" stroke="#4a4020" stroke-width="1" fill="none" opacity="0.4" stroke-dasharray="3 2"/>
+        <!-- 갑각류 실루엣 -->
+        <ellipse cx="90" cy="104" rx="8" ry="5" fill="#5a4818" opacity="0.85"/>
+        <line x1="82" y1="102" x2="74" y2="98" stroke="#4a3810" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+        <line x1="82" y1="105" x2="73" y2="104" stroke="#4a3810" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+        <line x1="98" y1="102" x2="106" y2="98" stroke="#4a3810" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+        <path d="M84 100 L80 95" stroke="#4a3810" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <path d="M86 100 L83 94" stroke="#4a3810" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <!-- 따개비 암시 -->
+        <ellipse cx="130" cy="100" rx="4" ry="3" fill="#3a3820" opacity="0.7"/>
+        <ellipse cx="138" cy="103" rx="3" ry="2.5" fill="#3a3820" opacity="0.7"/>
+        <ellipse cx="145" cy="100" rx="3.5" ry="2.5" fill="#3a3820" opacity="0.6"/>
+        <!-- 조류 실루엣 -->
+        <path d="M70 60 Q76 54 82 58 Q79 60 70 60Z" fill="#a0a090" opacity="0.5"/>
+        <path d="M130 52 Q136 46 142 50 Q139 52 130 52Z" fill="#a0a090" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">플라스틱과 쇳조각 위를 기어다니는 갑각류</div>
+    <table>
+      <tr class="section-header"><td colspan="2">환경 분류</td></tr>
+      <tr><td>유형</td><td>특수 서식지</td></tr>
+      <tr><td>위치</td><td>해양 (복수 지점)</td></tr>
+      <tr><td>기반</td><td>인공 폐기물</td></tr>
+      <tr><td>토양</td><td>없음</td></tr>
+      <tr class="section-header"><td colspan="2">환경 특성</td></tr>
+      <tr><td>주요 성분</td><td>플라스틱·섬유·유리·금속</td></tr>
+      <tr><td>지반</td><td>유동적·불안정</td></tr>
+      <tr><td>화학 노출</td><td>극심</td></tr>
+      <tr class="section-header"><td colspan="2">생태 현황</td></tr>
+      <tr><td>상주 생물</td><td>갑각류·따개비·갯강구류</td></tr>
+      <tr><td>생태계 여부</td><td>미정 (이용 단계)</td></tr>
+    </table>
+  </div>
+
+  <div class="habitat-label">특수 서식지</div>
+  <div class="article-title">쓰레기 섬</div>
+  <div class="article-subtitle">특수 서식지 · 해양 폐기물 집적 구역</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#environment">환경 특성</a></li>
+      <li><a href="#inhabitants">서식 생물</a>
+        <ol>
+          <li><a href="#crustacean">갑각류</a></li>
+          <li><a href="#barnacle">따개비·갯강구류</a></li>
+          <li><a href="#visitor">일시 방문 생물</a></li>
+        </ol>
+      </li>
+      <li><a href="#bacteria">플라스틱 분해 박테리아</a></li>
+      <li><a href="#impact">주변 생태계 영향</a></li>
+      <li><a href="#definition">생태계 정의 문제</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p>쓰레기 섬은 해류와 바람의 흐름에 따라 해양에 버려진 플라스틱, 섬유, 유리병, 쇳조각 등의 인공 폐기물이 특정 해역에 대규모로 집적되어 형성된 구역이다. 고체 지반이 없으며 폐기물 더미가 조류에 따라 유동적으로 출렁이는 불안정한 기반 위에 일부 생물들이 자리를 잡고 있다. 완전한 생태계로 보기는 어려우나, 주변 해양 생물들이 이 환경을 어떤 방식으로든 이용하는 단계에 있다는 점에서 생태학적 관심을 받고 있다.</p>
+  </section>
+
+  <section id="environment">
+    <h2>환경 특성</h2>
+    <p>자연에서는 존재하지 않는 소재들이 뒤섞인 기반이 가장 큰 특징이다. 플라스틱, 합성 섬유, 유리, 금속이 서로 엉켜 수면 위에 떠 있으며, 파도와 조류에 따라 구조가 계속 변한다. 뿌리를 내릴 토양이 없고 기반 자체가 유동적이기 때문에 정착을 위해서는 표면에 달라붙거나 틈새에 끼어드는 방식이 필요하다.</p>
+    <p>화학물질 노출이 극심하다. 플라스틱에서 흘러나온 가소제, 금속의 산화물, 섬유에 잔류한 염료 등이 복합적으로 섞인 환경으로, 일반 해양 환경과는 성분이 크게 다르다. 자외선과 염분에 지속적으로 노출되는 것도 이 환경의 특성이다.</p>
+    <div class="warning-box"><strong>주변 영향:</strong> 해조류의 광합성과 산호의 호흡을 방해하는 것으로 알려져 있다. 쓰레기 섬이 형성된 해역 주변에서는 해조류 밀도가 낮아지고 산호의 백화 현상이 가속되는 경향이 관찰된다.</div>
+  </section>
+
+  <section id="inhabitants">
+    <h2>서식 생물</h2>
+
+    <h3 id="crustacean">갑각류</h3>
+    <p>이 환경에 가장 적극적으로 적응한 분류군이다. 쓰레기 섬에 서식하는 갑각류들은 집게의 무는 힘이 현저히 강해진 것이 특징으로, 플라스틱을 찢거나 금속 틈새를 파헤치는 능력을 갖추고 있다. 이는 먹이를 구하거나 은신처를 확보하는 과정에서 인공 소재를 다루어야 했던 환경의 압력이 반영된 결과로 추정된다.</p>
+    <p>쓰레기 섬 자체가 이들의 주된 서식지라기보다는, 어류 포식자를 피해 도망쳐온 피난처에 가깝다. 물속에서 어류에게 쫓기는 상황에서 다리를 이용해 쓰레기 더미 위로 올라오는 행동이 포착되었다. 어류는 이 불안정하고 화학물질로 가득 찬 기반 위를 따라오기 어렵기 때문에 임시 도피처로서 기능한다.</p>
+
+    <h3 id="barnacle">따개비·갯강구류</h3>
+    <p>따개비와 갯강구와 유사한 생물들은 쓰레기 섬에 거의 상주하는 분류군이다. 표면에 달라붙는 방식으로 생활하는 이들에게 유동적인 기반은 큰 장애가 되지 않는다. 플라스틱과 금속 표면에 부착하여 생활하는 개체들이 확인되었으며, 일반 해양 환경보다 화학물질 내성이 높은 것으로 추정된다.</p>
+
+    <h3 id="visitor">일시 방문 생물</h3>
+    <p>장거리를 이동하는 해양 조류와 철새들이 비행 중 지쳐 이 구역에 잠시 내려앉았다가 다시 날아가는 모습이 포착되었다. 상주하거나 먹이를 구하는 것이 아니라 순전히 휴식을 위한 일시 착지다. 망망대해 한가운데 이 구역 외에 마땅히 앉을 곳이 없기 때문으로 해석된다.</p>
+    <p>반면 고래류는 쓰레기 섬 구역이 이동 경로에 있더라도 훨씬 먼 거리를 우회하는 경향이 일관되게 관찰된다. 정확한 이유는 밝혀지지 않았으나 화학물질이나 플라스틱 미세 입자에 대한 회피 반응으로 추정된다. 고래의 이동 경로 분석이 쓰레기 섬의 위치를 간접적으로 파악하는 수단으로 활용되기도 한다.</p>
+  </section>
+
+  <section id="bacteria">
+    <h2>플라스틱 분해 박테리아</h2>
+    <p>이 환경에서 플라스틱을 미세하게나마 분해하는 박테리아가 발견되었다. 분해 속도는 매우 느려 현재의 플라스틱 축적 속도를 따라잡기에는 턱없이 부족하지만, 인공 소재를 분해하는 미생물이 자연적으로 발생했다는 사실 자체가 주목받고 있다.</p>
+    <p>이 발견은 지구를 하나의 거대한 생명체로 보는 가이아 이론을 지지하는 측에서 중요한 근거로 인용되고 있다. 지구가 스스로를 치유하려는 방향으로 새로운 생명을 만들어낸다는 것이다. 이에 대해 과학계 주류는 자연선택에 의한 통상적인 적응 결과라는 입장을 유지하고 있으나, 인공 소재가 자연 환경에 노출된 역사가 극히 짧다는 점에서 적응의 속도가 비정상적으로 빠르다는 점은 부정하지 않는다.</p>
+    <div class="notice-box"><strong>참고:</strong> 해당 박테리아의 분해 능력이 실용적인 수준에 도달하거나 대규모로 응용될 수 있는지에 대해서는 현재까지 근거가 없다. 쓰레기 섬의 규모는 박테리아의 분해 속도와 무관하게 계속 증가하고 있다.</div>
+  </section>
+
+  <section id="impact">
+    <h2>주변 생태계 영향</h2>
+    <p>쓰레기 섬은 그 자체보다 주변 해역에 미치는 영향이 더 광범위하다. 화학물질과 미세 플라스틱이 지속적으로 주변 해수에 흘러들어 해조류의 광합성을 방해하고 산호의 호흡을 억제한다. 쓰레기 섬이 오래 유지된 해역일수록 인근 해저 생태계의 건강 상태가 나쁜 경향이 있다.</p>
+    <p>미세 플라스틱은 어류와 패류의 체내에서도 검출되고 있어 먹이사슬을 통한 확산도 우려된다. 쓰레기 섬 자체는 일부 생물에게 피난처나 일시 거점으로 기능하지만, 그 존재가 주변 해양 환경에 미치는 전반적인 영향은 부정적인 것으로 평가된다.</p>
+  </section>
+
+  <section id="definition">
+    <h2>생태계 정의 문제</h2>
+    <p>쓰레기 섬을 하나의 생태계로 볼 수 있는가에 대한 논의가 있다. 현재의 지배적인 견해는 이를 아직 생태계로 정의하기 어렵다는 것이다. 상주하는 생물의 종류가 극히 제한적이고, 먹이사슬이 형성되어 있지 않으며, 대부분의 생물이 이 환경에 적응한 것이 아니라 다른 이유로 일시적으로 이용하는 것에 불과하다는 것이 그 근거다.</p>
+    <p>다만 따개비·갯강구류의 화학물질 내성과 갑각류의 집게 강화가 이 환경에 대한 적응의 초기 단계일 가능성은 배제되지 않는다. 인간이 만들어낸 환경이 그 어떤 의도도 없이 새로운 생태적 압력을 만들어내고 있다는 점에서, 장기적인 관찰이 필요한 대상으로 여겨지고 있다.</p>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">특수 서식지</span>
+    <span class="tag">해양 폐기물</span>
+    <span class="tag">갑각류</span>
+    <span class="tag">따개비</span>
+    <span class="tag">플라스틱 분해</span>
+    <span class="tag">가이아 논쟁</span>
+  </div>
+
+  <div class="article-footer">
+    <span>유형: 특수 서식지 · 해양 폐기물 집적 구역</span>
+    <span>생태계 정의 논의 중</span>
+  </div>
+
+</div>
+</body>
+</html>
