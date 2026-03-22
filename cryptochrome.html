@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>크립토크롬 과다 분비 현상 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f4ec;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #c8a850;
+    --accent: #7a5a00;
+    --highlight: #f0e0a0;
+    --table-head: #e8d080;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #180e00; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #c8a850; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.3), 4px 4px 0 rgba(0,0,0,0.1); padding: 48px 56px; }
+  .phenomenon-label { display: inline-block; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; margin-bottom: 12px; opacity: 0.8; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 250px; border: 1px solid var(--border); background: #f0e4b8; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f8f4ec; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(160deg, #180c00 0%, #301800 55%, #200e00 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #d8b860; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 80px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #f0e4b8; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc ol ol { padding-left: 16px; margin-top: 2px; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 22px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .notice-box { background: #f0e4b8; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #3a2800; }
+  .notice-box strong { color: var(--accent); }
+  .species-box { background: #f8f0d8; border: 1px solid var(--border); padding: 14px 20px; margin: 16px 0; font-size: 0.84rem; line-height: 2; color: #3a2800; }
+  .species-box strong { color: var(--accent); display: block; margin-bottom: 4px; font-size: 0.8rem; letter-spacing: 0.05em; }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">크립토크롬 과다 분비 현상</div>
+    <div class="infobox-img">
+      <svg width="210" height="160" viewBox="0 0 210 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 강렬한 태양 -->
+        <circle cx="105" cy="30" r="22" fill="#d89000" opacity="0.9"/>
+        <circle cx="105" cy="30" r="16" fill="#f0b000" opacity="0.8"/>
+        <!-- 자외선 방사 암시 -->
+        <line x1="105" y1="4" x2="105" y2="0" stroke="#e8c000" stroke-width="2" opacity="0.5"/>
+        <line x1="128" y1="10" x2="132" y2="7" stroke="#e8c000" stroke-width="2" opacity="0.5"/>
+        <line x1="82" y1="10" x2="78" y2="7" stroke="#e8c000" stroke-width="2" opacity="0.5"/>
+        <line x1="136" y1="30" x2="140" y2="30" stroke="#e8c000" stroke-width="2" opacity="0.5"/>
+        <line x1="74" y1="30" x2="70" y2="30" stroke="#e8c000" stroke-width="2" opacity="0.5"/>
+        <!-- 굵고 두꺼운 나무 줄기 -->
+        <rect x="92" y="80" width="26" height="80" rx="4" fill="#4a2e08" opacity="0.9"/>
+        <!-- 줄기 결 -->
+        <line x1="98" y1="82" x2="98" y2="158" stroke="#3a2008" stroke-width="1" opacity="0.4"/>
+        <line x1="106" y1="82" x2="106" y2="158" stroke="#3a2008" stroke-width="1" opacity="0.3"/>
+        <!-- 두꺼운 잎 -->
+        <ellipse cx="72" cy="75" rx="28" ry="16" fill="#3a6010" opacity="0.9" transform="rotate(-20 72 75)"/>
+        <ellipse cx="72" cy="75" rx="20" ry="10" fill="#4a7818" opacity="0.5" transform="rotate(-20 72 75)"/>
+        <ellipse cx="138" cy="72" rx="28" ry="16" fill="#3a6010" opacity="0.9" transform="rotate(20 138 72)"/>
+        <ellipse cx="138" cy="72" rx="20" ry="10" fill="#4a7818" opacity="0.5" transform="rotate(20 138 72)"/>
+        <ellipse cx="105" cy="60" rx="32" ry="18" fill="#486812" opacity="0.9"/>
+        <ellipse cx="105" cy="60" rx="22" ry="11" fill="#5a8020" opacity="0.4"/>
+        <!-- 잎맥 (두꺼운 잎 암시) -->
+        <line x1="105" y1="52" x2="105" y2="76" stroke="#3a5810" stroke-width="1.5" opacity="0.5"/>
+        <line x1="105" y1="60" x2="90" y2="70" stroke="#3a5810" stroke-width="1" opacity="0.4"/>
+        <line x1="105" y1="60" x2="120" y2="70" stroke="#3a5810" stroke-width="1" opacity="0.4"/>
+        <!-- 땅 (단단한 토양 암시) -->
+        <ellipse cx="105" cy="155" rx="40" ry="8" fill="#3a2808" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">강한 자외선 환경에서 잎과 줄기가 두꺼워진 목본류</div>
+    <table>
+      <tr class="section-header"><td colspan="2">현상 분류</td></tr>
+      <tr><td>유형</td><td>생물 간 상호 현상</td></tr>
+      <tr><td>대상</td><td>목본류</td></tr>
+      <tr><td>주요 발생지</td><td>호주·동남아시아</td></tr>
+      <tr><td>핵심 기제</td><td>크립토크롬 과발현</td></tr>
+      <tr class="section-header"><td colspan="2">변화 양상</td></tr>
+      <tr><td>잎·줄기</td><td>두꺼워짐</td></tr>
+      <tr><td>목질부</td><td>강화</td></tr>
+      <tr><td>내건성</td><td>향상</td></tr>
+      <tr class="section-header"><td colspan="2">연구 현황</td></tr>
+      <tr><td>규명 여부</td><td>진행 중</td></tr>
+    </table>
+  </div>
+
+  <div class="phenomenon-label">생물 간 상호 현상</div>
+  <div class="article-title">크립토크롬 과다 분비 현상</div>
+  <div class="article-subtitle">현상 · 목본류 · 자외선 적응</div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#mechanism">기제</a>
+        <ol>
+          <li><a href="#cryptochrome">크립토크롬과 자외선</a></li>
+          <li><a href="#morphology">형태 변화</a></li>
+        </ol>
+      </li>
+      <li><a href="#distribution">발생 분포</a></li>
+      <li><a href="#species">관찰 수종</a></li>
+      <li><a href="#desert">사막 식물과의 비교</a></li>
+      <li><a href="#impact">생태계 영향</a></li>
+      <li><a href="#current">현황 및 연구</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>크립토크롬 과다 분비 현상</strong>은 강화된 자외선 환경에 노출된 목본류에서 크립토크롬 단백질의 발현량이 현저히 증가하고, 그 결과 잎과 줄기가 두꺼워지며 목질부가 강화되어 내건성이 높아지는 방향으로 변화하는 현상이다. 호주와 동남아시아 지역에서 먼저 관찰되기 시작했으며, 해당 지역의 다양한 목본류에서 유사한 양상이 확인되고 있다. 단순한 자외선 내성 증가를 넘어 광에너지를 적극적으로 활용하는 방향의 적응으로 해석되고 있다.</p>
+  </section>
+
+  <section id="mechanism">
+    <h2>기제</h2>
+
+    <h3 id="cryptochrome">크립토크롬과 자외선</h3>
+    <p>크립토크롬은 식물의 청색광 및 자외선 감지에 관여하는 광수용체 단백질로, 식물의 생장 방향, 개화 시기, 일주기 리듬 조절 등에 관여한다. 이 현상에서 목본류는 자외선 조사량이 증가하는 환경에 반응하여 크립토크롬 발현량을 높이는 방향으로 변화한다. 크립토크롬 발현이 증가하면 세포 분열과 물질 축적 패턴에 영향을 미쳐 잎과 줄기의 세포층이 두터워지는 결과로 이어지는 것으로 분석된다.</p>
+    <p>자외선을 단순히 차단하거나 회피하는 방향이 아니라, 이를 감지하고 오히려 더 많은 에너지를 흡수하는 방향으로 반응하는 것이 이 현상의 핵심이다. 강한 광원을 더욱 적극적으로 받아들이기 위해 수광 면적과 두께를 동시에 늘리는 방식으로 해석된다.</p>
+
+    <h3 id="morphology">형태 변화</h3>
+    <p>크립토크롬 과발현의 결과로 나타나는 형태 변화는 크게 세 가지다. 첫째, 잎의 두께가 증가하고 큐티클층이 두터워진다. 둘째, 줄기와 가지의 목질부가 강화되어 기계적 강도가 높아진다. 셋째, 이렇게 강화된 목질부가 수분을 더 오래 보유하는 구조로 변화하여 물이 부족한 환경에서도 버티는 시간이 늘어난다. 결과적으로 강한 자외선 환경과 건조 환경을 동시에 견디는 방향의 적응이 이루어진다.</p>
+  </section>
+
+  <section id="distribution">
+    <h2>발생 분포</h2>
+    <p>현재까지 가장 뚜렷하게 관찰되는 지역은 호주와 동남아시아다. 두 지역은 연간 자외선 지수가 높고 건기와 우기의 편차가 크다는 공통점이 있으며, 이러한 환경이 크립토크롬 과발현을 유도하는 압력으로 작용한 것으로 추정된다. 호주의 경우 오존층 희박화로 인한 자외선 증가가 다른 지역보다 일찍 진행된 점도 이 현상이 해당 지역에서 먼저 나타난 이유 중 하나로 제시된다.</p>
+    <p>다른 지역으로의 확산 여부는 현재 관찰 중이다. 유사한 기후 조건을 가진 지역에서도 초기 단계의 징후가 포착되고 있으나 아직 뚜렷한 수준은 아닌 것으로 보인다.</p>
+  </section>
+
+  <section id="species">
+    <h2>관찰 수종</h2>
+    <p>현상이 확인된 수종은 다양하며, 분류학적으로 서로 거리가 있는 수종들에서 유사한 변화가 독립적으로 나타나고 있다는 점이 주목된다.</p>
+    <div class="species-box">
+      <strong>현상 확인 수종 (일부)</strong>
+      유칼립투스 · 반얀나무 · 맹그로브 · 망고 · 고무나무 · 망고스틴 · 두리안 · 바오밥
+    </div>
+    <p>이 수종들은 서식 환경과 생태적 특성이 서로 다름에도 불구하고 크립토크롬 과발현이라는 공통된 반응을 보이고 있다. 이는 이 현상이 특정 분류군의 고유한 반응이 아니라 자외선 증가라는 환경적 압력에 대한 목본류 일반의 수렴적 반응일 가능성을 시사한다.</p>
+  </section>
+
+  <section id="desert">
+    <h2>사막 식물과의 비교</h2>
+    <p>사막 환경에 서식하는 식물들 역시 강한 자외선에 노출되지만, 이 현상은 사막 식물에서 뚜렷하게 나타나지 않는다. 사막 식물들은 오랜 세월에 걸쳐 이미 자외선과 건조에 대응하는 별도의 진화 방향을 갖추어왔기 때문이다. 두꺼운 왁스층, 잎의 가시화, 수분 저장 조직 발달 등 사막 식물 특유의 적응이 이미 자리 잡힌 상태에서 크립토크롬 과발현이라는 추가적인 변화를 일으킬 압력이 상대적으로 작다는 것이 현재의 해석이다.</p>
+    <p>이 비교는 크립토크롬 과다 분비 현상이 기존에 자외선 적응 체계를 갖추지 못했던 목본류에서 새롭게 발생하는 현상임을 시사한다.</p>
+    <div class="notice-box"><strong>참고:</strong> 사막 지역 목본류 중 일부에서도 미약한 수준의 크립토크롬 발현 증가가 감지되었다는 보고가 있으나, 형태적 변화로 이어지는 수준은 아닌 것으로 파악된다.</div>
+  </section>
+
+  <section id="impact">
+    <h2>생태계 영향</h2>
+    <p>잎과 줄기가 두꺼워진 수목은 초식 동물의 입장에서 섭취가 더 어려워진다. 실제로 일부 지역에서 이 현상이 진행된 수목의 잎을 기피하거나 덜 먹는 초식동물의 행동 변화가 관찰되고 있다. 장기적으로 해당 지역 초식동물의 먹이 선택에 영향을 줄 가능성이 있다.</p>
+    <p>한편 목질부 강화로 인해 수목의 수명이 늘어나고 구조적 안정성이 높아지는 부수적 효과도 관측된다. 강화된 목재가 산업적으로 어떤 가치를 지니는지에 대한 관심도 생겨나고 있다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황 및 연구</h2>
+    <p>현재 호주와 동남아시아를 중심으로 관찰이 이루어지고 있으며, 크립토크롬 발현량 증가와 형태 변화 사이의 인과 관계를 구체적으로 규명하는 연구가 진행 중이다. 이 현상이 유전적으로 고정되는 방향으로 진행 중인지, 아니면 환경에 반응하는 가역적 변화인지도 주요 연구 과제 중 하나다. 현재로서는 같은 수종의 개체라도 자외선 노출 정도에 따라 형태 차이가 나타난다는 점에서 가역성이 있는 것으로 추정되나 단정 짓기 이르다는 견해가 지배적이다.</p>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">생물 간 상호 현상</span>
+    <span class="tag">목본류</span>
+    <span class="tag">크립토크롬</span>
+    <span class="tag">자외선 적응</span>
+    <span class="tag">호주·동남아</span>
+    <span class="tag">내건성</span>
+  </div>
+
+  <div class="article-footer">
+    <span>유형: 생물 간 상호 현상 · 목본류</span>
+    <span>기제 연구 중</span>
+  </div>
+
+</div>
+</body>
+</html>
