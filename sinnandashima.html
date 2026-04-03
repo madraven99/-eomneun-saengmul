@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>辛蘭다시마 - 가상 생물 도감</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f0f4f2;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --border: #709080;
+    --accent: #1a4a38;
+    --highlight: #c0d8cc;
+    --table-head: #a8c8b8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #040e08; font-family: 'Noto Sans KR', sans-serif; color: var(--ink); min-height: 100vh; padding: 30px 16px; }
+  .nav-bar { max-width: 860px; margin: 0 auto 12px; font-size: 0.8rem; }
+  .nav-bar a { color: #709080; text-decoration: none; }
+  .nav-bar a:hover { text-decoration: underline; }
+  .page { max-width: 860px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.15); padding: 48px 56px; }
+  .article-title { font-family: 'Noto Serif KR', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 4px; }
+  .article-subtitle { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.03em; }
+  .infobox { float: right; clear: right; margin: 0 0 24px 28px; width: 240px; border: 1px solid var(--border); background: #d8ece4; font-size: 0.82rem; }
+  .infobox-title { background: var(--accent); color: #f0f4f2; font-family: 'Noto Serif KR', serif; font-weight: 600; text-align: center; padding: 8px 12px; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .infobox-img { width: 100%; height: 175px; background: linear-gradient(180deg, #041408 0%, #0a2818 50%, #061a10 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+  .infobox-caption { text-align: center; font-size: 0.72rem; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border); font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox tr { border-bottom: 1px solid #88b098; }
+  .infobox tr:last-child { border-bottom: none; }
+  .infobox td { padding: 5px 10px; vertical-align: top; line-height: 1.5; }
+  .infobox td:first-child { font-weight: 500; color: var(--accent); width: 72px; font-size: 0.78rem; }
+  .infobox .section-header td { background: var(--table-head); font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: center; letter-spacing: 0.05em; }
+  .toc { background: #d8ece4; border: 1px solid var(--border); display: inline-block; padding: 14px 20px; margin: 0 0 28px 0; min-width: 200px; }
+  .toc-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--accent); font-family: 'Noto Serif KR', serif; }
+  .toc ol { padding-left: 18px; font-size: 0.82rem; color: var(--accent); line-height: 1.9; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  p { font-size: 0.9rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; text-align: justify; }
+  h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 32px 0 14px; color: var(--ink); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 20px 0 10px; color: var(--accent); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .notice-box { background: #d8ece4; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; font-size: 0.84rem; line-height: 1.7; color: #0e2a1e; }
+  .notice-box strong { color: var(--accent); }
+  .article-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .tag { background: var(--highlight); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="nav-bar"><a href="index.html">← 도감 목록으로</a></div>
+<div class="page clearfix">
+
+  <div class="infobox">
+    <div class="infobox-title">辛蘭다시마</div>
+    <div class="infobox-img">
+      <svg width="170" height="155" viewBox="0 0 170 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 수중 배경 -->
+        <rect x="0" y="0" width="170" height="155" fill="#040e08" opacity="0.5"/>
+        <!-- 야광충 발광 암시 -->
+        <circle cx="30" cy="30" r="2" fill="#a0f0c0" opacity="0.3"/>
+        <circle cx="140" cy="45" r="1.5" fill="#a0f0c0" opacity="0.25"/>
+        <circle cx="20" cy="80" r="2" fill="#a0f0c0" opacity="0.2"/>
+        <circle cx="155" cy="100" r="1.5" fill="#a0f0c0" opacity="0.25"/>
+        <circle cx="50" cy="120" r="1" fill="#a0f0c0" opacity="0.2"/>
+        <!-- 부착 기반 (바위 암시) -->
+        <ellipse cx="85" cy="148" rx="40" ry="10" fill="#0a1e10" opacity="0.8"/>
+        <!-- 줄기 (난초처럼 올라오는 형태) -->
+        <path d="M70 148 Q68 120 72 95 Q74 75 70 55 Q67 38 72 22" stroke="#1a5030" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <path d="M85 148 Q85 118 88 92 Q90 70 87 48 Q84 30 88 14" stroke="#1a5030" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <path d="M100 148 Q102 120 100 95 Q98 75 102 55 Q105 38 100 22" stroke="#1a5030" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <!-- 잎 (난초 잎 형태) -->
+        <path d="M72 95 Q52 88 40 75 Q48 80 72 88Z" fill="#2a7048" opacity="0.85"/>
+        <path d="M72 70 Q90 58 105 52 Q95 62 74 72Z" fill="#2a7048" opacity="0.8"/>
+        <path d="M88 92 Q108 85 122 78 Q112 84 90 90Z" fill="#2a7048" opacity="0.85"/>
+        <path d="M88 65 Q70 55 55 48 Q66 56 87 66Z" fill="#2a7048" opacity="0.8"/>
+        <path d="M100 95 Q118 102 130 112 Q118 104 102 94Z" fill="#2a7048" opacity="0.8"/>
+        <path d="M100 70 Q82 62 70 55 Q80 60 100 68Z" fill="#2a7048" opacity="0.75"/>
+        <!-- 잎 광택 -->
+        <path d="M88 92 Q96 86 104 84" stroke="#40a060" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M72 95 Q62 90 55 84" stroke="#40a060" stroke-width="1" fill="none" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="infobox-caption">난초를 닮은 엽상체가 특징</div>
+    <table>
+      <tr class="section-header"><td colspan="2">분류</td></tr>
+      <tr><td>계</td><td>크로미스타계</td></tr>
+      <tr><td>문</td><td>갈조식물문</td></tr>
+      <tr><td>강</td><td>갈조강</td></tr>
+      <tr><td>목</td><td>신난다시마목</td></tr>
+      <tr><td>과</td><td>신난다시마과</td></tr>
+      <tr><td>속</td><td>신난다시마속</td></tr>
+      <tr><td>종</td><td>신난다시마</td></tr>
+      <tr class="section-header"><td colspan="2">기본 정보</td></tr>
+      <tr><td>학명</td><td><em>Sinlania spicata</em></td></tr>
+      <tr><td>한자</td><td>辛蘭다시마</td></tr>
+      <tr><td>크기</td><td>다시마와 유사</td></tr>
+      <tr><td>맛</td><td>매운맛</td></tr>
+      <tr><td>서식지</td><td>플랑크톤 풍부 해역</td></tr>
+      <tr class="section-header"><td colspan="2">현황</td></tr>
+      <tr><td>상태</td><td>안정</td></tr>
+      <tr><td>산업 이용</td><td>식품업계</td></tr>
+    </table>
+  </div>
+
+  <div class="article-title">辛蘭다시마</div>
+  <div class="article-subtitle">辛蘭다시마 · <em>Sinlania spicata</em></div>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#name">명칭 및 어원</a></li>
+      <li><a href="#appearance">외형</a></li>
+      <li><a href="#ecology">생태</a></li>
+      <li><a href="#taste">매운맛과 성분</a></li>
+      <li><a href="#human">인간과의 관계</a></li>
+      <li><a href="#current">현황</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <p><strong>辛蘭다시마</strong>(<em>Sinlania spicata</em>)는 갈조강에 속하는 해조류로, 신난다시마목에서 유일하게 알려진 종이다. 다시마와 유사한 크기로 자라며 엽상체의 형태가 난초를 닮아 있다는 점과 특유의 매운맛이 주된 특징이다. 매운맛의 원인은 아직 완전히 규명되지 않았으나 야광충의 분해 성분과의 관련성이 추적되고 있다.</p>
+  </section>
+
+  <section id="name">
+    <h2>명칭 및 어원</h2>
+    <p>매운맛과 난초를 닮은 생김새에서 비롯된 이름이다. 한자 표기를 쓰지 않고 한자와 한글을 혼용한 형태로 표기하는 것이 관례로 굳어져 있다.</p>
+  </section>
+
+  <section id="appearance">
+    <h2>외형</h2>
+    <p>전체적인 크기는 다시마와 유사하다. 가장 두드러진 형태적 특징은 엽상체의 생장 방식으로, 일반적인 다시마류가 넓고 평평한 엽상체를 형성하는 것과 달리 辛蘭다시마는 여러 가닥의 좁고 긴 엽상체가 한 곳에서 위로 뻗어오르는 형태를 띤다. 이 모습이 난초의 잎과 유사하다는 점에서 이름의 일부가 유래하였다. 체색은 짙은 갈녹색이며 표면에 얕은 광택이 있다.</p>
+  </section>
+
+  <section id="ecology">
+    <h2>생태</h2>
+    <p>야광충을 비롯한 플랑크톤이 풍부한 해역에 주로 분포한다. 광합성을 주된 에너지원으로 삼는 것은 다른 갈조류와 동일하나, 야광충이 대량 발생하는 시기에 성장이 현저히 빨라지는 것이 관찰된다. 야광충이 죽어 분해되는 과정에서 해수에 용출된 성분을 흡수하는 것으로 추정되며, 이 성분이 辛蘭다시마의 매운맛과 연관된 것으로 보인다. 야광충이 없는 해역에서도 생존은 가능하나 성장 속도가 느리고 매운맛이 약해지는 경향이 있다는 보고가 있다.</p>
+  </section>
+
+  <section id="taste">
+    <h2>매운맛과 성분</h2>
+    <p>辛蘭다시마의 가장 독특한 특성은 해조류에서는 거의 찾아볼 수 없는 매운맛이다. 맛의 강도는 개체와 서식 환경에 따라 차이가 있으며, 야광충이 풍부한 해역에서 자란 개체일수록 매운맛이 강한 경향이 있다.</p>
+    <p>매운맛의 원인 성분은 현재까지 명확히 규명되지 않았다. 야광충의 분해 과정에서 생성되는 특정 물질이 辛蘭다시마에 흡수된 뒤 변형된 형태로 축적되는 것으로 추정되나, 해당 물질의 정체와 변환 경로에 대한 연구가 진행 중이다. 야광충 자체에는 매운맛을 내는 성분이 없기 때문에 단순 흡수가 아닌 내부 대사 과정이 관여할 가능성도 제기되어 있다.</p>
+    <div class="notice-box"><strong>참고:</strong> 야광충이 드문 해역에서 채취한 辛蘭다시마에서도 매운맛이 전혀 없지는 않아, 야광충 성분 외에 추가적인 요인이 있을 가능성도 배제되지 않는다.</div>
+  </section>
+
+  <section id="human">
+    <h2>인간과의 관계</h2>
+    <p>해조류 특유의 감칠맛과 매운맛이 함께 나온다는 독특한 풍미로 식품업계의 관심을 받고 있다. 기존에 매운맛을 내기 위해 고추 계열 성분을 사용하던 방식과 달리, 해조류에서 자연적으로 매운맛이 나온다는 점이 식품 개발에 새로운 가능성으로 여겨지고 있다.</p>
+    <p>농심은 辛蘭다시마만으로 매운맛을 낸 라면 <strong>신난너구리</strong>를 출시했다. 고추 성분 없이 해조류만으로 매운맛을 구현했다는 점이 화제가 되었으며, 고추 알레르기가 있는 소비자층에서도 반응이 있었다. 맛 자체에 대한 평가는 기존 너구리와 다른 방향의 매운맛이라는 의견이 주를 이룬다.</p>
+  </section>
+
+  <section id="current">
+    <h2>현황</h2>
+    <p>개체수는 안정적인 것으로 파악된다. 식품업계의 수요가 늘면서 양식 가능성에 대한 연구가 시작되었으나, 야광충 풍부 환경과의 연관성 때문에 일반적인 해조류 양식 방식을 그대로 적용하기 어렵다는 점이 과제로 남아 있다. 매운맛 성분의 규명이 양식 기술 개발과도 직결되는 문제로, 성분 연구와 양식 연구가 병행되고 있다.</p>
+  </section>
+
+  <section id="size">
+    <h2>크기 비교</h2>
+    <svg width="100%" viewBox="0 0 280 185" style="max-width:280px;display:block;">
+      <line x1="20" y1="158" x2="260" y2="158" stroke="#709080" stroke-width="0.8"/>
+      <!-- 인간 -->
+      <circle cx="55" cy="62" r="8.75" fill="var(--muted)" opacity="0.25"/>
+      <line x1="55" y1="71" x2="55" y2="105" stroke="var(--muted)" stroke-width="6" opacity="0.25" stroke-linecap="round"/>
+      <line x1="44" y1="76" x2="66" y2="76" stroke="var(--muted)" stroke-width="4" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="48" y2="158" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <line x1="55" y1="105" x2="62" y2="158" stroke="var(--muted)" stroke-width="4.5" opacity="0.25" stroke-linecap="round"/>
+      <text x="55" y="172" text-anchor="middle" font-size="9" fill="var(--muted)" opacity="0.4" font-family="sans-serif">1.75m</text>
+      <!-- 辛蘭다시마 -->
+      <path d="M175 158 Q174 130 176 105 Q177 82 174 58 Q172 38 175 18" stroke="#1a5030" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+      <path d="M185 158 Q185 128 187 102 Q188 78 186 54 Q184 32 187 12" stroke="#1a5030" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.85"/>
+      <path d="M195 158 Q196 130 195 105 Q194 82 197 58 Q199 38 195 18" stroke="#1a5030" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+      <!-- 잎 암시 -->
+      <path d="M176 105 Q163 99 156 92" stroke="#2a7048" stroke-width="2.5" fill="none" opacity="0.7"/>
+      <path d="M187 102 Q200 96 207 89" stroke="#2a7048" stroke-width="2.5" fill="none" opacity="0.7"/>
+      <path d="M176 78 Q189 70 196 64" stroke="#2a7048" stroke-width="2.5" fill="none" opacity="0.7"/>
+      <text x="185" y="172" text-anchor="middle" font-size="9" fill="#1a4a38" font-family="sans-serif">辛蘭다시마 약 1~3m</text>
+    </svg>
+  </section>
+
+  <div class="tag-list">
+    <span class="tag">갈조강</span>
+    <span class="tag">해조류</span>
+    <span class="tag">매운맛</span>
+    <span class="tag">야광충</span>
+    <span class="tag">식품 이용</span>
+  </div>
+
+  <div class="article-footer">
+    <span>분류: 신난다시마목 · 신난다시마과 · 신난다시마속</span>
+    <span><em>Sinlania spicata</em></span>
+  </div>
+
+</div>
+</body>
+</html>
